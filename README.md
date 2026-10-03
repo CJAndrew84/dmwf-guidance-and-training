@@ -20,7 +20,7 @@ Sample `24.00` workspace checks and `Bentley 2024` folder names do not limit the
 | [Deployment and configuration handbook](01-Handbook.md) | Understand architecture, load order, selection and optional features |
 | [Administrator runbook](02-Administrator-Runbook.md) | Install, onboard clients, test, deploy, support and roll back |
 | [Configuration reference](03-Configuration-Reference.md) | Look up key variables, defaults, operators and diagnostics |
-| [Interactive training tool](DMWF-Interactive-Training.html) | Complete eight interactive modules, simulations, lab notes and a scored assessment offline |
+| [Interactive training tool](DMWF-Interactive-Training.html) | Learn through 23 guided explanations and worked examples, then practise with simulations and assessment |
 | [Training workbook](04-Training-Workbook.md) | Deliver a course with seven labs, model answers and competency assessment |
 | [Standards and integration guidance](05-Standards-and-Integration.md) | Build datasets from standards and plan separate Autodesk integration |
 | [Review and source register](06-Review-and-Source-Register.md) | Review source anomalies, evidence and verification limits |
@@ -60,4 +60,4 @@ No workflows or automatic deployments are included in this documentation reposit
 
 ## Interactive training
 
-Download `DMWF-Interactive-Training.html` and open it in a modern browser. It is one self-contained file with no external libraries or network requirement. GitHub displays HTML source; download the raw file to run it. Progress and lab notes are saved in browser storage where available. Use **Export learning record** to retain or share the results. Changing browser or file location may change the storage context. The simulations teach selected concepts; they do not execute the Bentley CFG parser or replace live acceptance tests.
+Download `DMWF-Interactive-Training.html` and open it in a modern browser. The course teaches the framework through 23 guided screens across eight modules: project context, bootstrap and include timing, actual selector variables, product detection and Application CSBs, nest/marker discovery, assignment precedence, diagnosis and coherent deployment. Each screen includes a worked example and an explained reasoning check before the practice exercises. It is one self-contained file with no external libraries or network requirement. GitHub displays HTML source; download the raw file to run it. Progress and lab notes are saved in browser storage where available. Use **Export learning record** to retain or share the results. Changing browser or file location may change the storage context. The simulations teach selected concepts; they do not execute the Bentley CFG parser or replace live acceptance tests.

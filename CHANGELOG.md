@@ -1,5 +1,9 @@
 # Change log
 
+## Taught interactive course dated 3 October 2026
+
+Reworked the HTML tool around 23 guided teaching screens with mechanism explanations, worked examples and answer-specific reasoning before the existing practice exercises. Added lesson navigation and corrected selector variable names to `_DYNAMIC_WORKSPACEGROUPNAME` and `_DYNAMIC_CEWORKSPACENAME`.
+
 ## Interactive training tool dated 3 October 2026
 
 Added a standalone offline HTML course with eight modules, logical load trace, selector exercise, Application CSB readiness checks, assignment-order simulator, five diagnostic scenarios, seven lab evidence forms, ten-question assessment, saved progress and JSON learning-record export.
