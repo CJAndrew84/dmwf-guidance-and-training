@@ -50,12 +50,25 @@ sequence works</a></li>
 workspace</a></li>
 <li><a href="#configuration-operators-and-load-order" id="toc-configuration-operators-and-load-order">Configuration operators
 and load order</a></li>
-<li><a href="#choosing-the-workset-pattern" id="toc-choosing-the-workset-pattern">Choosing the WorkSet
-pattern</a></li>
+<li><a href="#choosing-the-workset-pattern" id="toc-choosing-the-workset-pattern">Choosing the WorkSet pattern</a>
+<ul>
+<li><a href="#one-workarea-with-one-workset" id="toc-one-workarea-with-one-workset">One WorkArea with one
+WorkSet</a></li>
+<li><a href="#several-packages-at-a-fixed-folder-depth" id="toc-several-packages-at-a-fixed-folder-depth">Several packages at a
+fixed folder depth</a></li>
+<li><a href="#packages-identified-by-markers" id="toc-packages-identified-by-markers">Packages identified by
+markers</a></li>
+<li><a href="#additional-context-along-the-path" id="toc-additional-context-along-the-path">Additional context along the
+path</a></li>
+</ul></li>
 <li><a href="#projectwise-drive-and-local-content" id="toc-projectwise-drive-and-local-content">ProjectWise Drive and local
 content</a></li>
 <li><a href="#product-mapping-and-compatibility" id="toc-product-mapping-and-compatibility">Product mapping and
-compatibility</a></li>
+compatibility</a>
+<ul>
+<li><a href="#product-generations-and-the-26xx-configuration-requirement" id="toc-product-generations-and-the-26xx-configuration-requirement">Product
+generations and the 26.xx configuration requirement</a></li>
+</ul></li>
 <li><a href="#desktop-and-server-processing" id="toc-desktop-and-server-processing">Desktop and server
 processing</a></li>
 <li><a href="#our-recommended-operating-model" id="toc-our-recommended-operating-model">Our recommended operating
@@ -64,6 +77,8 @@ model</a></li>
 <li><a href="#dmwf-administrator-deployment-and-support-runbook" id="toc-dmwf-administrator-deployment-and-support-runbook">DMWF
 administrator deployment and support runbook</a>
 <ul>
+<li><a href="#application-version-preparation" id="toc-application-version-preparation">Application version
+preparation</a></li>
 <li><a href="#scope-and-prerequisites" id="toc-scope-and-prerequisites">Scope and prerequisites</a></li>
 <li><a href="#procedure-a-install-a-minimal-test-environment" id="toc-procedure-a-install-a-minimal-test-environment">Procedure A
 install a minimal test environment</a></li>
@@ -105,6 +120,8 @@ reference</a></li>
 <li><a href="#dmwf-training-workbook-and-facilitator-guide" id="toc-dmwf-training-workbook-and-facilitator-guide">DMWF training
 workbook and facilitator guide</a>
 <ul>
+<li><a href="#framework-release-and-application-versions" id="toc-framework-release-and-application-versions">Framework release
+and application versions</a></li>
 <li><a href="#training-purpose" id="toc-training-purpose">Training
 purpose</a></li>
 <li><a href="#delivery-plan" id="toc-delivery-plan">Delivery
@@ -170,10 +187,14 @@ guidance compared with supplied implementation</a></li>
 primary source for the Autodesk concept</a></li>
 <li><a href="#distribution-and-attribution" id="toc-distribution-and-attribution">Distribution and
 attribution</a></li>
+<li><a href="#release-naming-and-26xx-operational-clarification" id="toc-release-naming-and-26xx-operational-clarification">Release
+naming and 26.xx operational clarification</a></li>
 </ul></li>
 <li><a href="#dmwf-quick-reference-and-operating-templates" id="toc-dmwf-quick-reference-and-operating-templates">DMWF quick
 reference and operating templates</a>
 <ul>
+<li><a href="#application-support-quick-reference" id="toc-application-support-quick-reference">Application support quick
+reference</a></li>
 <li><a href="#administrator-quick-reference" id="toc-administrator-quick-reference">Administrator quick
 reference</a></li>
 <li><a href="#project-selection-record" id="toc-project-selection-record">Project selection record</a></li>
@@ -208,7 +229,7 @@ deployment concept</a></li>
 </nav>
 <h1 id="dmwf-24-deployment-and-configuration-handbook">DMWF 24
 deployment and configuration handbook</h1>
-<p>Prepared by Christopher J Andrew • Guidance edition 1.0 • 3 October
+<p>Prepared by Christopher J Andrew • Guidance edition 1.1 • 3 October
 2026</p>
 <h2 id="purpose-and-use">Purpose and use</h2>
 <p>We use the Dynamic Managed Workspace Framework to connect ProjectWise
@@ -235,10 +256,6 @@ successfully is necessary, but does not prove that the intended
 standards loaded.</p>
 <p>The labels used throughout this pack are:</p>
 <table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Label</th>
@@ -270,7 +287,7 @@ binary content</td>
 <h2 id="what-dmwf-supplies">What DMWF supplies</h2>
 <p>DMWF supplies configuration routing and examples for a ProjectWise
 managed workspace. It determines roots and names using the opened
-document’s context, reads selection information and redirects Bentley
+document&#39;s context, reads selection information and redirects Bentley
 framework variables. The delivered files also contain validation
 messages, product version checks, rendition and iTwin environment
 detection, optional ProjectWise Drive redirection and directory search
@@ -281,21 +298,27 @@ dataset complies with a PDF standard, that an add-in is approved, that
 every datasource contains identical content or that an individual
 workstation has hydrated its ProjectWise Drive files. Those are separate
 responsibilities that we manage around the framework.</p>
-<p>DMWF version 24 is not a promise that every Bentley product carrying
-a 2024 or later label is compatible. The common file rejects V8 family
-configurations. Some supplied workspace examples explicitly restrict
-OpenRoads Designer and OpenBridge Modeler to a detected generation and
-major value of <code>24.00</code>. Validate each product build and
-workspace combination rather than treating the package name as a
-compatibility matrix.</p>
+<p><strong>DMWF 24 names the framework release year (2024), not the
+Bentley application generation.</strong> DMWF 24.0.0.0 supports Bentley
+product versions <code>10.xx</code>, <code>23.xx</code>,
+<code>24.xx</code> and <code>25.xx</code>. Technically,
+<code>26.xx</code> products can also use the framework, but the missing
+registry key prevents the existing version-detection route from
+identifying their version. For <code>26.xx</code>, an
+<strong>Application CSV is required to specify and lock the product
+version</strong>. Framework support and the suitability of a particular
+standards dataset are separate decisions.</p>
+<p>The common file rejects V8 family configurations. Some supplied
+workspace examples explicitly restrict OpenRoads Designer and OpenBridge
+Modeler to <code>24.00</code>. These are sample workspace policy checks,
+not a framework-wide restriction to 2024 products. Adapt those checks to
+the approved dataset and application combination. Folder names such as
+<code>Bentley 2024</code> and <code>Configuration2024</code> describe
+the supplied package layout; they do not define the framework support
+range.</p>
 <h2 id="the-five-different-things-we-must-keep-separate">The five
 different things we must keep separate</h2>
 <table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Concept</th>
@@ -352,11 +375,6 @@ Configuration, DWG rendition resources and documentation.
 example, a <code>Configuration2024</code> branch, the advanced workspace
 and several project selection examples.</p>
 <table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Location relative to package root</th>
@@ -432,7 +450,7 @@ sequence works</h2>
 <p>The sequence below follows active statements in
 <code>Common_Predefined.cfg</code> and its common setup coordinator. It
 describes routing during the DMWF Predefined include, not every step in
-the application’s complete startup sequence.</p>
+the application&#39;s complete startup sequence.</p>
 <ol type="1">
 <li>ProjectWise starts the managed configuration through an assigned
 Predefined CSB. The root variable points at the installed Bentley
@@ -442,12 +460,12 @@ framework folder; an include reads
 establishes datasource, connected project, WorkArea and parent WorkArea
 context where available.</li>
 <li>It includes <code>Common_Predefined_PWSetup.cfg</code> from the
-framework’s PWSetup folder.</li>
+framework&#39;s PWSetup folder.</li>
 <li>That coordinator runs environment, ProjectWise Explorer version,
 product version and datasource default modules when their files exist.
 It then resolves the WorkArea root using the default or advanced
 route.</li>
-<li>It optionally performs OneMapping, reads the WorkArea’s Predefined
+<li>It optionally performs OneMapping, reads the WorkArea&#39;s Predefined
 setup files, performs Drive processing if enabled and resolves workspace
 groups.</li>
 <li>Control returns to the common framework. The CONNECT branch derives
@@ -469,7 +487,7 @@ default.</p>
 <p>See Diagram 01 for the branching load process and Diagram 02 for the
 selection decision.</p>
 <h2 id="bootstrap-configuration">Bootstrap configuration</h2>
-<p>Create the root setting using ProjectWise Administrator’s
+<p>Create the root setting using ProjectWise Administrator&#39;s
 <strong>ProjectWise Folder</strong> value type and browse to the actual
 installed framework folder. The following is a conceptual
 representation; it is not a requirement to type a literal datasource
@@ -479,7 +497,7 @@ _DYNAMIC_DATASOURCE_BENTLEYROOT = &lt;ProjectWise Folder value for Bentley 2024&
 %include $(_DYNAMIC_DATASOURCE_BENTLEYROOT)Common_Predefined.cfg</code></pre>
 <p>The include is a String entry in the CSB. Assign the block at the
 appropriate scope and confirm its inheritance for the test document. A
-correctly created CSB that is not assigned to the document’s effective
+correctly created CSB that is not assigned to the document&#39;s effective
 configuration will have no effect.</p>
 <p>The root and include must resolve as a directory and filename
 combination. Use the directory representation supplied by ProjectWise;
@@ -520,11 +538,6 @@ examples.</p>
 <h2 id="configuration-operators-and-load-order">Configuration operators
 and load order</h2>
 <table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Syntax</th>
@@ -546,12 +559,12 @@ rules</td>
 </tr>
 <tr class="odd">
 <td><code>NAME &gt; value</code></td>
-<td>Append to the variable’s existing value</td>
+<td>Append to the variable&#39;s existing value</td>
 <td>Used for resource paths and DMWF trace messages</td>
 </tr>
 <tr class="even">
 <td><code>NAME &lt; value</code></td>
-<td>Prepend to the variable’s existing value</td>
+<td>Prepend to the variable&#39;s existing value</td>
 <td>Can change search order or message ordering</td>
 </tr>
 <tr class="odd">
@@ -593,7 +606,7 @@ files, not a complete Bentley configuration language specification. Test
 expression evaluation and path expansion in the intended product. Do not
 treat CFG syntax as PowerShell, shell syntax or AutoLISP.</p>
 <p>For example, a project selection made with <code>=</code> before a
-workspace’s <code>:</code> default should be retained. A later
+workspace&#39;s <code>:</code> default should be retained. A later
 <code>:</code> default does not provide an override. Conversely, a
 default module that uses <code>=</code> can overwrite an earlier
 proposed value. The supplied default file uses
@@ -606,7 +619,7 @@ WorkSet</h3>
 <p>Use the standard <code>WorkspacePWSetup_Predefined_XXXX_CE.cfg</code>
 adapter as the starting point. It looks for
 <code>_PWSetup/WorkSets/</code> under the resolved WorkArea. If that
-location is not present, it falls back to the workspace’s
+location is not present, it falls back to the workspace&#39;s
 <code>WorkSets/</code> collection. It tries the selected project or
 WorkSet name, then the configured default name, and raises an error if
 neither CFG exists.</p>
@@ -637,7 +650,7 @@ every approved hierarchy rather than assuming the numeric setting means
 a universal package identifier.</p>
 <p>The helper walks ancestors, not the whole datasource. Its source
 contains an explicitly unrolled search through twelve directory
-positions. This is different from the WorkArea discovery module’s
+positions. This is different from the WorkArea discovery module&#39;s
 maximum of four nested WorkArea contexts. See Diagram 03.</p>
 <h3 id="packages-identified-by-markers">Packages identified by
 markers</h3>
@@ -658,12 +671,12 @@ path</h3>
 <p>The Nest Plus Include example adds <code>IncludeInPath.cfg</code>
 before selecting the FindByNest adapter. It sets a matching pattern for
 <code>PWSetupByFind_Predefined*.cfg</code>, continues upward after a
-match, and stops at the WorkArea’s name or its implemented search
+match, and stops at the WorkArea&#39;s name or its implemented search
 boundary.</p>
 <p>The helper processes the current directory first and then its
 ancestors. This is important if several matching files assign the same
 variable: a parent assignment processed later can replace a lower
-folder’s value. It does not establish conventional parent-first
+folder&#39;s value. It does not establish conventional parent-first
 inheritance. The actual result depends on each assignment operator,
 existing definitions and locks. See Diagram 04.</p>
 <p>Keep only approved configuration files in these matching locations. A
@@ -717,12 +730,48 @@ and a not-found flag. This is an unknown version signal, not a
 compatible release. Decide whether the project blocks unknown versions
 and test the outcome. The example restrictions compare generation and
 major values; they do not necessarily enforce an exact build.</p>
+<h3 id="product-generations-and-the-26xx-configuration-requirement">Product
+generations and the 26.xx configuration requirement</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Product version family</th>
+<th>Framework position</th>
+<th>Deployment requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>10.xx</code>, <code>23.xx</code>, <code>24.xx</code>,
+<code>25.xx</code></td>
+<td>Supported by DMWF 24</td>
+<td>Select the intended product and validate the workspace dataset</td>
+</tr>
+<tr class="even">
+<td><code>26.xx</code></td>
+<td>Technically supported; existing registry detection is affected by a
+missing key</td>
+<td>Use an Application CSV to specify and lock the actual product
+version</td>
+</tr>
+</tbody>
+</table>
+<p>For 26.xx, configure the Application CSV for the applicable
+application, specify its actual installed product version and lock that
+value before DMWF product-version processing. Verify the effective full
+version and generation/major values in the configuration trace, then
+test the intended workspace and output. Keep the CSV with the controlled
+deployment configuration and update its locked version when the
+application changes. Do not invent a registry entry or replace the
+unknown-version value with a guessed version. Exact CSV field names and
+import syntax must follow the application configuration tooling in use;
+no unverified CSV schema is supplied here.</p>
 <h2 id="desktop-and-server-processing">Desktop and server
 processing</h2>
 <p>The environment module contains separate checks for workstation
 context, iTwin sync engine, rendition process indicators and DWG files.
 These create configuration flags that adapters can use. Detection is not
-validation of the server’s dataset or permissions.</p>
+validation of the server&#39;s dataset or permissions.</p>
 <p>The supplied adapters include rendition-specific settings such as
 disabling cursor prompts and turning off the ordinary product check for
 a detected rendition job. Test that exception explicitly. A server-only
@@ -761,6 +810,26 @@ waves and compare resolved results across datasources. See the runbook
 for the release and recovery procedure.</p>
 <h1 id="dmwf-administrator-deployment-and-support-runbook">DMWF
 administrator deployment and support runbook</h1>
+<h2 id="application-version-preparation">Application version
+preparation</h2>
+<p><strong>DMWF 24 names the framework release year (2024), not the
+Bentley application generation.</strong> DMWF 24.0.0.0 supports Bentley
+product versions <code>10.xx</code>, <code>23.xx</code>,
+<code>24.xx</code> and <code>25.xx</code>. Technically,
+<code>26.xx</code> products can also use the framework, but the missing
+registry key prevents the existing version-detection route from
+identifying their version. For <code>26.xx</code>, an
+<strong>Application CSV is required to specify and lock the product
+version</strong>. Framework support and the suitability of a particular
+standards dataset are separate decisions.</p>
+<p>Before testing a 26.xx application, configure its Application CSV
+with the actual installed product version and lock it before DMWF
+version processing. Check the effective version and derived
+generation/major values in the trace. Confirm workspace policy checks
+allow the approved combination; the sample <code>24.00</code>
+restriction is a dataset policy example. Record the CSV, installed
+build, locked version and test evidence in the release record. Recheck
+the CSV whenever the product is upgraded.</p>
 <h2 id="scope-and-prerequisites">Scope and prerequisites</h2>
 <p>This runbook takes the supplied DMWF 24 template from an isolated
 test installation to a controlled production release. The ProjectWise
@@ -775,10 +844,6 @@ representative design file and an agreed expected drawing output. Decide
 whether ProjectWise Drive is required, optional or outside scope.</p>
 <p>Record the following deployment values before editing files:</p>
 <table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Field</th>
@@ -852,7 +917,7 @@ entry.</li>
 <li>Assign the CSB to the agreed test scope. Review effective
 assignments and inherited blocks. Record any other CSB that changes
 workspace roots or names.</li>
-<li>Copy the client’s standard <code>CONNECTExample</code> project
+<li>Copy the client&#39;s standard <code>CONNECTExample</code> project
 example to an isolated test-project location and make that project
 folder a WorkArea. Keep its <code>_PWSetup</code> structure and project
 CFG files.</li>
@@ -872,14 +937,14 @@ only resource display names.</li>
 </ol>
 <p><strong>Pass condition:</strong> all selected names and roots match
 the deployment record, the expected standards load, and the
-representative output passes the product SME’s checks. A launch using
+representative output passes the product SME&#39;s checks. A launch using
 <code>CONNECTExample</code> as an unexpected fallback is a failed
 project-specific selection test.</p>
 <p><strong>Installation article correction:</strong> Bentley KB0021384
 prints <code>Configuration2023</code> in one variable example while
 identifying the resource path as <code>Configuration2024</code>. For
 this supplied package, use the actual <code>Configuration2024</code>
-folder name. The archive’s branch is <code>ClientWorkspaces</code>,
+folder name. The archive&#39;s branch is <code>ClientWorkspaces</code>,
 plural; do not rely on singular wording in that page.</p>
 <h2 id="procedure-b-onboard-a-real-client-dataset">Procedure B onboard a
 real client dataset</h2>
@@ -890,7 +955,7 @@ builds.</li>
 <li>Launch a representative file against the original intended dataset,
 where feasible, and capture the expected roots and output. This provides
 a comparison baseline.</li>
-<li>Identify the dataset’s Configuration, workspace CFG and WorkSet
+<li>Identify the dataset&#39;s Configuration, workspace CFG and WorkSet
 assumptions. Search for absolute local paths, drive letters, environment
 variables, registry dependencies, executable startup actions and
 user-writable resource locations.</li>
@@ -902,10 +967,10 @@ and select the project CFG collection. Put ProjectWise-specific path
 adaptation here.</li>
 <li>Add any environment-variable substitutes required by the client
 configuration before their first use. Use workspace-scoped CFG settings
-where appropriate so one agency’s assumptions do not become global
+where appropriate so one agency&#39;s assumptions do not become global
 workstation settings.</li>
 <li>Decide whether Organization standards come from the Bentley common
-root or the client’s Configuration. The group module defaults
+root or the client&#39;s Configuration. The group module defaults
 <code>_DYNAMIC_ORGANIZATIONROOT_AT_BENTLEYROOT</code> to <code>1</code>;
 verify the final <code>_USTN_ORGANIZATION</code> rather than assuming
 the client Organization folder will load.</li>
@@ -919,7 +984,7 @@ terrain and corridor outputs as applicable.</li>
 selection does not carry state or resource paths from the first project
 into the second. Only then approve the multi-client configuration.</li>
 </ol>
-<p><strong>Pass condition:</strong> the client’s intended standards and
+<p><strong>Pass condition:</strong> the client&#39;s intended standards and
 outputs are preserved, deliberate adaptations are documented, and
 cross-client tests do not expose unintended resources.</p>
 <h2 id="procedure-c-implement-a-multi-package-project">Procedure C
@@ -954,11 +1019,6 @@ Drive organization name and registry root for the test user. Configure
 sync names to match the variables used by the module.</p>
 <p>Test these cases separately:</p>
 <table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Case</th>
@@ -983,9 +1043,9 @@ sync names to match the variables used by the module.</p>
 <td>Required mode fails; optional mode follows documented policy</td>
 </tr>
 <tr class="even">
-<td>Different user’s profile</td>
+<td>Different user&#39;s profile</td>
 <td>Registry root and organization name</td>
-<td>No dependency on the maintainer’s personal path</td>
+<td>No dependency on the maintainer&#39;s personal path</td>
 </tr>
 <tr class="odd">
 <td>Sync folder renamed</td>
@@ -1024,7 +1084,7 @@ acceptance from the product SME.</li>
 <li>Install the approved content into the production resource branch
 using the agreed deployment mechanism. Re-resolve ProjectWise folder
 values and identifiers for the target datasource; do not carry one
-datasource’s bindings into another.</li>
+datasource&#39;s bindings into another.</li>
 <li>Check effective CSB assignments, permissions and root paths. Run a
 post-deployment smoke test as an ordinary user.</li>
 <li>Record the actual deployed release and retain the previous manifest
@@ -1041,11 +1101,6 @@ restoring the workspace does not undo design-file content.</p>
 <p>See Diagram 05 for promotion and rollback gates.</p>
 <h2 id="acceptance-matrix">Acceptance matrix</h2>
 <table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Test</th>
@@ -1165,11 +1220,6 @@ not leave <code>_DYNAMIC_DEBUG_COMMONPREDEFINED</code>,
 enabled in production.</p>
 <h2 id="troubleshooting-reference">Troubleshooting reference</h2>
 <table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Symptom</th>
@@ -1275,11 +1325,6 @@ variable is consumed by code, including the delivered
 <code>_DYNAMIC_PRODUCT_ONE_VARIBLES</code> spelling.</p>
 <h2 id="names-and-roots">Names and roots</h2>
 <table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Variable</th>
@@ -1325,7 +1370,7 @@ variable is consumed by code, including the delivered
 </tr>
 <tr class="even">
 <td><code>_DYNAMIC_WORKAREAROOT_NAME</code></td>
-<td>Chosen root’s name</td>
+<td>Chosen root&#39;s name</td>
 <td>Used for default WorkSet selection</td>
 </tr>
 <tr class="odd">
@@ -1412,11 +1457,6 @@ interchangeable.</p>
 <h2 id="workset-selection-and-working-content">WorkSet selection and
 working content</h2>
 <table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Variable</th>
@@ -1458,18 +1498,18 @@ working content</h2>
 </tr>
 <tr class="odd">
 <td><code>_DYNAMIC_WORKAREA_WORKSET_PATH</code></td>
-<td>Adapter’s relative WorkSet path</td>
+<td>Adapter&#39;s relative WorkSet path</td>
 <td>Defaults from subpath</td>
 </tr>
 <tr class="even">
 <td><code>_DYNAMIC_WORKAREA_WORKSET_ROOT</code></td>
-<td>Adapter’s expanded working root</td>
+<td>Adapter&#39;s expanded working root</td>
 <td>Project root plus relative path</td>
 </tr>
 <tr class="odd">
 <td><code>_USTN_WORKSETSROOT</code></td>
 <td>WorkSet CFG collection for Bentley</td>
-<td>Adapter’s CFG root</td>
+<td>Adapter&#39;s CFG root</td>
 </tr>
 <tr class="even">
 <td><code>_USTN_WORKSETNAME</code></td>
@@ -1484,7 +1524,7 @@ working content</h2>
 <tr class="even">
 <td><code>_USTN_WORKSETROOT</code></td>
 <td>WorkSet working root</td>
-<td>Adapter’s working root</td>
+<td>Adapter&#39;s working root</td>
 </tr>
 <tr class="odd">
 <td><code>_USTN_WORKSETSDGNWSROOT</code></td>
@@ -1505,11 +1545,6 @@ themselves have not changed.</p>
 <h2 id="final-application-framework-settings">Final application
 framework settings</h2>
 <table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Application variable</th>
@@ -1572,11 +1607,6 @@ them afterward.</p>
 <h2 id="default-switches-verified-in-the-package">Default switches
 verified in the package</h2>
 <table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Switch or setting</th>
@@ -1682,18 +1712,13 @@ verified in the package</h2>
 </tr>
 </tbody>
 </table>
-<p>A module’s default can differ from the earlier datasource default.
+<p>A module&#39;s default can differ from the earlier datasource default.
 Read the sequence and the operators before deciding which value applies.
 The automatically enabled OneMapping path for detected Explorer major
 <code>10</code> is another reason not to interpret every visible
 <code>:0</code> as a final disabled value.</p>
 <h2 id="drive-reference">Drive reference</h2>
 <table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Variable</th>
@@ -1767,13 +1792,9 @@ search upward from a starting context. They use temporary
 remain useful to callers, while parameters and temporary values can be
 undefined. Copy required values into persistent <code>_DYNAMIC_</code>
 variables before explicitly clearing state or starting another
-independent search. Inspect the helper’s actual cleanup block when
+independent search. Inspect the helper&#39;s actual cleanup block when
 troubleshooting missing evidence.</p>
 <table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Parameter or result</th>
@@ -1878,11 +1899,6 @@ when ancestry is exhausted. Check the relevant specific match flag and
 the returned path against the project contract.</p>
 <h2 id="includeinpath-reference">IncludeInPath reference</h2>
 <table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Parameter or result</th>
@@ -1952,11 +1968,27 @@ do not increase the parameter solely to make the number look like the
 desired depth.</p>
 <h2 id="product-and-environment-reference">Product and environment
 reference</h2>
+<p><strong>DMWF 24 names the framework release year (2024), not the
+Bentley application generation.</strong> DMWF 24.0.0.0 supports Bentley
+product versions <code>10.xx</code>, <code>23.xx</code>,
+<code>24.xx</code> and <code>25.xx</code>. Technically,
+<code>26.xx</code> products can also use the framework, but the missing
+registry key prevents the existing version-detection route from
+identifying their version. For <code>26.xx</code>, an
+<strong>Application CSV is required to specify and lock the product
+version</strong>. Framework support and the suitability of a particular
+standards dataset are separate decisions.</p>
+<p>For 26.xx, use the Application CSV to supply and lock the product
+version before this module consumes it. Verify the effective
+<code>_DYNAMIC_PRODUCT_VERSION</code> and
+<code>_DYNAMIC_PRODUCT_VERSION_GEN_MAJ</code>; check the trace rather
+than assuming the registry route succeeded. Follow the actual
+application configuration tooling for CSV fields and lock syntax. The
+supplied version module reads
+<code>HKEY_CLASSES_ROOT\Installer\Dependencies\$(MS_PRODUCTCODEGUID)\Version</code>
+in its registry branch; the missing key is a detection issue, not a
+framework generation limit.</p>
 <table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Variable</th>
@@ -2030,10 +2062,6 @@ reference</h2>
 </table>
 <h2 id="diagnostic-reference">Diagnostic reference</h2>
 <table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Variable</th>
@@ -2075,11 +2103,30 @@ relying on it</td>
 </tbody>
 </table>
 <p>A trace label is not a reliable installed-release identifier when a
-file’s header or append string is stale. Use file hashes and a release
+file&#39;s header or append string is stale. Use file hashes and a release
 manifest as the authoritative baseline, then use traces to explain load
 order.</p>
 <h1 id="dmwf-training-workbook-and-facilitator-guide">DMWF training
 workbook and facilitator guide</h1>
+<h2 id="framework-release-and-application-versions">Framework release
+and application versions</h2>
+<p><strong>DMWF 24 names the framework release year (2024), not the
+Bentley application generation.</strong> DMWF 24.0.0.0 supports Bentley
+product versions <code>10.xx</code>, <code>23.xx</code>,
+<code>24.xx</code> and <code>25.xx</code>. Technically,
+<code>26.xx</code> products can also use the framework, but the missing
+registry key prevents the existing version-detection route from
+identifying their version. For <code>26.xx</code>, an
+<strong>Application CSV is required to specify and lock the product
+version</strong>. Framework support and the suitability of a particular
+standards dataset are separate decisions.</p>
+<p><strong>Trainer check:</strong> ask participants why a supplied
+<code>24.00</code> workspace check can reject a supported 25.xx product.
+Expected answer: the example adapter enforces a workspace policy; it
+does not define DMWF support. Ask how a 26.xx deployment addresses the
+missing registry key. Expected answer: configure an Application CSV with
+the actual product version, lock it before DMWF processing and verify
+the effective version, selection and drawing output.</p>
 <h2 id="training-purpose">Training purpose</h2>
 <p>By the end of this course, a participant should be able to explain a
 DMWF startup, deploy the standard example in a sandbox, select a client
@@ -2088,16 +2135,10 @@ source. Participants should be able to show evidence for a selection
 rather than accepting a successful application launch as proof.</p>
 <p>This is an administrator and workspace-maintainer course. Designers
 can attend the foundation session and user verification exercise.
-Production deployment remains subject to the organisation’s usual
+Production deployment remains subject to the organisation&#39;s usual
 authority and release process.</p>
 <h2 id="delivery-plan">Delivery plan</h2>
 <table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Module</th>
@@ -2180,7 +2221,7 @@ modifying it.</p>
 include.</li>
 <li>Find the module that supplies datasource defaults and identify the
 actual advanced-discovery assignment.</li>
-<li>Locate the WorkArea selector for the client’s standard
+<li>Locate the WorkArea selector for the client&#39;s standard
 <code>CONNECTExample</code>.</li>
 <li>Write the expected client workspace path from its three selection
 names.</li>
@@ -2194,8 +2235,8 @@ WorkSet collection.</p>
 <p><strong>Expected answer:</strong> the client example selects
 <code>ClientName</code>, <code>Configuration2024</code> and
 <code>CEWorkspaceExampleAdv</code>; its workspace CFG is in that
-Configuration’s <code>Workspaces</code> collection. The standard adapter
-first considers the resolved WorkArea’s <code>_PWSetup/WorkSets/</code>,
+Configuration&#39;s <code>Workspaces</code> collection. The standard adapter
+first considers the resolved WorkArea&#39;s <code>_PWSetup/WorkSets/</code>,
 then the workspace <code>WorkSets/</code> collection. The delivered
 default advanced-discovery assignment is <code>=0</code>, not the older
 workbook value of <code>1</code>.</p>
@@ -2223,13 +2264,13 @@ diagnostic export of the trace, and one verified output example.</p>
 correct ordinary-user access and no unexplained fallback.</p>
 <p><strong>Facilitator answer:</strong> values are environment-specific,
 so do not grade by matching a literal datasource path. Grade against the
-participant’s declared deployment layout. Fail a result that opens with
+participant&#39;s declared deployment layout. Fail a result that opens with
 an unintended default WorkSet.</p>
 <h2 id="lab-3-diagnose-the-configuration-name-fault">Lab 3 diagnose the
 Configuration name fault</h2>
 <p><strong>Goal:</strong> find the first incorrect selection instead of
 bypassing checks.</p>
-<p>In the fault copy, change the project’s client Configuration
+<p>In the fault copy, change the project&#39;s client Configuration
 selection from <code>Configuration2024</code> to
 <code>Configuration2023</code>, while leaving the installed folder
 unchanged. Launch the same test document. Capture the error and first
@@ -2251,7 +2292,7 @@ Inspect its package structure and <code>1234.cfg</code> and
 representative drawing in each package and capture the selected name,
 relative subpath and CFG.</p>
 <p>In a separate test branch, insert an additional container folder in
-one package’s hierarchy. Predict which folder the same nest depth will
+one package&#39;s hierarchy. Predict which folder the same nest depth will
 select, then verify it. Reset the branch afterward.</p>
 <p><strong>Submit:</strong> two successful package resolutions, the
 prediction for the changed hierarchy and actual observed result.</p>
@@ -2264,7 +2305,7 @@ fallback, so inspect the exact CFG even if startup succeeds.</p>
 marker and path include behaviour</h2>
 <p><strong>Goal:</strong> distinguish search from include
 processing.</p>
-<p>Inspect the FindByExists adapter’s root and nested marker parameters.
+<p>Inspect the FindByExists adapter&#39;s root and nested marker parameters.
 In a test copy, provide a distinctive marker and show which package it
 resolves. Introduce a duplicate marker in an unexpected ancestor and
 record the actual result.</p>
@@ -2301,7 +2342,7 @@ hydration, sync membership, permissions or the resource deployment as
 appropriate. Do not change the project workspace merely because one file
 is unavailable locally.</p>
 <p>If Drive cannot be made available in the training environment,
-perform this as a tabletop exercise using the module’s branches and a
+perform this as a tabletop exercise using the module&#39;s branches and a
 sample support record. Mark the exercise as conceptual rather than
 pretending it was executed.</p>
 <h2 id="lab-7-recover-a-failed-release">Lab 7 recover a failed
@@ -2310,7 +2351,7 @@ release</h2>
 <p>Create two sandbox releases with manifests. In the second,
 deliberately change one adapter to select a nonexistent project CFG
 while retaining its associated resource release. Attempt the launch and
-capture the selection evidence. Restore the first release’s content and
+capture the selection evidence. Restore the first release&#39;s content and
 bindings, then rerun the ordinary-user smoke test.</p>
 <p><strong>Submit:</strong> failed release identity, restored release
 identity, affected files and bindings, final root and successful
@@ -2328,7 +2369,7 @@ assigned Predefined CSB containing the common framework root and the
 common CFG include, with readable installed content and functioning
 product integration.</li>
 <li><strong>Why can a correct CSB still have no effect?</strong> It may
-not be part of the document’s effective inherited configuration, or the
+not be part of the document&#39;s effective inherited configuration, or the
 launch route may not process the expected managed integration.</li>
 <li><strong>Can one WorkArea contain several WorkSets?</strong> Yes. The
 adapters can derive package selection from folder names or markers and
@@ -2339,9 +2380,9 @@ remain in force.</li>
 <li><strong>Where should normal resource settings go?</strong> In the
 appropriate native Organization, workspace or WorkSet standards layer,
 with PWSetup principally adapting paths and selection.</li>
-<li><strong>Does a validation message always stop startup?</strong>
-No. Appending to <code>_DYNAMIC_MSG_VALIDATION</code> differs from
-raising <code>%error</code>.</li>
+<li><strong>Does a validation message always stop startup?</strong> No.
+Appending to <code>_DYNAMIC_MSG_VALIDATION</code> differs from raising
+<code>%error</code>.</li>
 <li><strong>What is the risk of a WorkSet default?</strong> It can allow
 startup with unintended standards when the real project CFG is
 missing.</li>
@@ -2364,11 +2405,6 @@ follow an explicit compatibility policy.</li>
 </ol>
 <h2 id="competency-rubric">Competency rubric</h2>
 <table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Criterion</th>
@@ -2427,14 +2463,14 @@ discussion</h2>
 failure using the same evidence chain. Collect unanswered
 product-specific questions into the acceptance backlog. Publish the
 tested deployment record alongside the course material so future
-trainees can distinguish a teaching example from the organisation’s
+trainees can distinguish a teaching example from the organisation&#39;s
 approved configuration.</p>
 <h1 id="standards-authoring-and-integration-guidance">Standards
 authoring and integration guidance</h1>
 <h2 id="a-common-governance-model-with-separate-product-implementations">A
 common governance model with separate product implementations</h2>
 <p>We can use a common release and project-selection model across
-Bentley and Autodesk applications while preserving each product’s native
+Bentley and Autodesk applications while preserving each product&#39;s native
 configuration mechanism. DMWF provides the Bentley managed-workspace
 route reviewed in this pack. A Civil 3D profile and bootstrap route is a
 separate implementation, not a hidden feature of the supplied
@@ -2454,7 +2490,7 @@ or a writable installation folder. A resource library may be portable
 while its startup scripts are not. Test both desktop authoring and
 required server processing.</p>
 <p>Create a small acceptance model or drawing that exercises the
-dataset’s characteristic resources. A list of copied filenames is
+dataset&#39;s characteristic resources. A list of copied filenames is
 insufficient evidence that annotation, feature definitions, line styles
 or print styles behave correctly.</p>
 <h2 id="when-the-client-supplies-files-without-a-workspace">When the
@@ -2488,7 +2524,7 @@ review.</li>
 standards owner. Do not invent a feature code or layer simply to
 complete a dataset.</li>
 <li>Build native resources in an isolated authoring workspace. Record
-each resource’s requirement reference and test.</li>
+each resource&#39;s requirement reference and test.</li>
 <li>Produce representative drawings or models and compare them against
 the specification. Check plotted and exported output as well as screen
 appearance.</li>
@@ -2501,15 +2537,7 @@ standards-only commission as a project method; this pack does not assert
 that a particular current agency provides or lacks a workspace.</p>
 <h2 id="requirements-traceability-template">Requirements traceability
 template</h2>
-<table style="width:100%;">
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 16%" />
-<col style="width: 16%" />
-<col style="width: 16%" />
-<col style="width: 16%" />
-<col style="width: 16%" />
-</colgroup>
+<table>
 <thead>
 <tr class="header">
 <th>Requirement ID</th>
@@ -2556,7 +2584,7 @@ template</h2>
 </tbody>
 </table>
 <p>These rows are examples of record structure, not claims about any
-particular standard’s requirements.</p>
+particular standard&#39;s requirements.</p>
 <h2 id="corporate-and-client-coexistence">Corporate and client
 coexistence</h2>
 <p>Use corporate content for shared tools, support links, approved
@@ -2564,7 +2592,7 @@ utilities and non-client-specific resources. Use client content for
 deliverable standards. Use project content for approved project-specific
 additions and exceptions. A discipline dataset can supply specialised
 resources where the product supports that arrangement.</p>
-<p>DMWF’s group module can retain Organization content at the common
+<p>DMWF&#39;s group module can retain Organization content at the common
 Bentley root while routing the workspace to a client group. This is a
 useful structural capability, but precedence among overlapping resource
 names still comes from native configuration and search order. Do not
@@ -2583,12 +2611,12 @@ content made available through ProjectWise Drive; an approved startup
 routine stages resources that must be local and configures supported
 plugin paths. This is an architecture to implement and test, not a
 validated script delivered in this pack.</p>
-<p>Use Autodesk’s applicable startup mechanisms deliberately. The
+<p>Use Autodesk&#39;s applicable startup mechanisms deliberately. The
 established AutoCAD filenames are <code>acad.lsp</code> and
 <code>acaddoc.lsp</code>; a file called <code>autodoc.lsp</code> would
 need explicit loading rather than being assumed to be a standard
 automatic startup file. Confirm actual loading, trust and
-product-version behaviour in Autodesk’s documentation and runtime before
+product-version behaviour in Autodesk&#39;s documentation and runtime before
 implementing the bootstrap. This pack does not provide Autodesk-specific
 code or a compatibility certification.</p>
 <p>The bootstrap should be idempotent: repeated startup with the same
@@ -2605,7 +2633,7 @@ a per-user startup routine can write into protected application
 locations.</p>
 <p>Test profile selection, required local content, plugin loading,
 trusted paths, drawing defaults, user overrides and product upgrades
-independently. A successful support-file copy does not prove Civil 3D’s
+independently. A successful support-file copy does not prove Civil 3D&#39;s
 drawing styles or settings are correct. See Diagram 08.</p>
 <h2 id="projectwise-drive-and-git-authoring">ProjectWise Drive and Git
 authoring</h2>
@@ -2645,7 +2673,7 @@ source register</h1>
 <p>The review inventoried the supplied archive, inspected active
 statements across all 89 CFG files and read the five sheets in
 <code>Bentley 2024/Documentation/DynamcManagedWorkspace.xlsx</code>. It
-compared the package with Bentley’s framework introduction, installation
+compared the package with Bentley&#39;s framework introduction, installation
 instructions and release notes on 3 October 2026. There are 241 files
 and 233 directory entries in the archive; the uncompressed file total is
 13,180,856 bytes.</p>
@@ -2658,12 +2686,6 @@ requiring reproduction, rather than reported as proven application
 failures.</p>
 <h2 id="findings-register">Findings register</h2>
 <table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>ID</th>
@@ -2749,7 +2771,7 @@ controlling the actual early module</td>
 <td>Medium</td>
 <td><code>Common_Predefined.cfg</code> optional Configuration PWSetup
 include test uses <code>_DYNAMIC_CEWORKSPACEROOT_PWSETUP</code></td>
-<td>Location appears inconsistent with the section’s Configuration
+<td>Location appears inconsistent with the section&#39;s Configuration
 wording; verify intended include hook and report upstream if
 confirmed</td>
 </tr>
@@ -2804,9 +2826,13 @@ final <code>_USTN_ORGANIZATION</code></td>
 <td>R17</td>
 <td>Medium</td>
 <td>Several example adapters restrict ORD and OpenBridge to
-<code>24.00</code></td>
-<td>Update only after dataset compatibility approval; do not disable
-checks to make launch succeed</td>
+<code>24.00</code>; this is sample workspace policy, not a DMWF
+product-generation limit</td>
+<td>DMWF 24 supports <code>10.xx</code>, <code>23.xx</code>,
+<code>24.xx</code> and <code>25.xx</code>; technically
+<code>26.xx</code> requires an Application CSV specifying and locking
+the version because of the missing registry key. Adapt workspace checks
+to the approved dataset</td>
 </tr>
 <tr class="even">
 <td>R18</td>
@@ -2838,7 +2864,7 @@ classification. This pack does not patch the uploaded baseline.</p>
 <h2 id="findings-that-need-runtime-reproduction">Findings that need
 runtime reproduction</h2>
 <p>For R04, construct a marker search whose valid ancestor is at the
-helper’s depth-10 position and capture the expanded result and parser
+helper&#39;s depth-10 position and capture the expanded result and parser
 message. Compare against a shallow successful marker search. Preserve
 both traces.</p>
 <p>For R05, create a test file whose ancestor chain reaches the boundary
@@ -2859,11 +2885,6 @@ Check that necessary exclusions remain intact and that meaningful
 standards changes are not ignored.</p>
 <h2 id="published-source-register">Published source register</h2>
 <table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Source</th>
@@ -2885,19 +2906,19 @@ CFGs</td>
 </tr>
 <tr class="odd">
 <td>Bentley KB0020036</td>
-<td><a href="https://bentleysystems.service-now.com/community?id=kb_article_view&amp;sysparm_article=KB0020036" class="uri">https://bentleysystems.service-now.com/community?id=kb_article_view&amp;sysparm_article=KB0020036</a></td>
+<td><a href="https://bentleysystems.service-now.com/community?id=kb_article_view&amp;sysparm_article=KB0020036">https://bentleysystems.service-now.com/community?id=kb_article_view&amp;sysparm_article=KB0020036</a></td>
 <td>Framework purpose, single-CSB concept and links to setup/release
 material</td>
 </tr>
 <tr class="even">
 <td>Bentley KB0021384</td>
-<td><a href="https://bentleysystems.service-now.com/community?id=kb_article_view&amp;sysparm_article=KB0021384" class="uri">https://bentleysystems.service-now.com/community?id=kb_article_view&amp;sysparm_article=KB0021384</a></td>
+<td><a href="https://bentleysystems.service-now.com/community?id=kb_article_view&amp;sysparm_article=KB0021384">https://bentleysystems.service-now.com/community?id=kb_article_view&amp;sysparm_article=KB0021384</a></td>
 <td>Published minimal installation steps; naming inconsistency
 noted</td>
 </tr>
 <tr class="odd">
 <td>Bentley KB0020038</td>
-<td><a href="https://bentleysystems.service-now.com/community?id=kb_article_view&amp;sysparm_article=KB0020038" class="uri">https://bentleysystems.service-now.com/community?id=kb_article_view&amp;sysparm_article=KB0020038</a></td>
+<td><a href="https://bentleysystems.service-now.com/community?id=kb_article_view&amp;sysparm_article=KB0020038">https://bentleysystems.service-now.com/community?id=kb_article_view&amp;sysparm_article=KB0020038</a></td>
 <td>Published 24 release summary and historical changes</td>
 </tr>
 </tbody>
@@ -2914,7 +2935,7 @@ adapting workspace selection. Its Configuration naming inconsistency
 requires correction against the supplied folder structure.</p>
 <p>KB0020038 identifies V8 removal, IncludeInPath, OneMapping, Drive
 options, iTwin checks and the changed advanced-discovery default in
-release 24. The reviewed files contain those features. The package’s
+release 24. The reviewed files contain those features. The package&#39;s
 embedded workbook still contains older reference content, so it should
 not be treated as a fully synchronized reference for every current
 setting.</p>
@@ -2927,19 +2948,52 @@ proposed ProjectWise profile and Drive bootstrap still requires separate
 implementation testing.</p>
 <h2 id="distribution-and-attribution">Distribution and attribution</h2>
 <p>This repository contains independent guidance and training material
-prepared by Christopher J Andrew. Bentley’s template and product names
-are acknowledged as their respective owner’s work. It is not an official
+prepared by Christopher J Andrew. Bentley&#39;s template and product names
+are acknowledged as their respective owner&#39;s work. It is not an official
 Bentley publication or a Bentley certification course.</p>
 <p>The repository does not redistribute the vendor ZIP, binary resources
-or complete vendor CFG files. Obtain the framework through Bentley’s
+or complete vendor CFG files. Obtain the framework through Bentley&#39;s
 linked article and follow its applicable terms. Minimal configuration
 examples and the occurrence index explain the reviewed implementation;
 vendor ownership of the underlying template is unchanged.</p>
 <p>The source manifest identifies the reviewed baseline. If a later
 download has different hashes, repeat the relevant review and acceptance
 tests rather than assuming the findings apply unchanged.</p>
+<h2 id="release-naming-and-26xx-operational-clarification">Release
+naming and 26.xx operational clarification</h2>
+<p><strong>DMWF 24 names the framework release year (2024), not the
+Bentley application generation.</strong> DMWF 24.0.0.0 supports Bentley
+product versions <code>10.xx</code>, <code>23.xx</code>,
+<code>24.xx</code> and <code>25.xx</code>. Technically,
+<code>26.xx</code> products can also use the framework, but the missing
+registry key prevents the existing version-detection route from
+identifying their version. For <code>26.xx</code>, an
+<strong>Application CSV is required to specify and lock the product
+version</strong>. Framework support and the suitability of a particular
+standards dataset are separate decisions.</p>
+<p>The product-family support range and Application CSV requirement are
+operational clarifications incorporated into this edition. The archive
+confirms the registry-based detection route and sample-specific version
+checks; no 26.xx runtime test or CSV schema validation was performed in
+this static review.</p>
 <h1 id="dmwf-quick-reference-and-operating-templates">DMWF quick
 reference and operating templates</h1>
+<h2 id="application-support-quick-reference">Application support quick
+reference</h2>
+<p><strong>DMWF 24 names the framework release year (2024), not the
+Bentley application generation.</strong> DMWF 24.0.0.0 supports Bentley
+product versions <code>10.xx</code>, <code>23.xx</code>,
+<code>24.xx</code> and <code>25.xx</code>. Technically,
+<code>26.xx</code> products can also use the framework, but the missing
+registry key prevents the existing version-detection route from
+identifying their version. For <code>26.xx</code>, an
+<strong>Application CSV is required to specify and lock the product
+version</strong>. Framework support and the suitability of a particular
+standards dataset are separate decisions.</p>
+<p>For a 26.xx release record, capture the application name, installed
+full build, Application CSV location, specified and locked version,
+effective DMWF version values and acceptance-test evidence. Review the
+locked value after every application update.</p>
 <h2 id="administrator-quick-reference">Administrator quick
 reference</h2>
 <p><strong>Bootstrap:</strong> assigned Predefined CSB → ProjectWise
@@ -3172,56 +3226,174 @@ definitions. These diagrams describe logical flow; they do not replace
 the source CFG statement order. Diagrams 05, 07 and 08 are recommended
 processes, with 08 explicitly a separate Autodesk concept.</p>
 <h2 id="managed-configuration-load">Managed configuration load</h2>
-<figure>
-<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5ODAgMTEzNSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJNYW5hZ2VkIGNvbmZpZ3VyYXRpb24gbG9hZCI+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0gMCAwIEwgMTAgNSBMIDAgMTAgeiIgZmlsbD0iIzY1Nzc4YSIvPjwvbWFya2VyPjwvZGVmcz48cGF0aCBkPSJNNDgwLDEwNSBWMTMwLjAgSDQ4MCBWMTU1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNDgwLDIxNSBWMjQwLjAgSDQ4MCBWMjY1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNDgwLDMyNSBWMzUwLjAgSDQ4MCBWMzc1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNDgwLDQzNSBWNDYwLjAgSDE3MCBWNDg1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIzMzMuMCIgeT0iNDU1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+WWVzPC90ZXh0PjxwYXRoIGQ9Ik00ODAsNDM1IFY0NjAuMCBINzkwIFY0ODUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjY0My4wIiB5PSI0NTUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ObzwvdGV4dD48cGF0aCBkPSJNMTcwLDU0NSBWNTcwLjAgSDQ4MCBWNTk1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNzkwLDU0NSBWNTcwLjAgSDQ4MCBWNTk1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNDgwLDY1NSBWNjgwLjAgSDQ4MCBWNzA1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNDgwLDc2NSBWNzkwLjAgSDE3MCBWODE1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIzMzMuMCIgeT0iNzg1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+WWVzPC90ZXh0PjxwYXRoIGQ9Ik02MTUsNzM1IEg5NjUgVjk1NSBINjE1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI5MTUiIHk9Ijg0NS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPk5vPC90ZXh0PjxwYXRoIGQ9Ik0xNzAsODc1IFY5MDAuMCBINDgwIFY5MjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsOTg1IFYxMDEwLjAgSDQ4MCBWMTAzNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHJlY3QgeD0iMzQ1IiB5PSI0NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9IjgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkFzc2lnbmVkIFByZWRlZmluZWQgQ1NCPC90ZXh0PjxyZWN0IHg9IjM0NSIgeT0iMTU1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iMTkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkNvbW1vbiBDRkcgYW5kIHByb2plY3QgY29udGV4dDwvdGV4dD48cmVjdCB4PSIzNDUiIHk9IjI2NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9IjI5MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5FbnZpcm9ubWVudCB2ZXJzaW9ucyBhbmQ8L3RleHQ+PHRleHQgeD0iNDgwIiB5PSIzMDkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+ZGVmYXVsdHM8L3RleHQ+PHJlY3QgeD0iMzQ1IiB5PSIzNzUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSIxOCIgZmlsbD0iI2U0ZWVmOSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iNDEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkFkdmFuY2VkIHJvb3QgZGlzY292ZXJ5IGVuYWJsZWQ8L3RleHQ+PHJlY3QgeD0iMzUiIHk9IjQ4NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSIxNzAiIHk9IjUyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5BZHZhbmNlZCByb290IHNlYXJjaDwvdGV4dD48cmVjdCB4PSI2NTUiIHk9IjQ4NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI3OTAiIHk9IjUyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5TdGFuZGFyZCBXb3JrQXJlYSBjb250ZXh0PC90ZXh0PjxyZWN0IHg9IjM0NSIgeT0iNTk1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iNjMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlJlYWQgV29ya0FyZWEgc2VsZWN0b3I8L3RleHQ+PHJlY3QgeD0iMzQ1IiB5PSI3MDUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSIxOCIgZmlsbD0iI2U0ZWVmOSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iNzQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkRyaXZlIHByb2Nlc3NpbmcgZW5hYmxlZDwvdGV4dD48cmVjdCB4PSIzNSIgeT0iODE1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjE3MCIgeT0iODUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlJlc29sdmUgbG9jYWwgRHJpdmUgcGF0aHM8L3RleHQ+PHJlY3QgeD0iMzQ1IiB5PSI5MjUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNDgwIiB5PSI5NjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+UmVzb2x2ZSBncm91cCBhbmQgd29ya3NwYWNlPC90ZXh0PjxyZWN0IHg9IjM0NSIgeT0iMTAzNSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9IjEwNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+QWRhcHRlciByb290cyBhbmQgdmFsaWRhdGlvbjwvdGV4dD48L3N2Zz4=" alt="Managed configuration load" />
-<figcaption aria-hidden="true">Managed configuration load</figcaption>
-</figure>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 1135" role="img" aria-label="Managed configuration load"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#65778a"></path></marker></defs><path d="M480,105 V130.0 H480 V155" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M480,215 V240.0 H480 V265" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M480,325 V350.0 H480 V375" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M480,435 V460.0 H170 V485" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="333.0" y="455.0" font-family="Arial" font-size="14" fill="#34485c">Yes</text><path d="M480,435 V460.0 H790 V485" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="643.0" y="455.0" font-family="Arial" font-size="14" fill="#34485c">No</text><path d="M170,545 V570.0 H480 V595" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M790,545 V570.0 H480 V595" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M480,655 V680.0 H480 V705" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M480,765 V790.0 H170 V815" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="333.0" y="785.0" font-family="Arial" font-size="14" fill="#34485c">Yes</text><path d="M615,735 H965 V955 H615" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="915" y="845.0" font-family="Arial" font-size="14" fill="#34485c">No</text><path d="M170,875 V900.0 H480 V925" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M480,985 V1010.0 H480 V1035" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><rect x="345" y="45" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="80" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Assigned
+Predefined
+CSB</text><rect x="345" y="155" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="190" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Common
+CFG and project
+context</text><rect x="345" y="265" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="291" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Environment
+versions
+and</text><text x="480" y="309" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">defaults</text><rect x="345" y="375" width="270" height="60" rx="18" fill="#e4eef9" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="410" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Advanced
+root discovery
+enabled</text><rect x="35" y="485" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="520" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Advanced
+root
+search</text><rect x="655" y="485" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="520" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Standard
+WorkArea
+context</text><rect x="345" y="595" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="630" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Read
+WorkArea
+selector</text><rect x="345" y="705" width="270" height="60" rx="18" fill="#e4eef9" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="740" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Drive
+processing
+enabled</text><rect x="35" y="815" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="850" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Resolve
+local Drive
+paths</text><rect x="345" y="925" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="960" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Resolve
+group and
+workspace</text><rect x="345" y="1035" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="1070" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Adapter
+roots and validation</text></svg></p>
 <h2 id="workspace-and-workset-selection">Workspace and WorkSet
 selection</h2>
-<figure>
-<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5ODAgMTEzNSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJXb3Jrc3BhY2UgYW5kIFdvcmtTZXQgc2VsZWN0aW9uIj48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTSAwIDAgTCAxMCA1IEwgMCAxMCB6IiBmaWxsPSIjNjU3NzhhIi8+PC9tYXJrZXI+PC9kZWZzPjxwYXRoIGQ9Ik00ODAsMTA1IFYxMzAuMCBINDgwIFYxNTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsMjE1IFYyNDAuMCBIMTcwIFYyNjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjMzMy4wIiB5PSIyMzUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ZZXM8L3RleHQ+PHBhdGggZD0iTTQ4MCwyMTUgVjI0MC4wIEg3OTAgVjI2NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNjQzLjAiIHk9IjIzNS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPk5vPC90ZXh0PjxwYXRoIGQ9Ik0xNzAsMzI1IFYzNTAuMCBINDgwIFYzNzUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik03OTAsMzI1IFYzNTAuMCBINDgwIFYzNzUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsNDM1IFY0NjAuMCBINDgwIFY0ODUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsNTQ1IFY1NzAuMCBINDgwIFY1OTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsNjU1IFY2ODAuMCBIMTcwIFY3MDUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjMzMy4wIiB5PSI2NzUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ZZXM8L3RleHQ+PHBhdGggZD0iTTQ4MCw2NTUgVjY4MC4wIEg3OTAgVjcwNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNjQzLjAiIHk9IjY3NS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPk5vPC90ZXh0PjxwYXRoIGQ9Ik03OTAsNzY1IFY3OTAuMCBINzkwIFY4MTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9Ijc5OC4wIiB5PSI3ODUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ZZXM8L3RleHQ+PHBhdGggZD0iTTkyNSw3MzUgSDk2NSBWOTU1IEg5MjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjkxNSIgeT0iODQ1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+Tm88L3RleHQ+PHBhdGggZD0iTTM1LDczNSBIMTUgVjEwNjUgSDM1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNOTI1LDg0NSBIOTY1IFYxMDY1IEgzMDUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxyZWN0IHg9IjM0NSIgeT0iNDUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNDgwIiB5PSI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5Xb3JrQXJlYSBzZWxlY3RvciBsb2FkZWQ8L3RleHQ+PHJlY3QgeD0iMzQ1IiB5PSIxNTUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSIxOCIgZmlsbD0iI2U0ZWVmOSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iMTkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkNsaWVudCBncm91cCBzcGVjaWZpZWQ8L3RleHQ+PHJlY3QgeD0iMzUiIHk9IjI2NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSIxNzAiIHk9IjMwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5SZXNvbHZlIGNsaWVudCBDb25maWd1cmF0aW9uPC90ZXh0PjxyZWN0IHg9IjY1NSIgeT0iMjY1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iMzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlVzZSBCZW50bGV5IHJvb3Qgcm91dGU8L3RleHQ+PHJlY3QgeD0iMzQ1IiB5PSIzNzUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNDgwIiB5PSI0MTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+UmVzb2x2ZSBuYW1lZCB3b3Jrc3BhY2UgQ0ZHPC90ZXh0PjxyZWN0IHg9IjM0NSIgeT0iNDg1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iNTIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlNlbGVjdCBleGFjdCBhZGFwdGVyIHBhdHRlcm48L3RleHQ+PHJlY3QgeD0iMzQ1IiB5PSI1OTUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSIxOCIgZmlsbD0iI2U0ZWVmOSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iNjMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkludGVuZGVkIFdvcmtTZXQgQ0ZHIGV4aXN0czwvdGV4dD48cmVjdCB4PSIzNSIgeT0iNzA1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjE3MCIgeT0iNzQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlNlbGVjdCBpbnRlbmRlZCBXb3JrU2V0PC90ZXh0PjxyZWN0IHg9IjY1NSIgeT0iNzA1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iMTgiIGZpbGw9IiNlNGVlZjkiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI3OTAiIHk9Ijc0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5EZWZhdWx0IENGRyBleGlzdHM8L3RleHQ+PHJlY3QgeD0iNjU1IiB5PSI4MTUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNzkwIiB5PSI4NDEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+U2VsZWN0IGZhbGxiYWNrIGFuZCB2ZXJpZnk8L3RleHQ+PHRleHQgeD0iNzkwIiB5PSI4NTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+aW50ZW50PC90ZXh0PjxyZWN0IHg9IjY1NSIgeT0iOTI1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iOTYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkNvbmZpZ3VyYXRpb24gZXJyb3I8L3RleHQ+PHJlY3QgeD0iMzUiIHk9IjEwMzUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iMTcwIiB5PSIxMDcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlZlcmlmeSBmaW5hbCByb290cyBhbmQgcmVzb3VyY2VzPC90ZXh0Pjwvc3ZnPg==" alt="Workspace and WorkSet selection" />
-<figcaption aria-hidden="true">Workspace and WorkSet
-selection</figcaption>
-</figure>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 1135" role="img" aria-label="Workspace and WorkSet selection"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#65778a"></path></marker></defs><path d="M480,105 V130.0 H480 V155" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M480,215 V240.0 H170 V265" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="333.0" y="235.0" font-family="Arial" font-size="14" fill="#34485c">Yes</text><path d="M480,215 V240.0 H790 V265" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="643.0" y="235.0" font-family="Arial" font-size="14" fill="#34485c">No</text><path d="M170,325 V350.0 H480 V375" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M790,325 V350.0 H480 V375" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M480,435 V460.0 H480 V485" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M480,545 V570.0 H480 V595" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M480,655 V680.0 H170 V705" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="333.0" y="675.0" font-family="Arial" font-size="14" fill="#34485c">Yes</text><path d="M480,655 V680.0 H790 V705" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="643.0" y="675.0" font-family="Arial" font-size="14" fill="#34485c">No</text><path d="M790,765 V790.0 H790 V815" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="798.0" y="785.0" font-family="Arial" font-size="14" fill="#34485c">Yes</text><path d="M925,735 H965 V955 H925" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="915" y="845.0" font-family="Arial" font-size="14" fill="#34485c">No</text><path d="M35,735 H15 V1065 H35" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M925,845 H965 V1065 H305" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><rect x="345" y="45" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="80" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">WorkArea
+selector
+loaded</text><rect x="345" y="155" width="270" height="60" rx="18" fill="#e4eef9" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="190" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Client
+group
+specified</text><rect x="35" y="265" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="300" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Resolve
+client
+Configuration</text><rect x="655" y="265" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="300" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Use
+Bentley root
+route</text><rect x="345" y="375" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="410" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Resolve
+named workspace
+CFG</text><rect x="345" y="485" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="520" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Select
+exact adapter
+pattern</text><rect x="345" y="595" width="270" height="60" rx="18" fill="#e4eef9" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="630" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Intended
+WorkSet CFG
+exists</text><rect x="35" y="705" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="740" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Select
+intended
+WorkSet</text><rect x="655" y="705" width="270" height="60" rx="18" fill="#e4eef9" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="740" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Default
+CFG
+exists</text><rect x="655" y="815" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="841" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Select
+fallback and
+verify</text><text x="790" y="859" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">intent</text><rect x="655" y="925" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="960" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Configuration
+error</text><rect x="35" y="1035" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="1070" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Verify
+final roots and resources</text></svg></p>
 <h2 id="choose-a-package-discovery-method">Choose a package discovery
 method</h2>
-<figure>
-<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5ODAgOTE1IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkNob29zZSBhIHBhY2thZ2UgZGlzY292ZXJ5IG1ldGhvZCI+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0gMCAwIEwgMTAgNSBMIDAgMTAgeiIgZmlsbD0iIzY1Nzc4YSIvPjwvbWFya2VyPjwvZGVmcz48cGF0aCBkPSJNNDgwLDEwNSBWMTMwLjAgSDQ4MCBWMTU1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNDgwLDIxNSBWMjQwLjAgSDE3MCBWMjY1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIzMzMuMCIgeT0iMjM1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+WWVzPC90ZXh0PjxwYXRoIGQ9Ik00ODAsMjE1IFYyNDAuMCBINzkwIFYyNjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjY0My4wIiB5PSIyMzUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ObzwvdGV4dD48cGF0aCBkPSJNNzkwLDMyNSBWMzUwLjAgSDc5MCBWMzc1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI3OTguMCIgeT0iMzQ1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+WWVzPC90ZXh0PjxwYXRoIGQ9Ik05MjUsMjk1IEg5NjUgVjUxNSBIOTI1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI5MTUiIHk9IjQwNS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPk5vPC90ZXh0PjxwYXRoIGQ9Ik0zNSwyOTUgSDE1IFY2MjUgSDM0NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHBhdGggZD0iTTkyNSw0MDUgSDk2NSBWNjI1IEg2MTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik03OTAsNTQ1IFY1NzAuMCBINDgwIFY1OTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsNjU1IFY2ODAuMCBINDgwIFY3MDUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsNzY1IFY3OTAuMCBIMTcwIFY4MTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjMzMy4wIiB5PSI3ODUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ZZXM8L3RleHQ+PHBhdGggZD0iTTQ4MCw3NjUgVjc5MC4wIEg3OTAgVjgxNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNjQzLjAiIHk9Ijc4NS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPk5vPC90ZXh0PjxyZWN0IHg9IjM0NSIgeT0iNDUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNDgwIiB5PSI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5TZXZlcmFsIFdvcmtTZXRzIGluIG9uZSBXb3JrQXJlYTwvdGV4dD48cmVjdCB4PSIzNDUiIHk9IjE1NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjE4IiBmaWxsPSIjZTRlZWY5IiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNDgwIiB5PSIxOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+Rm9sZGVyIGRlcHRoIHN0YWJsZTwvdGV4dD48cmVjdCB4PSIzNSIgeT0iMjY1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjE3MCIgeT0iMzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkZpbmRCeU5lc3QgYWRhcHRlcjwvdGV4dD48cmVjdCB4PSI2NTUiIHk9IjI2NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjE4IiBmaWxsPSIjZTRlZWY5IiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNzkwIiB5PSIzMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+VW5pcXVlIG1hcmtlciBhdmFpbGFibGU8L3RleHQ+PHJlY3QgeD0iNjU1IiB5PSIzNzUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNzkwIiB5PSI0MTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+RmluZEJ5RXhpc3RzIGFkYXB0ZXI8L3RleHQ+PHJlY3QgeD0iNjU1IiB5PSI0ODUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNzkwIiB5PSI1MjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+RGVmaW5lIGV4cGxpY2l0IHByb2plY3QgbWFwcGluZzwvdGV4dD48cmVjdCB4PSIzNDUiIHk9IjU5NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9IjYzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5SZXNvbHZlIHBhY2thZ2UgbmFtZSBhbmQgc3VicGF0aDwvdGV4dD48cmVjdCB4PSIzNDUiIHk9IjcwNSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjE4IiBmaWxsPSIjZTRlZWY5IiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNDgwIiB5PSI3NDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+RXhwZWN0ZWQgQ0ZHIGFuZCByb290IG1hdGNoPC90ZXh0PjxyZWN0IHg9IjM1IiB5PSI4MTUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iMTcwIiB5PSI4NTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+QWNjZXB0IHRlc3RlZCBzZWxlY3Rpb248L3RleHQ+PHJlY3QgeD0iNjU1IiB5PSI4MTUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNzkwIiB5PSI4NTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+Q29ycmVjdCBjb250cmFjdCBvciBzZWxlY3RvcjwvdGV4dD48L3N2Zz4=" alt="Choose a package discovery method" />
-<figcaption aria-hidden="true">Choose a package discovery
-method</figcaption>
-</figure>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 915" role="img" aria-label="Choose a package discovery method"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#65778a"></path></marker></defs><path d="M480,105 V130.0 H480 V155" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M480,215 V240.0 H170 V265" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="333.0" y="235.0" font-family="Arial" font-size="14" fill="#34485c">Yes</text><path d="M480,215 V240.0 H790 V265" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="643.0" y="235.0" font-family="Arial" font-size="14" fill="#34485c">No</text><path d="M790,325 V350.0 H790 V375" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="798.0" y="345.0" font-family="Arial" font-size="14" fill="#34485c">Yes</text><path d="M925,295 H965 V515 H925" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="915" y="405.0" font-family="Arial" font-size="14" fill="#34485c">No</text><path d="M35,295 H15 V625 H345" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M925,405 H965 V625 H615" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M790,545 V570.0 H480 V595" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M480,655 V680.0 H480 V705" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M480,765 V790.0 H170 V815" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="333.0" y="785.0" font-family="Arial" font-size="14" fill="#34485c">Yes</text><path d="M480,765 V790.0 H790 V815" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="643.0" y="785.0" font-family="Arial" font-size="14" fill="#34485c">No</text><rect x="345" y="45" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="80" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Several
+WorkSets in one
+WorkArea</text><rect x="345" y="155" width="270" height="60" rx="18" fill="#e4eef9" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="190" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Folder
+depth
+stable</text><rect x="35" y="265" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="300" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">FindByNest
+adapter</text><rect x="655" y="265" width="270" height="60" rx="18" fill="#e4eef9" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="300" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Unique
+marker
+available</text><rect x="655" y="375" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="410" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">FindByExists
+adapter</text><rect x="655" y="485" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="520" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Define
+explicit project
+mapping</text><rect x="345" y="595" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="630" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Resolve
+package name and
+subpath</text><rect x="345" y="705" width="270" height="60" rx="18" fill="#e4eef9" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="740" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Expected
+CFG and root
+match</text><rect x="35" y="815" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="850" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Accept
+tested
+selection</text><rect x="655" y="815" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="850" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Correct
+contract or selector</text></svg></p>
 <h2 id="ancestor-configuration-inclusion">Ancestor configuration
 inclusion</h2>
-<figure>
-<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5ODAgNjk1IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkFuY2VzdG9yIGNvbmZpZ3VyYXRpb24gaW5jbHVzaW9uIj48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTSAwIDAgTCAxMCA1IEwgMCAxMCB6IiBmaWxsPSIjNjU3NzhhIi8+PC9tYXJrZXI+PC9kZWZzPjxwYXRoIGQ9Ik00ODAsMTA1IFYxMzAuMCBINDgwIFYxNTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsMjE1IFYyNDAuMCBIMTcwIFYyNjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjMzMy4wIiB5PSIyMzUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ZZXM8L3RleHQ+PHBhdGggZD0iTTQ4MCwyMTUgVjI0MC4wIEg3OTAgVjI2NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNjQzLjAiIHk9IjIzNS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPk5vPC90ZXh0PjxwYXRoIGQ9Ik0xNzAsMzI1IFYzNTAuMCBINDgwIFYzNzUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik03OTAsMzI1IFYzNTAuMCBINDgwIFYzNzUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsNDM1IFY0NjAuMCBIMTcwIFY0ODUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjMzMy4wIiB5PSI0NTUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ZZXM8L3RleHQ+PHBhdGggZD0iTTQ4MCw0MzUgVjQ2MC4wIEg3OTAgVjQ4NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNjQzLjAiIHk9IjQ1NS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPk5vPC90ZXh0PjxwYXRoIGQ9Ik05MjAsNTE1IEgzNSBWMTg1IEg2MTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjQwIiB5PSIzNTAuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5SZXBlYXQ8L3RleHQ+PHBhdGggZD0iTTE3MCw1NDUgVjU3MC4wIEgxNzAgVjU5NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHJlY3QgeD0iMzQ1IiB5PSI0NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9IjgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlN0YXJ0IGF0IGRlc2lnbiBkaXJlY3Rvcnk8L3RleHQ+PHJlY3QgeD0iMzQ1IiB5PSIxNTUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSIxOCIgZmlsbD0iI2U0ZWVmOSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iMTkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPk1hdGNoaW5nIHNldHVwIENGRyBleGlzdHM8L3RleHQ+PHJlY3QgeD0iMzUiIHk9IjI2NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSIxNzAiIHk9IjMwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5Qcm9jZXNzIG1hdGNoaW5nIENGRzwvdGV4dD48cmVjdCB4PSI2NTUiIHk9IjI2NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI3OTAiIHk9IjMwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5SZWNvcmQgYWJzZW50IG1hdGNoIGlmIGRlYnVnZ2luZzwvdGV4dD48cmVjdCB4PSIzNDUiIHk9IjM3NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjE4IiBmaWxsPSIjZTRlZWY5IiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNDgwIiB5PSI0MTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+Qm91bmRhcnkgb3Igc3RvcCBjb25kaXRpb24gbWV0PC90ZXh0PjxyZWN0IHg9IjM1IiB5PSI0ODUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iMTcwIiB5PSI1MTEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+UmV0YWluIHRyYWNlIGFuZCBjbGVhbjwvdGV4dD48dGV4dCB4PSIxNzAiIHk9IjUyOSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5wYXJhbWV0ZXJzPC90ZXh0PjxyZWN0IHg9IjY1NSIgeT0iNDg1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iNTIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPk1vdmUgdG8gcGFyZW50IGRpcmVjdG9yeTwvdGV4dD48cmVjdCB4PSIzNSIgeT0iNTk1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjE3MCIgeT0iNjIxIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlZlcmlmeSBmaW5hbCB2YWx1ZXMgYW5kPC90ZXh0Pjx0ZXh0IHg9IjE3MCIgeT0iNjM5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPnByZWNlZGVuY2U8L3RleHQ+PC9zdmc+" alt="Ancestor configuration inclusion" />
-<figcaption aria-hidden="true">Ancestor configuration
-inclusion</figcaption>
-</figure>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 695" role="img" aria-label="Ancestor configuration inclusion"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#65778a"></path></marker></defs><path d="M480,105 V130.0 H480 V155" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M480,215 V240.0 H170 V265" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="333.0" y="235.0" font-family="Arial" font-size="14" fill="#34485c">Yes</text><path d="M480,215 V240.0 H790 V265" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="643.0" y="235.0" font-family="Arial" font-size="14" fill="#34485c">No</text><path d="M170,325 V350.0 H480 V375" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M790,325 V350.0 H480 V375" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M480,435 V460.0 H170 V485" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="333.0" y="455.0" font-family="Arial" font-size="14" fill="#34485c">Yes</text><path d="M480,435 V460.0 H790 V485" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="643.0" y="455.0" font-family="Arial" font-size="14" fill="#34485c">No</text><path d="M920,515 H35 V185 H610" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="40" y="350.0" font-family="Arial" font-size="14" fill="#34485c">Repeat</text><path d="M170,545 V570.0 H170 V595" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><rect x="345" y="45" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="80" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Start
+at design
+directory</text><rect x="345" y="155" width="270" height="60" rx="18" fill="#e4eef9" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="190" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Matching
+setup CFG
+exists</text><rect x="35" y="265" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="300" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Process
+matching
+CFG</text><rect x="655" y="265" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="300" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Record
+absent match if
+debugging</text><rect x="345" y="375" width="270" height="60" rx="18" fill="#e4eef9" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="410" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Boundary
+or stop condition
+met</text><rect x="35" y="485" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="511" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Retain
+trace and
+clean</text><text x="170" y="529" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">parameters</text><rect x="655" y="485" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="520" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Move
+to parent
+directory</text><rect x="35" y="595" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="621" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Verify
+final values
+and</text><text x="170" y="639" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">precedence</text></svg></p>
 <h2 id="release-and-recovery">Release and recovery</h2>
-<figure>
-<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5ODAgNjk1IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlJlbGVhc2UgYW5kIHJlY292ZXJ5Ij48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTSAwIDAgTCAxMCA1IEwgMCAxMCB6IiBmaWxsPSIjNjU3NzhhIi8+PC9tYXJrZXI+PC9kZWZzPjxwYXRoIGQ9Ik00ODAsMTA1IFYxMzAuMCBINDgwIFYxNTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsMjE1IFYyNDAuMCBIMTcwIFYyNjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjMzMy4wIiB5PSIyMzUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ObzwvdGV4dD48cGF0aCBkPSJNMzAwLDI5NSBIOTQ1IFYxODUgSDYxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iODk1IiB5PSIyNDAuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5SZXRlc3Q8L3RleHQ+PHBhdGggZD0iTTQ4MCwyMTUgVjI0MC4wIEg3OTAgVjI2NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNjQzLjAiIHk9IjIzNS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPlllczwvdGV4dD48cGF0aCBkPSJNNzkwLDMyNSBWMzUwLjAgSDc5MCBWMzc1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNzkwLDQzNSBWNDYwLjAgSDE3MCBWNDg1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI0ODguMCIgeT0iNDU1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+Tm88L3RleHQ+PHBhdGggZD0iTTc5MCw0MzUgVjQ2MC4wIEg3OTAgVjQ4NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNzk4LjAiIHk9IjQ1NS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPlllczwvdGV4dD48cGF0aCBkPSJNMTcwLDU0NSBWNTcwLjAgSDE3MCBWNTk1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cmVjdCB4PSIzNDUiIHk9IjQ1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+RnJlZXplIHJlbGVhc2UgYW5kIG1hbmlmZXN0PC90ZXh0PjxyZWN0IHg9IjM0NSIgeT0iMTU1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iMTgiIGZpbGw9IiNlNGVlZjkiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9IjE5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5BY2NlcHRhbmNlIG1hdHJpeCBwYXNzZXM8L3RleHQ+PHJlY3QgeD0iMzUiIHk9IjI2NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSIxNzAiIHk9IjMwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5Db3JyZWN0IGFuZCByZXRlc3Q8L3RleHQ+PHJlY3QgeD0iNjU1IiB5PSIyNjUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNzkwIiB5PSIzMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+QXBwcm92ZSBhbmQgZGVwbG95IHBpbG90PC90ZXh0PjxyZWN0IHg9IjY1NSIgeT0iMzc1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iMTgiIGZpbGw9IiNlNGVlZjkiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI3OTAiIHk9IjQxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5PcmRpbmFyeSB1c2VyIHNtb2tlIHRlc3QgcGFzc2VzPC90ZXh0PjxyZWN0IHg9IjM1IiB5PSI0ODUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iMTcwIiB5PSI1MTEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+UmVzdG9yZSBrbm93biBnb29kIGNvbnRlbnQgYW5kPC90ZXh0Pjx0ZXh0IHg9IjE3MCIgeT0iNTI5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPmJpbmRpbmdzPC90ZXh0PjxyZWN0IHg9IjY1NSIgeT0iNDg1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iNTExIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlJlY29yZCByZWxlYXNlIGFuZCBkZXBsb3kgbmV4dDwvdGV4dD48dGV4dCB4PSI3OTAiIHk9IjUyOSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij53YXZlPC90ZXh0PjxyZWN0IHg9IjM1IiB5PSI1OTUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iMTcwIiB5PSI2MzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+VmVyaWZ5IHJlc3RvcmVkIG91dHB1dDwvdGV4dD48L3N2Zz4=" alt="Release and recovery" />
-<figcaption aria-hidden="true">Release and recovery</figcaption>
-</figure>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 695" role="img" aria-label="Release and recovery"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#65778a"></path></marker></defs><path d="M480,105 V130.0 H480 V155" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M480,215 V240.0 H170 V265" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="333.0" y="235.0" font-family="Arial" font-size="14" fill="#34485c">No</text><path d="M300,295 H945 V185 H610" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="895" y="240.0" font-family="Arial" font-size="14" fill="#34485c">Retest</text><path d="M480,215 V240.0 H790 V265" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="643.0" y="235.0" font-family="Arial" font-size="14" fill="#34485c">Yes</text><path d="M790,325 V350.0 H790 V375" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M790,435 V460.0 H170 V485" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="488.0" y="455.0" font-family="Arial" font-size="14" fill="#34485c">No</text><path d="M790,435 V460.0 H790 V485" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="798.0" y="455.0" font-family="Arial" font-size="14" fill="#34485c">Yes</text><path d="M170,545 V570.0 H170 V595" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><rect x="345" y="45" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="80" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Freeze
+release and
+manifest</text><rect x="345" y="155" width="270" height="60" rx="18" fill="#e4eef9" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="190" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Acceptance
+matrix
+passes</text><rect x="35" y="265" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="300" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Correct
+and
+retest</text><rect x="655" y="265" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="300" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Approve
+and deploy
+pilot</text><rect x="655" y="375" width="270" height="60" rx="18" fill="#e4eef9" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="410" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Ordinary
+user smoke test
+passes</text><rect x="35" y="485" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="511" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Restore
+known good content
+and</text><text x="170" y="529" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">bindings</text><rect x="655" y="485" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="511" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Record
+release and deploy
+next</text><text x="790" y="529" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">wave</text><rect x="35" y="595" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="630" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Verify
+restored output</text></svg></p>
 <h2 id="diagnose-wrong-or-missing-standards">Diagnose wrong or missing
 standards</h2>
-<figure>
-<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5ODAgOTE1IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkRpYWdub3NlIHdyb25nIG9yIG1pc3Npbmcgc3RhbmRhcmRzIj48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTSAwIDAgTCAxMCA1IEwgMCAxMCB6IiBmaWxsPSIjNjU3NzhhIi8+PC9tYXJrZXI+PC9kZWZzPjxwYXRoIGQ9Ik00ODAsMTA1IFYxMzAuMCBINDgwIFYxNTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsMjE1IFYyNDAuMCBIMTcwIFYyNjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjMzMy4wIiB5PSIyMzUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ObzwvdGV4dD48cGF0aCBkPSJNNDgwLDIxNSBWMjQwLjAgSDc5MCBWMjY1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI2NDMuMCIgeT0iMjM1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+WWVzPC90ZXh0PjxwYXRoIGQ9Ik03OTAsMzI1IFYzNTAuMCBINzkwIFYzNzUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik03OTAsNDM1IFY0NjAuMCBIMTcwIFY0ODUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjQ4OC4wIiB5PSI0NTUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ObzwvdGV4dD48cGF0aCBkPSJNNzkwLDQzNSBWNDYwLjAgSDc5MCBWNDg1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI3OTguMCIgeT0iNDU1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+WWVzPC90ZXh0PjxwYXRoIGQ9Ik03OTAsNTQ1IFY1NzAuMCBINzkwIFY1OTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik03OTAsNjU1IFY2ODAuMCBIMTcwIFY3MDUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjQ4OC4wIiB5PSI2NzUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ZZXM8L3RleHQ+PHBhdGggZD0iTTc5MCw2NTUgVjY4MC4wIEg3OTAgVjcwNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNzk4LjAiIHk9IjY3NS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPk5vPC90ZXh0PjxwYXRoIGQ9Ik0zNSwyOTUgSDE1IFY4NDUgSDM0NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHBhdGggZD0iTTM1LDUxNSBIMTUgVjg0NSBIMzQ1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNMTcwLDc2NSBWNzkwLjAgSDQ4MCBWODE1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNzkwLDc2NSBWNzkwLjAgSDQ4MCBWODE1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cmVjdCB4PSIzNDUiIHk9IjQ1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iNzEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+Q2FwdHVyZSBkb2N1bWVudCBjb250ZXh0IGFuZDwvdGV4dD48dGV4dCB4PSI0ODAiIHk9Ijg5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPmJ1aWxkczwvdGV4dD48cmVjdCB4PSIzNDUiIHk9IjE1NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjE4IiBmaWxsPSIjZTRlZWY5IiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNDgwIiB5PSIxOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+Q29tbW9uIENGRyB0cmFjZSBwcmVzZW50PC90ZXh0PjxyZWN0IHg9IjM1IiB5PSIyNjUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iMTcwIiB5PSIzMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+Q2hlY2sgQ1NCIGFuZCBsYXVuY2ggaW50ZWdyYXRpb248L3RleHQ+PHJlY3QgeD0iNjU1IiB5PSIyNjUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNzkwIiB5PSIyOTEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+Q2hlY2sgV29ya0FyZWEgc2VsZWN0b3IgYW5kPC90ZXh0Pjx0ZXh0IHg9Ijc5MCIgeT0iMzA5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPmFkYXB0ZXI8L3RleHQ+PHJlY3QgeD0iNjU1IiB5PSIzNzUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSIxOCIgZmlsbD0iI2U0ZWVmOSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iNDAxIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkZpbmFsIHdvcmtzcGFjZSBhbmQgV29ya1NldDwvdGV4dD48dGV4dCB4PSI3OTAiIHk9IjQxOSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5tYXRjaDwvdGV4dD48cmVjdCB4PSIzNSIgeT0iNDg1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjE3MCIgeT0iNTIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkNvcnJlY3QgZmlyc3Qgd3Jvbmcgc2VsZWN0aW9uPC90ZXh0PjxyZWN0IHg9IjY1NSIgeT0iNDg1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iNTExIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkNoZWNrIHJlc291cmNlIHBhdGhzIGFuZDwvdGV4dD48dGV4dCB4PSI3OTAiIHk9IjUyOSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5hdmFpbGFiaWxpdHk8L3RleHQ+PHJlY3QgeD0iNjU1IiB5PSI1OTUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSIxOCIgZmlsbD0iI2U0ZWVmOSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iNjMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkRyaXZlIG9yIHNlcnZlciBkaWZmZXJlbmNlPC90ZXh0PjxyZWN0IHg9IjM1IiB5PSI3MDUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iMTcwIiB5PSI3MzEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+Q2hlY2sgdXNlciBzeW5jIG9yIHByb2Nlc3M8L3RleHQ+PHRleHQgeD0iMTcwIiB5PSI3NDkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+Y29udGV4dDwvdGV4dD48cmVjdCB4PSI2NTUiIHk9IjcwNSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI3OTAiIHk9IjczMSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5DaGVjayBuYXRpdmUgcmVzb3VyY2U8L3RleHQ+PHRleHQgeD0iNzkwIiB5PSI3NDkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+Y29uZmlndXJhdGlvbjwvdGV4dD48cmVjdCB4PSIzNDUiIHk9IjgxNSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9Ijg0MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5SZXRlc3Qgb3V0cHV0IGFuZCByZWNvcmQ8L3RleHQ+PHRleHQgeD0iNDgwIiB5PSI4NTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+ZXZpZGVuY2U8L3RleHQ+PC9zdmc+" alt="Diagnose wrong or missing standards" />
-<figcaption aria-hidden="true">Diagnose wrong or missing
-standards</figcaption>
-</figure>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 915" role="img" aria-label="Diagnose wrong or missing standards"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#65778a"></path></marker></defs><path d="M480,105 V130.0 H480 V155" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M480,215 V240.0 H170 V265" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="333.0" y="235.0" font-family="Arial" font-size="14" fill="#34485c">No</text><path d="M480,215 V240.0 H790 V265" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="643.0" y="235.0" font-family="Arial" font-size="14" fill="#34485c">Yes</text><path d="M790,325 V350.0 H790 V375" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M790,435 V460.0 H170 V485" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="488.0" y="455.0" font-family="Arial" font-size="14" fill="#34485c">No</text><path d="M790,435 V460.0 H790 V485" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="798.0" y="455.0" font-family="Arial" font-size="14" fill="#34485c">Yes</text><path d="M790,545 V570.0 H790 V595" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M790,655 V680.0 H170 V705" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="488.0" y="675.0" font-family="Arial" font-size="14" fill="#34485c">Yes</text><path d="M790,655 V680.0 H790 V705" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="798.0" y="675.0" font-family="Arial" font-size="14" fill="#34485c">No</text><path d="M35,295 H15 V845 H345" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M35,515 H15 V845 H345" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M170,765 V790.0 H480 V815" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M790,765 V790.0 H480 V815" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><rect x="345" y="45" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="71" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Capture
+document context
+and</text><text x="480" y="89" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">builds</text><rect x="345" y="155" width="270" height="60" rx="18" fill="#e4eef9" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="190" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Common
+CFG trace
+present</text><rect x="35" y="265" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="300" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Check
+CSB and launch
+integration</text><rect x="655" y="265" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="291" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Check
+WorkArea selector
+and</text><text x="790" y="309" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">adapter</text><rect x="655" y="375" width="270" height="60" rx="18" fill="#e4eef9" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="401" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Final
+workspace and
+WorkSet</text><text x="790" y="419" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">match</text><rect x="35" y="485" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="520" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Correct
+first wrong
+selection</text><rect x="655" y="485" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="511" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Check
+resource paths
+and</text><text x="790" y="529" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">availability</text><rect x="655" y="595" width="270" height="60" rx="18" fill="#e4eef9" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="630" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Drive
+or server
+difference</text><rect x="35" y="705" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="731" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Check
+user sync or
+process</text><text x="170" y="749" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">context</text><rect x="655" y="705" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="731" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Check
+native
+resource</text><text x="790" y="749" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">configuration</text><rect x="345" y="815" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="841" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Retest
+output and
+record</text><text x="480" y="859" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">evidence</text></svg></p>
 <h2 id="build-a-dataset-from-standards">Build a dataset from
 standards</h2>
-<figure>
-<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5ODAgNjk1IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkJ1aWxkIGEgZGF0YXNldCBmcm9tIHN0YW5kYXJkcyI+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0gMCAwIEwgMTAgNSBMIDAgMTAgeiIgZmlsbD0iIzY1Nzc4YSIvPjwvbWFya2VyPjwvZGVmcz48cGF0aCBkPSJNNDgwLDEwNSBWMTMwLjAgSDQ4MCBWMTU1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNDgwLDIxNSBWMjQwLjAgSDQ4MCBWMjY1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNDgwLDMyNSBWMzUwLjAgSDE3MCBWMzc1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIzMzMuMCIgeT0iMzQ1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+Tm88L3RleHQ+PHBhdGggZD0iTTMwMCw0MDUgSDk0NSBWMjk1IEg2MTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9Ijg5NSIgeT0iMzUwLjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+UmV2aWV3PC90ZXh0PjxwYXRoIGQ9Ik00ODAsMzI1IFYzNTAuMCBINzkwIFYzNzUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjY0My4wIiB5PSIzNDUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ZZXM8L3RleHQ+PHBhdGggZD0iTTc5MCw0MzUgVjQ2MC4wIEg3OTAgVjQ4NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHBhdGggZD0iTTc5MCw1NDUgVjU3MC4wIEgxNzAgVjU5NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNDg4LjAiIHk9IjU2NS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPk5vPC90ZXh0PjxwYXRoIGQ9Ik0zMDAsNjI1IEg5NDUgVjQwNSBIOTIwIiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI4OTUiIHk9IjUxNS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPlJldGVzdDwvdGV4dD48cGF0aCBkPSJNNzkwLDU0NSBWNTcwLjAgSDc5MCBWNTk1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI3OTguMCIgeT0iNTY1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+WWVzPC90ZXh0PjxyZWN0IHg9IjM0NSIgeT0iNDUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNDgwIiB5PSI3MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5SZWdpc3RlciBhdXRob3JpdGF0aXZlPC90ZXh0Pjx0ZXh0IHg9IjQ4MCIgeT0iODkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+c3BlY2lmaWNhdGlvbjwvdGV4dD48cmVjdCB4PSIzNDUiIHk9IjE1NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9IjE4MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5FeHRyYWN0IHJlcXVpcmVtZW50cyBhbmQ8L3RleHQ+PHRleHQgeD0iNDgwIiB5PSIxOTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+dHJhY2VhYmlsaXR5PC90ZXh0PjxyZWN0IHg9IjM0NSIgeT0iMjY1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iMTgiIGZpbGw9IiNlNGVlZjkiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9IjMwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5JbnRlcnByZXRhdGlvbiBhZ3JlZWQ8L3RleHQ+PHJlY3QgeD0iMzUiIHk9IjM3NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSIxNzAiIHk9IjQxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5SZXNvbHZlIHdpdGggc3RhbmRhcmRzIG93bmVyPC90ZXh0PjxyZWN0IHg9IjY1NSIgeT0iMzc1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iNDAxIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkJ1aWxkIG5hdGl2ZSByZXNvdXJjZXMgYW5kPC90ZXh0Pjx0ZXh0IHg9Ijc5MCIgeT0iNDE5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPmFkYXB0ZXI8L3RleHQ+PHJlY3QgeD0iNjU1IiB5PSI0ODUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSIxOCIgZmlsbD0iI2U0ZWVmOSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iNTIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlJlcHJlc2VudGF0aXZlIG91dHB1dCBwYXNzZXM8L3RleHQ+PHJlY3QgeD0iMzUiIHk9IjU5NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSIxNzAiIHk9IjYyMSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5Db3JyZWN0IHJlc291cmNlIG9yPC90ZXh0Pjx0ZXh0IHg9IjE3MCIgeT0iNjM5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPmludGVycHJldGF0aW9uPC90ZXh0PjxyZWN0IHg9IjY1NSIgeT0iNTk1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iNjIxIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlJlbGVhc2UgZGF0YXNldCBhbmQgYWRhcHRlcjwvdGV4dD48dGV4dCB4PSI3OTAiIHk9IjYzOSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij50b2dldGhlcjwvdGV4dD48L3N2Zz4=" alt="Build a dataset from standards" />
-<figcaption aria-hidden="true">Build a dataset from
-standards</figcaption>
-</figure>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 695" role="img" aria-label="Build a dataset from standards"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#65778a"></path></marker></defs><path d="M480,105 V130.0 H480 V155" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M480,215 V240.0 H480 V265" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M480,325 V350.0 H170 V375" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="333.0" y="345.0" font-family="Arial" font-size="14" fill="#34485c">No</text><path d="M300,405 H945 V295 H610" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="895" y="350.0" font-family="Arial" font-size="14" fill="#34485c">Review</text><path d="M480,325 V350.0 H790 V375" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="643.0" y="345.0" font-family="Arial" font-size="14" fill="#34485c">Yes</text><path d="M790,435 V460.0 H790 V485" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M790,545 V570.0 H170 V595" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="488.0" y="565.0" font-family="Arial" font-size="14" fill="#34485c">No</text><path d="M300,625 H945 V405 H920" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="895" y="515.0" font-family="Arial" font-size="14" fill="#34485c">Retest</text><path d="M790,545 V570.0 H790 V595" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="798.0" y="565.0" font-family="Arial" font-size="14" fill="#34485c">Yes</text><rect x="345" y="45" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="71" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Register
+authoritative</text><text x="480" y="89" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">specification</text><rect x="345" y="155" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="181" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Extract
+requirements
+and</text><text x="480" y="199" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">traceability</text><rect x="345" y="265" width="270" height="60" rx="18" fill="#e4eef9" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="300" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Interpretation
+agreed</text><rect x="35" y="375" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="410" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Resolve
+with standards
+owner</text><rect x="655" y="375" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="401" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Build
+native resources
+and</text><text x="790" y="419" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">adapter</text><rect x="655" y="485" width="270" height="60" rx="18" fill="#e4eef9" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="520" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Representative
+output
+passes</text><rect x="35" y="595" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="621" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Correct
+resource
+or</text><text x="170" y="639" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">interpretation</text><rect x="655" y="595" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="621" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Release
+dataset and
+adapter</text><text x="790" y="639" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">together</text></svg></p>
 <h2 id="separate-autodesk-deployment-concept">Separate Autodesk
 deployment concept</h2>
-<figure>
-<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5ODAgOTE1IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlNlcGFyYXRlIEF1dG9kZXNrIGRlcGxveW1lbnQgY29uY2VwdCI+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0gMCAwIEwgMTAgNSBMIDAgMTAgeiIgZmlsbD0iIzY1Nzc4YSIvPjwvbWFya2VyPjwvZGVmcz48cGF0aCBkPSJNNDgwLDEwNSBWMTMwLjAgSDQ4MCBWMTU1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNDgwLDIxNSBWMjQwLjAgSDE3MCBWMjY1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIzMzMuMCIgeT0iMjM1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+Tm88L3RleHQ+PHBhdGggZD0iTTQ4MCwyMTUgVjI0MC4wIEg3OTAgVjI2NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNjQzLjAiIHk9IjIzNS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPlllczwvdGV4dD48cGF0aCBkPSJNNzkwLDMyNSBWMzUwLjAgSDc5MCBWMzc1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNzkwLDQzNSBWNDYwLjAgSDE3MCBWNDg1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI0ODguMCIgeT0iNDU1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+Tm88L3RleHQ+PHBhdGggZD0iTTc5MCw0MzUgVjQ2MC4wIEg3OTAgVjQ4NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNzk4LjAiIHk9IjQ1NS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPlllczwvdGV4dD48cGF0aCBkPSJNMTcwLDU0NSBWNTcwLjAgSDE3MCBWNTk1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNMTcwLDY1NSBWNjgwLjAgSDE3MCBWNzA1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIxNzguMCIgeT0iNjc1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+WWVzPC90ZXh0PjxwYXRoIGQ9Ik0xNzAsNjU1IFY2ODAuMCBINzkwIFY3MDUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjQ4OC4wIiB5PSI2NzUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ObzwvdGV4dD48cGF0aCBkPSJNMTcwLDc2NSBWNzkwLjAgSDQ4MCBWODE1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNOTI1LDUxNSBIOTY1IFY4NDUgSDYxNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHJlY3QgeD0iMzQ1IiB5PSI0NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9IjcxIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlByb2plY3RXaXNlIHByb2ZpbGUgc2VsZWN0cyBDQUQ8L3RleHQ+PHRleHQgeD0iNDgwIiB5PSI4OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5wcm9maWxlPC90ZXh0PjxyZWN0IHg9IjM0NSIgeT0iMTU1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iMTgiIGZpbGw9IiNlNGVlZjkiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9IjE5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5BcHByb3ZlZCBEcml2ZSBjb250ZW50IGF2YWlsYWJsZTwvdGV4dD48cmVjdCB4PSIzNSIgeT0iMjY1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjE3MCIgeT0iMzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlN0b3Agd2l0aCBzdXBwb3J0IGV2aWRlbmNlPC90ZXh0PjxyZWN0IHg9IjY1NSIgeT0iMjY1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iMzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkFwcHJvdmVkIHN0YXJ0dXAgYm9vdHN0cmFwIHJ1bnM8L3RleHQ+PHJlY3QgeD0iNjU1IiB5PSIzNzUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSIxOCIgZmlsbD0iI2U0ZWVmOSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iNDEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkxvY2FsIHJlbGVhc2UgYWxyZWFkeSBjdXJyZW50PC90ZXh0PjxyZWN0IHg9IjM1IiB5PSI0ODUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iMTcwIiB5PSI1MjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+U3RhZ2UgYW5kIHZlcmlmeSByZXF1aXJlZCBmaWxlczwvdGV4dD48cmVjdCB4PSI2NTUiIHk9IjQ4NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI3OTAiIHk9IjUyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5Vc2UgYXBwcm92ZWQgZXhpc3RpbmcgcmVsZWFzZTwvdGV4dD48cmVjdCB4PSIzNSIgeT0iNTk1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iMTgiIGZpbGw9IiNlNGVlZjkiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSIxNzAiIHk9IjYzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5Db250ZW50IGFuZCBwbHVnaW4gY2hlY2tzIHBhc3M8L3RleHQ+PHJlY3QgeD0iMzUiIHk9IjcwNSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSIxNzAiIHk9Ijc0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5BY3RpdmF0ZSBzdGFnZWQgbG9jYWwgcmVsZWFzZTwvdGV4dD48cmVjdCB4PSI2NTUiIHk9IjcwNSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI3OTAiIHk9IjczMSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5SZXRhaW4gcHJpb3IgcmVsZWFzZSBhbmQgcmVwb3J0PC90ZXh0Pjx0ZXh0IHg9Ijc5MCIgeT0iNzQ5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPmZhdWx0PC90ZXh0PjxyZWN0IHg9IjM0NSIgeT0iODE1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iODUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlZlcmlmeSBDaXZpbCAzRCBkcmF3aW5nIG91dHB1dDwvdGV4dD48L3N2Zz4=" alt="Separate Autodesk deployment concept" />
-<figcaption aria-hidden="true">Separate Autodesk deployment
-concept</figcaption>
-</figure>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 915" role="img" aria-label="Separate Autodesk deployment concept"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#65778a"></path></marker></defs><path d="M480,105 V130.0 H480 V155" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M480,215 V240.0 H170 V265" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="333.0" y="235.0" font-family="Arial" font-size="14" fill="#34485c">No</text><path d="M480,215 V240.0 H790 V265" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="643.0" y="235.0" font-family="Arial" font-size="14" fill="#34485c">Yes</text><path d="M790,325 V350.0 H790 V375" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M790,435 V460.0 H170 V485" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="488.0" y="455.0" font-family="Arial" font-size="14" fill="#34485c">No</text><path d="M790,435 V460.0 H790 V485" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="798.0" y="455.0" font-family="Arial" font-size="14" fill="#34485c">Yes</text><path d="M170,545 V570.0 H170 V595" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M170,655 V680.0 H170 V705" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="178.0" y="675.0" font-family="Arial" font-size="14" fill="#34485c">Yes</text><path d="M170,655 V680.0 H790 V705" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><text x="488.0" y="675.0" font-family="Arial" font-size="14" fill="#34485c">No</text><path d="M170,765 V790.0 H480 V815" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><path d="M925,515 H965 V845 H615" fill="none" stroke="#65778a" stroke-width="2" marker-end="url(#arrow)"></path><rect x="345" y="45" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="71" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">ProjectWise
+profile selects
+CAD</text><text x="480" y="89" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">profile</text><rect x="345" y="155" width="270" height="60" rx="18" fill="#e4eef9" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="190" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Approved
+Drive content
+available</text><rect x="35" y="265" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="300" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Stop
+with support
+evidence</text><rect x="655" y="265" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="300" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Approved
+startup bootstrap
+runs</text><rect x="655" y="375" width="270" height="60" rx="18" fill="#e4eef9" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="410" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Local
+release already
+current</text><rect x="35" y="485" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="520" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Stage
+and verify required
+files</text><rect x="655" y="485" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="520" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Use
+approved existing
+release</text><rect x="35" y="595" width="270" height="60" rx="18" fill="#e4eef9" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="630" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Content
+and plugin checks
+pass</text><rect x="35" y="705" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="170" y="740" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Activate
+staged local
+release</text><rect x="655" y="705" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="790" y="731" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Retain
+prior release and
+report</text><text x="790" y="749" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">fault</text><rect x="345" y="815" width="270" height="60" rx="6" fill="#f5f7fa" stroke="#486784" stroke-width="1.5"></rect><text x="480" y="850" text-anchor="middle" font-family="Arial" font-size="15" fill="#132c45">Verify
+Civil 3D drawing output</text></svg></p>
 </body>
 </html>

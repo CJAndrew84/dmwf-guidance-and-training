@@ -165,6 +165,11 @@ The source gates first depth with `NESTMAX>2`, second depth with `>3`, third wit
 
 ## Product and environment reference
 
+**DMWF 24 names the framework release year (2024), not the Bentley application generation.** DMWF 24.0.0.0 supports Bentley product versions `10.xx`, `23.xx`, `24.xx` and `25.xx`. Technically, `26.xx` products can also use the framework, but the missing registry key prevents the existing version-detection route from identifying their version. For `26.xx`, an **Application CSV is required to specify and lock the product version**. Framework support and the suitability of a particular standards dataset are separate decisions.
+
+For 26.xx, use the Application CSV to supply and lock the product version before this module consumes it. Verify the effective `_DYNAMIC_PRODUCT_VERSION` and `_DYNAMIC_PRODUCT_VERSION_GEN_MAJ`; check the trace rather than assuming the registry route succeeded. Follow the actual application configuration tooling for CSV fields and lock syntax. The supplied version module reads `HKEY_CLASSES_ROOT\Installer\Dependencies\$(MS_PRODUCTCODEGUID)\Version` in its registry branch; the missing key is a detection issue, not a framework generation limit.
+
+
 | Variable | Purpose |
 |---|---|
 | `_ENGINENAME` | Product identity used by adapters and mapping |

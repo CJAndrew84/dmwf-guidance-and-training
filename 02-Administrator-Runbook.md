@@ -1,5 +1,11 @@
 # DMWF administrator deployment and support runbook
 
+## Application version preparation
+
+**DMWF 24 names the framework release year (2024), not the Bentley application generation.** DMWF 24.0.0.0 supports Bentley product versions `10.xx`, `23.xx`, `24.xx` and `25.xx`. Technically, `26.xx` products can also use the framework, but the missing registry key prevents the existing version-detection route from identifying their version. For `26.xx`, an **Application CSV is required to specify and lock the product version**. Framework support and the suitability of a particular standards dataset are separate decisions.
+
+Before testing a 26.xx application, configure its Application CSV with the actual installed product version and lock it before DMWF version processing. Check the effective version and derived generation/major values in the trace. Confirm workspace policy checks allow the approved combination; the sample `24.00` restriction is a dataset policy example. Record the CSV, installed build, locked version and test evidence in the release record. Recheck the CSV whenever the product is upgraded.
+
 ## Scope and prerequisites
 
 This runbook takes the supplied DMWF 24 template from an isolated test installation to a controlled production release. The ProjectWise administration steps are procedural guidance; menu names and privileges must be checked against the deployed ProjectWise build. We have not executed these steps on a live datasource.

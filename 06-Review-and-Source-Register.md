@@ -26,7 +26,7 @@ The review is static. It does not establish parser behaviour in every Bentley re
 | R14 | Medium | IncludeInPath visits current folder then parents | Parent `=` settings processed later may replace child values; test precedence |
 | R15 | Medium | Drive module tests existing paths and defaults required/errors flags to `0` | Root-found state is insufficient proof of usable content; add cold-content and missing-resource tests |
 | R16 | Medium | Group module defaults Organization content to Bentley root | Client Organization directory is not necessarily selected; check final `_USTN_ORGANIZATION` |
-| R17 | Medium | Several example adapters restrict ORD and OpenBridge to `24.00` | Update only after dataset compatibility approval; do not disable checks to make launch succeed |
+| R17 | Medium | Several example adapters restrict ORD and OpenBridge to `24.00`; this is sample workspace policy, not a DMWF product-generation limit | DMWF 24 supports `10.xx`, `23.xx`, `24.xx` and `25.xx`; technically `26.xx` requires an Application CSV specifying and locking the version because of the missing registry key. Adapt workspace checks to the approved dataset |
 | R18 | Low | CSB templates reference generic `Resources/Bentley`; client Configuration PWSetup filename includes `Configuration2023` | Adapt values and use actual include patterns; a filename may be stale without changing its active contents |
 | R19 | Low | File traces and comments retain old releases and misspellings | Teach actual variables and hashes; do not infer current behaviour from comment history |
 | R20 | Medium | DWG rendition branch uses Bentley `MS_` variables in `ACADConfiguration` | Do not market or deploy it as a tested Civil 3D bootstrap |
@@ -74,3 +74,9 @@ This repository contains independent guidance and training material prepared by 
 The repository does not redistribute the vendor ZIP, binary resources or complete vendor CFG files. Obtain the framework through Bentley's linked article and follow its applicable terms. Minimal configuration examples and the occurrence index explain the reviewed implementation; vendor ownership of the underlying template is unchanged.
 
 The source manifest identifies the reviewed baseline. If a later download has different hashes, repeat the relevant review and acceptance tests rather than assuming the findings apply unchanged.
+
+## Release naming and 26.xx operational clarification
+
+**DMWF 24 names the framework release year (2024), not the Bentley application generation.** DMWF 24.0.0.0 supports Bentley product versions `10.xx`, `23.xx`, `24.xx` and `25.xx`. Technically, `26.xx` products can also use the framework, but the missing registry key prevents the existing version-detection route from identifying their version. For `26.xx`, an **Application CSV is required to specify and lock the product version**. Framework support and the suitability of a particular standards dataset are separate decisions.
+
+The product-family support range and Application CSV requirement are operational clarifications incorporated into this edition. The archive confirms the registry-based detection route and sample-specific version checks; no 26.xx runtime test or CSV schema validation was performed in this static review.

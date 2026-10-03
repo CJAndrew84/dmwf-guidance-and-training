@@ -1,6 +1,6 @@
 # DMWF 24 deployment and configuration handbook
 
-Prepared by Christopher J Andrew • Guidance edition 1.0 • 3 October 2026
+Prepared by Christopher J Andrew • Guidance edition 1.1 • 3 October 2026
 
 ## Purpose and use
 
@@ -25,7 +25,9 @@ DMWF supplies configuration routing and examples for a ProjectWise managed works
 
 DMWF is not, by itself, a standards authoring system or a complete release management service. It does not demonstrate that a client dataset complies with a PDF standard, that an add-in is approved, that every datasource contains identical content or that an individual workstation has hydrated its ProjectWise Drive files. Those are separate responsibilities that we manage around the framework.
 
-DMWF version 24 is not a promise that every Bentley product carrying a 2024 or later label is compatible. The common file rejects V8 family configurations. Some supplied workspace examples explicitly restrict OpenRoads Designer and OpenBridge Modeler to a detected generation and major value of `24.00`. Validate each product build and workspace combination rather than treating the package name as a compatibility matrix.
+**DMWF 24 names the framework release year (2024), not the Bentley application generation.** DMWF 24.0.0.0 supports Bentley product versions `10.xx`, `23.xx`, `24.xx` and `25.xx`. Technically, `26.xx` products can also use the framework, but the missing registry key prevents the existing version-detection route from identifying their version. For `26.xx`, an **Application CSV is required to specify and lock the product version**. Framework support and the suitability of a particular standards dataset are separate decisions.
+
+The common file rejects V8 family configurations. Some supplied workspace examples explicitly restrict OpenRoads Designer and OpenBridge Modeler to `24.00`. These are sample workspace policy checks, not a framework-wide restriction to 2024 products. Adapt those checks to the approved dataset and application combination. Folder names such as `Bentley 2024` and `Configuration2024` describe the supplied package layout; they do not define the framework support range.
 
 ## The five different things we must keep separate
 
@@ -180,6 +182,15 @@ The OneMapping module fills `_USTN_PRODUCT_ONE_GROUPNAME` and subgroup informati
 A mapping determines configuration structure. It does not install a product, select its executable or certify a dataset. Check `_ENGINENAME`, the detected product version and actual standards location together. A renamed executable, different display name or absent registry entry can change detection results.
 
 When product version detection cannot obtain a usable value in the implemented failure branches, the package uses `00.00.00.00` and a not-found flag. This is an unknown version signal, not a compatible release. Decide whether the project blocks unknown versions and test the outcome. The example restrictions compare generation and major values; they do not necessarily enforce an exact build.
+
+### Product generations and the 26.xx configuration requirement
+
+| Product version family | Framework position | Deployment requirement |
+|---|---|---|
+| `10.xx`, `23.xx`, `24.xx`, `25.xx` | Supported by DMWF 24 | Select the intended product and validate the workspace dataset |
+| `26.xx` | Technically supported; existing registry detection is affected by a missing key | Use an Application CSV to specify and lock the actual product version |
+
+For 26.xx, configure the Application CSV for the applicable application, specify its actual installed product version and lock that value before DMWF product-version processing. Verify the effective full version and generation/major values in the configuration trace, then test the intended workspace and output. Keep the CSV with the controlled deployment configuration and update its locked version when the application changes. Do not invent a registry entry or replace the unknown-version value with a guessed version. Exact CSV field names and import syntax must follow the application configuration tooling in use; no unverified CSV schema is supplied here.
 
 ## Desktop and server processing
 

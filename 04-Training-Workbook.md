@@ -1,5 +1,11 @@
 # DMWF training workbook and facilitator guide
 
+## Framework release and application versions
+
+**DMWF 24 names the framework release year (2024), not the Bentley application generation.** DMWF 24.0.0.0 supports Bentley product versions `10.xx`, `23.xx`, `24.xx` and `25.xx`. Technically, `26.xx` products can also use the framework, but the missing registry key prevents the existing version-detection route from identifying their version. For `26.xx`, an **Application CSV is required to specify and lock the product version**. Framework support and the suitability of a particular standards dataset are separate decisions.
+
+**Trainer check:** ask participants why a supplied `24.00` workspace check can reject a supported 25.xx product. Expected answer: the example adapter enforces a workspace policy; it does not define DMWF support. Ask how a 26.xx deployment addresses the missing registry key. Expected answer: configure an Application CSV with the actual product version, lock it before DMWF processing and verify the effective version, selection and drawing output.
+
 ## Training purpose
 
 By the end of this course, a participant should be able to explain a DMWF startup, deploy the standard example in a sandbox, select a client workspace, resolve multiple WorkSets and diagnose a wrong standards source. Participants should be able to show evidence for a selection rather than accepting a successful application launch as proof.
