@@ -1,0 +1,1214 @@
+{
+  "reviewed_archive": "DMWF 24.0.0.0.zip",
+  "archive_sha256": "4c583f5a2264f2a71e1086f4f453cc110969c1840fe90354ab829a5368ccab4d",
+  "review_date": "2026-10-03",
+  "cfg_count": 89,
+  "file_count": 241,
+  "files": [
+    {
+      "path": "Bentley 2024/ACADConfiguration/Organization/Fonts/126DIM_Common.SHX",
+      "bytes": 151,
+      "sha256": "02675041a50f353ed560be896c63a5d18cc3a2c75f75a057867671855e624794"
+    },
+    {
+      "path": "Bentley 2024/ACADConfiguration/Organization/Renditions.cfg",
+      "bytes": 205,
+      "sha256": "0402cb55b3fc721adf1f7926d5fd56204d3259f5009e8a4135665a53cf1c2376"
+    },
+    {
+      "path": "Bentley 2024/ACADConfiguration/Workspaces/Renditions/Standards/Fonts/126DIM_Common.SHX",
+      "bytes": 151,
+      "sha256": "02675041a50f353ed560be896c63a5d18cc3a2c75f75a057867671855e624794"
+    },
+    {
+      "path": "Bentley 2024/ACADConfiguration/Workspaces/Renditions/WorkSets/Renditions/Standards/Fonts/126DIM_Common.SHX",
+      "bytes": 151,
+      "sha256": "02675041a50f353ed560be896c63a5d18cc3a2c75f75a057867671855e624794"
+    },
+    {
+      "path": "Bentley 2024/ACADConfiguration/Workspaces/Renditions/WorkSets/Renditions.cfg",
+      "bytes": 217,
+      "sha256": "0588f41a720986b5603e316a02414f02d2af3b85d5163b3bd247490f7d9f5ab8"
+    },
+    {
+      "path": "Bentley 2024/ACADConfiguration/Workspaces/Renditions/WorkSets/Renditions.dgnws",
+      "bytes": 48128,
+      "sha256": "42bf9f221a6bc35eecfc8b5c67d8014259055d187b48c95cc172f4f48c9ca16f"
+    },
+    {
+      "path": "Bentley 2024/ACADConfiguration/Workspaces/Renditions/_PWSetup/WorkspacePWSetup_Predefined_Example_CE.cfg",
+      "bytes": 9244,
+      "sha256": "3a80f5f64f338d39ce965405d3eab7bbb92b0790d7c442bc67d0ec23bc45e22f"
+    },
+    {
+      "path": "Bentley 2024/ACADConfiguration/Workspaces/Renditions.cfg",
+      "bytes": 221,
+      "sha256": "d0e510114b08047bb426173bc67eedb8a375b5445095da1dc4542ab7c85e086a"
+    },
+    {
+      "path": "Bentley 2024/Common_Application.cfg",
+      "bytes": 3506,
+      "sha256": "2ba6a3ee5a8d534ec6a0d2bbcae9b348e705358d0e491cf893f1e1695b606539"
+    },
+    {
+      "path": "Bentley 2024/Common_Predefined.cfg",
+      "bytes": 19524,
+      "sha256": "76f77c5227aacb423a354e6fe25fa4986bce121825ed103a311d1e2ead78c504"
+    },
+    {
+      "path": "Bentley 2024/Common_ProjectWorkset.cfg",
+      "bytes": 3553,
+      "sha256": "a6bedf29beac541c767c6b2d0961d59b18f814c6f9aba6ff0bab4f4541f2db63"
+    },
+    {
+      "path": "Bentley 2024/Common_User.cfg",
+      "bytes": 3393,
+      "sha256": "b31286c08a2998e362d00fe41714e155a232cf02e94b9ee54ae29d20554a4e9f"
+    },
+    {
+      "path": "Bentley 2024/Configuration/WorkSpaceSetup.cfg",
+      "bytes": 2248,
+      "sha256": "7e75fc17331a37932dbc8ca45bc88054fc43d7418fe9e72893d4d52ed69710ac"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample/Standards/Cell/MetroStation.cel",
+      "bytes": 245760,
+      "sha256": "810189f4cf67ecca20d5b0c49c426d52b46f4f2be9fea8270c449c364fa97aa1"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample/Standards/Dgnlib/DrawComp/MetroStationDrawingSeed.dgnlib",
+      "bytes": 331264,
+      "sha256": "a8b637c8adae1e855ef6128dc59e3350820c863209beba7440203f2a2cc25c43"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample/Standards/Dgnlib/MetroStation.dgnlib",
+      "bytes": 83456,
+      "sha256": "98f844828e618e0b975a70c2fd877660abd274ef89437a3b98b80de5ce97d301"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample/Standards/Dgnlib/MetroStationPrintStyles.dgnlib",
+      "bytes": 35840,
+      "sha256": "f719f903dc00f2f8101a46f18be42a1fabb4d7f3a294766918e31ab324dbb51c"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample/Standards/Seed/2D Metric Design.dgn",
+      "bytes": 32256,
+      "sha256": "a421d0824589a263d155c4c047ce3828e8769310a0207aa6e647867e65bdf622"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample/Standards/Seed/2D Metric Drawing.dgn",
+      "bytes": 29696,
+      "sha256": "3e763e825d388574998f20fa29086af7bbc6bc18ff1a5c61c42989c846a5174d"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample/Standards/Seed/2D Metric Sheet.dgn",
+      "bytes": 29696,
+      "sha256": "88d5920dc8fe439a770dba07675e514fe48319cf2367f5143662bdabd5a0f288"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample/Standards/Seed/3D Metric Design.dgn",
+      "bytes": 52736,
+      "sha256": "b094935e725ac7a0358c43da64833b28c32085baa5d0f603a6e4e517483b2a25"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample/Standards/Seed/MetroStationBorders.dgn",
+      "bytes": 70656,
+      "sha256": "087631b40b596ca5d569512ca08ddd8c82ab784f0751cdbfb73f59ed195b51dd"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample/_PWSetup/WorkAreaPWSetup_Predefined_XXXX_CE.cfg",
+      "bytes": 3691,
+      "sha256": "e16ff11b1c7b3809ea6268663956628b8b7f3e9a7b60191d24d4206015c52c21"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample/_PWSetup/Worksets/CONNECTExample.cfg",
+      "bytes": 2382,
+      "sha256": "1102dcb18bc1ad7ed0d020a52cf3b3108a5aab7fdba974cda7b3bb90ebf0e102"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample/_PWSetup/Worksets/CONNECTExample.dgnws",
+      "bytes": 48128,
+      "sha256": "a69eb82de03b1f0dcbf090ac566f72bf575827235f63f7b4e328b2e1b8d22d78"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample.cfg",
+      "bytes": 2382,
+      "sha256": "1102dcb18bc1ad7ed0d020a52cf3b3108a5aab7fdba974cda7b3bb90ebf0e102"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample.dgnws",
+      "bytes": 48128,
+      "sha256": "6aee75119da47a54443ff9fe2950683a2cfe799418ed3c686fed667bced9f46f"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByExists/CADFiles/12345/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByExists/CADFiles/12345/Standards/Cell/MetroStation.cel",
+      "bytes": 245760,
+      "sha256": "810189f4cf67ecca20d5b0c49c426d52b46f4f2be9fea8270c449c364fa97aa1"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByExists/CADFiles/12345/Standards/Dgnlib/DrawComp/MetroStationDrawingSeed.dgnlib",
+      "bytes": 331264,
+      "sha256": "a8b637c8adae1e855ef6128dc59e3350820c863209beba7440203f2a2cc25c43"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByExists/CADFiles/12345/Standards/Dgnlib/MetroStation.dgnlib",
+      "bytes": 83456,
+      "sha256": "98f844828e618e0b975a70c2fd877660abd274ef89437a3b98b80de5ce97d301"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByExists/CADFiles/12345/Standards/Dgnlib/MetroStationPrintStyles.dgnlib",
+      "bytes": 35840,
+      "sha256": "f719f903dc00f2f8101a46f18be42a1fabb4d7f3a294766918e31ab324dbb51c"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByExists/CADFiles/12345/Standards/Seed/2D Metric Design.dgn",
+      "bytes": 32256,
+      "sha256": "a421d0824589a263d155c4c047ce3828e8769310a0207aa6e647867e65bdf622"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByExists/CADFiles/12345/Standards/Seed/2D Metric Drawing.dgn",
+      "bytes": 29696,
+      "sha256": "3e763e825d388574998f20fa29086af7bbc6bc18ff1a5c61c42989c846a5174d"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByExists/CADFiles/12345/Standards/Seed/2D Metric Sheet.dgn",
+      "bytes": 29696,
+      "sha256": "88d5920dc8fe439a770dba07675e514fe48319cf2367f5143662bdabd5a0f288"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByExists/CADFiles/12345/Standards/Seed/3D Metric Design.dgn",
+      "bytes": 52736,
+      "sha256": "b094935e725ac7a0358c43da64833b28c32085baa5d0f603a6e4e517483b2a25"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByExists/CADFiles/12345/Standards/Seed/MetroStationBorders.dgn",
+      "bytes": 70656,
+      "sha256": "087631b40b596ca5d569512ca08ddd8c82ab784f0751cdbfb73f59ed195b51dd"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByExists/CADFiles/12345/out/ValidationReport.xml",
+      "bytes": 146386,
+      "sha256": "e0c2f92c2ccb140ed9e8a34a8e89f2dce0559e36a29e9b3633e7b528b3b962ba"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByExists/_PWSetup/WorkAreaPWSetup_Predefined_ByExists_XXXX_CE.cfg",
+      "bytes": 3708,
+      "sha256": "fd8d804e7cf5bcfba951e9bea2aece93cdcd3f9a8fa21935a73037e672de21ce"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByExists/_PWSetup/Worksets/12345.cfg",
+      "bytes": 2382,
+      "sha256": "1102dcb18bc1ad7ed0d020a52cf3b3108a5aab7fdba974cda7b3bb90ebf0e102"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByExists/_PWSetup/Worksets/12345.dgnws",
+      "bytes": 48128,
+      "sha256": "1c24ef89943662362302ac0c8499d21ee64591046f4675e0a98d1937373663ba"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByExists/_PWSetup/Worksets/CONNECTExample.cfg",
+      "bytes": 2382,
+      "sha256": "1102dcb18bc1ad7ed0d020a52cf3b3108a5aab7fdba974cda7b3bb90ebf0e102"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByExists/_PWSetup/Worksets/CONNECTExample.dgnws",
+      "bytes": 48128,
+      "sha256": "a69eb82de03b1f0dcbf090ac566f72bf575827235f63f7b4e328b2e1b8d22d78"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByNest/CADFiles/12345/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByNest/CADFiles/12345/Standards/Cell/MetroStation.cel",
+      "bytes": 245760,
+      "sha256": "810189f4cf67ecca20d5b0c49c426d52b46f4f2be9fea8270c449c364fa97aa1"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByNest/CADFiles/12345/Standards/Dgnlib/DrawComp/MetroStationDrawingSeed.dgnlib",
+      "bytes": 331264,
+      "sha256": "a8b637c8adae1e855ef6128dc59e3350820c863209beba7440203f2a2cc25c43"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByNest/CADFiles/12345/Standards/Dgnlib/MetroStation.dgnlib",
+      "bytes": 83456,
+      "sha256": "98f844828e618e0b975a70c2fd877660abd274ef89437a3b98b80de5ce97d301"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByNest/CADFiles/12345/Standards/Dgnlib/MetroStationPrintStyles.dgnlib",
+      "bytes": 35840,
+      "sha256": "f719f903dc00f2f8101a46f18be42a1fabb4d7f3a294766918e31ab324dbb51c"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByNest/CADFiles/12345/Standards/Seed/2D Metric Design.dgn",
+      "bytes": 32256,
+      "sha256": "a421d0824589a263d155c4c047ce3828e8769310a0207aa6e647867e65bdf622"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByNest/CADFiles/12345/Standards/Seed/2D Metric Drawing.dgn",
+      "bytes": 29696,
+      "sha256": "3e763e825d388574998f20fa29086af7bbc6bc18ff1a5c61c42989c846a5174d"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByNest/CADFiles/12345/Standards/Seed/2D Metric Sheet.dgn",
+      "bytes": 29696,
+      "sha256": "88d5920dc8fe439a770dba07675e514fe48319cf2367f5143662bdabd5a0f288"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByNest/CADFiles/12345/Standards/Seed/3D Metric Design.dgn",
+      "bytes": 52736,
+      "sha256": "b094935e725ac7a0358c43da64833b28c32085baa5d0f603a6e4e517483b2a25"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByNest/CADFiles/12345/Standards/Seed/MetroStationBorders.dgn",
+      "bytes": 70656,
+      "sha256": "087631b40b596ca5d569512ca08ddd8c82ab784f0751cdbfb73f59ed195b51dd"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByNest/CADFiles/12345/out/ValidationReport.xml",
+      "bytes": 146386,
+      "sha256": "e0c2f92c2ccb140ed9e8a34a8e89f2dce0559e36a29e9b3633e7b528b3b962ba"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByNest/_PWSetup/WorkAreaPWSetup_Predefined_ByNest_XXXX_CE.cfg",
+      "bytes": 3696,
+      "sha256": "3f250614f06b08e46df757b4c384fd41782fad3e0111eae233116a142a6c38b6"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByNest/_PWSetup/Worksets/12345.cfg",
+      "bytes": 2382,
+      "sha256": "1102dcb18bc1ad7ed0d020a52cf3b3108a5aab7fdba974cda7b3bb90ebf0e102"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByNest/_PWSetup/Worksets/12345.dgnws",
+      "bytes": 48128,
+      "sha256": "cd169930eadda32ca6d2fde217cd88cfd773475bf89722b28e2198708bab2b7d"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByNest/_PWSetup/Worksets/CONNECTExample.cfg",
+      "bytes": 2382,
+      "sha256": "1102dcb18bc1ad7ed0d020a52cf3b3108a5aab7fdba974cda7b3bb90ebf0e102"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/WorkSets/CONNECTExample_FindByNest/_PWSetup/Worksets/ConnectExample.dgnws",
+      "bytes": 48128,
+      "sha256": "3c64d7df25c0c1905246f23b1727290aeb1cdbd9c029197192b41f7815007545"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/_PWSetup/WorkspacePWSetup_FindByExists_Predefined_XXXX_CE.cfg",
+      "bytes": 15213,
+      "sha256": "cb273b4034b49fd0edc2c1318fb57b25f528c37a443c884d6c9c3be6dc5e1534"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/_PWSetup/WorkspacePWSetup_FindByNest_Predefined_XXXX_CE.cfg",
+      "bytes": 14816,
+      "sha256": "da470e87ee02cf34886e660d442b5e29f9af630a22e8051dfa18b132600711f4"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample/_PWSetup/WorkspacePWSetup_Predefined_XXXX_CE.cfg",
+      "bytes": 15280,
+      "sha256": "2a222bd2252020a47b9e486af18de31d522928b0bc44074da5d45cb477230132"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/CEWorkspaceExample.cfg",
+      "bytes": 2032,
+      "sha256": "039da48bc33a9a54538730f32a2a8884f66da8ade6a5c46e9560e5e8a31b10e5"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/Template/WorkSet.Template",
+      "bytes": 2768,
+      "sha256": "5ca0ae0fb3ec57a60df09c59b56a4bbcffcd6af6e055b369bf0614c4960f5cfb"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/Template/WorkSetTemplate.dgnws",
+      "bytes": 48128,
+      "sha256": "a5ead56a6207fcfcc869abc7bd2a1d966c5cb24be5ad2f975d7d3384988c4d7d"
+    },
+    {
+      "path": "Bentley 2024/Configuration/Workspaces/Template/WorkSpace.Template",
+      "bytes": 1495,
+      "sha256": "7eb8bb601ef0482334ac5cbf36df14cf29923099db230ffe27433baa2c95cd5d"
+    },
+    {
+      "path": "Bentley 2024/Configuration/_PWSetup/ConfigurationPWSetup_Predefined_Configuration.cfg",
+      "bytes": 116,
+      "sha256": "38bde5237c24732713d290d2e5637745e407f8460fa1dd956c3939ccee377ba3"
+    },
+    {
+      "path": "Bentley 2024/Documentation/BentleyCFG DMW.xml",
+      "bytes": 24592,
+      "sha256": "d6bc4046727a8c3c51efbf5a4676fac6970ec028496d4939c637db4fb733b442"
+    },
+    {
+      "path": "Bentley 2024/Documentation/ConfigurationTemplates/CSBs/CSB_CommonApplication.cfg",
+      "bytes": 190,
+      "sha256": "38b4e334fd909969b41e79e1cec03563d1b1b8c0202fc9e5ca354cce8cef28c5"
+    },
+    {
+      "path": "Bentley 2024/Documentation/ConfigurationTemplates/CSBs/CSB_CommonPredefined.cfg",
+      "bytes": 188,
+      "sha256": "ab48873eb0c8ffda255680e6e0bdf0769a21f2045037967ee76807d6077f42b8"
+    },
+    {
+      "path": "Bentley 2024/Documentation/ConfigurationTemplates/CSBs/CSB_ExampleWorkspaceOverride.cfg",
+      "bytes": 975,
+      "sha256": "c00dcf9cc242c95055b22f0e8fbe77757db587f32b2ac926be942352647841cd"
+    },
+    {
+      "path": "Bentley 2024/Documentation/ConfigurationTemplates/Common_Application.cfg",
+      "bytes": 3767,
+      "sha256": "48a9c9f895dfe5cbd656e37aeeba3c94c06387e6513064870d2ff36f867e9a20"
+    },
+    {
+      "path": "Bentley 2024/Documentation/ConfigurationTemplates/Common_Global.cfg",
+      "bytes": 3677,
+      "sha256": "c693bb7e198e21ad9328f73817005947d17c3772f6e46dd2f80d85a7ad791079"
+    },
+    {
+      "path": "Bentley 2024/Documentation/ConfigurationTemplates/Common_OrgSite.cfg",
+      "bytes": 3695,
+      "sha256": "c4630ea5a6aa54b16f163b3d431035244a24205f288bbf8baaa0238e95e847dd"
+    },
+    {
+      "path": "Bentley 2024/Documentation/ConfigurationTemplates/Common_ProjectWorkset.cfg",
+      "bytes": 3822,
+      "sha256": "a783673e8a2235dfc9ace48049961330682a9cb041060344e9db0ae172327660"
+    },
+    {
+      "path": "Bentley 2024/Documentation/ConfigurationTemplates/Common_Role.cfg",
+      "bytes": 3641,
+      "sha256": "6c5d84eca13985b3d4b3a87626e912f09aac46305e97b0219e996752ab1a487f"
+    },
+    {
+      "path": "Bentley 2024/Documentation/ConfigurationTemplates/Common_User.cfg",
+      "bytes": 3642,
+      "sha256": "19b2643a4befe35450c2294f42368e0063fbdd3d5f4e5a45bafe756f3bcbe91b"
+    },
+    {
+      "path": "Bentley 2024/Documentation/ConfigurationTemplates/Common_Workspace.cfg",
+      "bytes": 3731,
+      "sha256": "2b1a6c7527620d523bae1604b3ae5670b8c12127682c96dcd7369b5d0b4dbe17"
+    },
+    {
+      "path": "Bentley 2024/Documentation/DynamcManagedWorkspace.xlsx",
+      "bytes": 62699,
+      "sha256": "05fed9de97282548635944f79491a93ecb9eeafdfd286c86526efbb0b6f8a655"
+    },
+    {
+      "path": "Bentley 2024/FindInPath.cfg",
+      "bytes": 42440,
+      "sha256": "c05ed003e57cc72a4475484475f2f1524c590be28c74ce8c678b2d6e3dc10cb5"
+    },
+    {
+      "path": "Bentley 2024/FindNameInPath.cfg",
+      "bytes": 31003,
+      "sha256": "605dc1cce84bcb846eb7e0d904a64003db62c8965a3eecf7df510bbc7897a9be"
+    },
+    {
+      "path": "Bentley 2024/IncludeInPath.cfg",
+      "bytes": 18402,
+      "sha256": "c705bfa0f37b14de6092e8c3c579a83bc09627b5e14f3b9f255c30265a3ddb71"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/Common_Predefined_DatasourceDefaultSettings.cfg",
+      "bytes": 9820,
+      "sha256": "8b1a5000ce7286b86c8cc4f49b8242133d126f032ab57fa2950dc3ea50b3d0d8"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/Common_Predefined_EnvironmentCheck.cfg",
+      "bytes": 6382,
+      "sha256": "6ab6d8a6f025489962684816af5cc2be1b3c9092bb98906d6e0a913ef18d1cbc"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/Common_Predefined_FindWorkAreaRoot.cfg",
+      "bytes": 10806,
+      "sha256": "bbceeb0e7c10e03088fefa9ad1ee1448130dadc05d8dad718ea6a11e52397f1d"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/Common_Predefined_Local_Configuration.cfg",
+      "bytes": 3421,
+      "sha256": "7d03be81e801b98635a4b5052557da31b3258ce13d9778a1d8f442b39d05c252"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/Common_Predefined_OneMapping.cfg",
+      "bytes": 2945,
+      "sha256": "8a7ca161b682cb6e163ff5b3e0d63d976c657f9729fcd5e91ca68c2571f2e58d"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/Common_Predefined_PWDrive.cfg",
+      "bytes": 7605,
+      "sha256": "d08f0a6cd7c48c6e745f1c8d66793ac807f056f58049a054ca5541077332cda2"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/Common_Predefined_PWExpVersionCheck.cfg",
+      "bytes": 3743,
+      "sha256": "c95ec61c79fccd0bd01d3fc9954fe0d59c1652fbf72c1cf3a1202ee3909c82dd"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/Common_Predefined_PWSetup.cfg",
+      "bytes": 13926,
+      "sha256": "e57b0ecd21cfa965bc4e6cd93a671318d777e7f011e4292a098374c07fe98bb2"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/Common_Predefined_PostProcessing.cfg",
+      "bytes": 1674,
+      "sha256": "d675b9dbd87a1dbf39752824a6217f5b274e1057191a8e33d7d3beb94f597b1e"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/Common_Predefined_ProductVersion.cfg",
+      "bytes": 5973,
+      "sha256": "666483be632497074b2970e741fa6cb07508b26df156e30614bbe7b6c6b0a702"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/Common_Predefined_WorkspaceGroups.cfg",
+      "bytes": 10594,
+      "sha256": "7e170ed2376026d094f05a1acbc5ab18b8786265e2986b3630aad86347f9a08f"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/OneMapping/BRCM.cfg",
+      "bytes": 93,
+      "sha256": "2fc8d18d99587c1f980aa2c5423a365f79715297d89ec29bf5b1984c7c63ed3d"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/OneMapping/Isometrics.cfg",
+      "bytes": 37,
+      "sha256": "22520f711320aaa9c3c2c23fca50449743b500c6d83afd22165e2891b439bccd"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/OneMapping/IsometricsManager.cfg",
+      "bytes": 87,
+      "sha256": "1790c3811c9b9185da0f93e3896f96e2e5c2e69ebede856a3f994c7bec524990"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/OneMapping/OpenBridgeModeler.cfg",
+      "bytes": 83,
+      "sha256": "4d9530d25f81f914ad22e2e9b6856e06414191be56b99eca27db5d6adf07aa46"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/OneMapping/OpenBuildings Designer 2023.cfg",
+      "bytes": 461,
+      "sha256": "8aa974c01e16e3475d70e1e543f882b5cc9a21350e1d2e07655e82578a6b8d80"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/OneMapping/OpenBuildings Designer CONNECT Edition.cfg",
+      "bytes": 461,
+      "sha256": "8aa974c01e16e3475d70e1e543f882b5cc9a21350e1d2e07655e82578a6b8d80"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/OneMapping/OpenBuildingsDesigner.cfg",
+      "bytes": 534,
+      "sha256": "326c342f6b5a3602c052875fdb8b36b5557b7b3d5b868b9184050ec8c89ff181"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/OneMapping/OpenPlantModeler.cfg",
+      "bytes": 84,
+      "sha256": "f0a9628fb5a4635d23f1eddc33be869ff5cf26e2aa56b92b33f5e342609f6f57"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/OneMapping/OpenPlantPID.cfg",
+      "bytes": 80,
+      "sha256": "031403a7627bdcb7ffb2c2bda3c58aaf625b2b1e939f218d504873bcc4b2035b"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/OneMapping/OpenPlantSupportEngineering.cfg",
+      "bytes": 125,
+      "sha256": "b78f90edee781776b6b1356d2e38f8411624b44f7979d5fdbf5cee720cbd856a"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/OneMapping/OpenRailDesigner.cfg",
+      "bytes": 516,
+      "sha256": "55ff1f4ae5f92a945f266799848f74e15e922d4078d31d6211de677973c0f741"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/OneMapping/OpenRailOverheadLineDesigner.cfg",
+      "bytes": 92,
+      "sha256": "8ff94a60419f4f817e628afbb4bf7a343db2212a65e3c4e11fffb435e4eb03d3"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/OneMapping/OpenRoadsDesigner.cfg",
+      "bytes": 516,
+      "sha256": "a2af0ed860277220497a87e9cc8c30394a93d96e51713e877db64304ae05e831"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/OneMapping/OpenSiteDesigner.cfg",
+      "bytes": 81,
+      "sha256": "542c8eb88abd9739f04cd714216f97eb7f56e46dd10fdee78bc0cd6ce206bc7b"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/OneMapping/OrthographicsManager.cfg",
+      "bytes": 97,
+      "sha256": "8a2d71d5851223e178e80d6fa2649ff10118ba629972a5e7405c76fec659453a"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/OneMapping/PID.cfg",
+      "bytes": 32,
+      "sha256": "701e7476c9bfef08209c7753da8119f42f7eee38a516b02a60e36b9d5e94b09a"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/OneMapping/ProStructures.cfg",
+      "bytes": 527,
+      "sha256": "8a32b511466a6efa6507b3c4bc66d968bc35f4bb55656a42d35c490b0f7e20c5"
+    },
+    {
+      "path": "Bentley 2024/_PWSetup/OneMapping/microstation.cfg",
+      "bytes": 526,
+      "sha256": "77c25ef8aa2f8af50f4003db5444419c212206de3ed4513d79bcabce17401d30"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/ACADConfiguration/Workspaces/Renditions/Standards/Fonts/126DIM_Common.SHX",
+      "bytes": 151,
+      "sha256": "02675041a50f353ed560be896c63a5d18cc3a2c75f75a057867671855e624794"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/ACADConfiguration/Workspaces/Renditions/WorkSets/Renditions/Standards/Fonts/126DIM_Common.SHX",
+      "bytes": 151,
+      "sha256": "02675041a50f353ed560be896c63a5d18cc3a2c75f75a057867671855e624794"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/ACADConfiguration/Workspaces/Renditions/WorkSets/Renditions.cfg",
+      "bytes": 217,
+      "sha256": "0588f41a720986b5603e316a02414f02d2af3b85d5163b3bd247490f7d9f5ab8"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/ACADConfiguration/Workspaces/Renditions/_PWSetup/WorkspacePWSetup_Predefined_ACAD.cfg",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/ACADConfiguration/Workspaces/Renditions.cfg",
+      "bytes": 221,
+      "sha256": "d0e510114b08047bb426173bc67eedb8a375b5445095da1dc4542ab7c85e086a"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/WorkSpaceSetup.cfg",
+      "bytes": 2248,
+      "sha256": "7e75fc17331a37932dbc8ca45bc88054fc43d7418fe9e72893d4d52ed69710ac"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "21428960ceb84cc60d27ae4e28410615e714df6f7f68474a923707836fc06ff7"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample/Standards/Cell/MetroStation.cel",
+      "bytes": 245760,
+      "sha256": "810189f4cf67ecca20d5b0c49c426d52b46f4f2be9fea8270c449c364fa97aa1"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample/Standards/Dgnlib/DrawComp/MetroStationDrawingSeed.dgnlib",
+      "bytes": 331264,
+      "sha256": "a8b637c8adae1e855ef6128dc59e3350820c863209beba7440203f2a2cc25c43"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample/Standards/Dgnlib/MetroStation.dgnlib",
+      "bytes": 83456,
+      "sha256": "98f844828e618e0b975a70c2fd877660abd274ef89437a3b98b80de5ce97d301"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample/Standards/Dgnlib/MetroStationPrintStyles.dgnlib",
+      "bytes": 35840,
+      "sha256": "f719f903dc00f2f8101a46f18be42a1fabb4d7f3a294766918e31ab324dbb51c"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample/Standards/Materials/Pattern/Tile28d.jpg",
+      "bytes": 143994,
+      "sha256": "8cf9cda394f818b4e641554594154a5013535f15e95ddfa35e65e07b9a285711"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample/Standards/Materials/Pattern/tiles_fine.jpg",
+      "bytes": 45795,
+      "sha256": "96057a254cf5adea3d9bc695ceb4f7283cb136e1f02a7cf46bffcb7da95eec6d"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample/Standards/Seed/2D Metric Design.dgn",
+      "bytes": 32256,
+      "sha256": "a421d0824589a263d155c4c047ce3828e8769310a0207aa6e647867e65bdf622"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample/Standards/Seed/2D Metric Drawing.dgn",
+      "bytes": 29696,
+      "sha256": "3e763e825d388574998f20fa29086af7bbc6bc18ff1a5c61c42989c846a5174d"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample/Standards/Seed/2D Metric Sheet.dgn",
+      "bytes": 29696,
+      "sha256": "88d5920dc8fe439a770dba07675e514fe48319cf2367f5143662bdabd5a0f288"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample/Standards/Seed/3D Metric Design.dgn",
+      "bytes": 52736,
+      "sha256": "b094935e725ac7a0358c43da64833b28c32085baa5d0f603a6e4e517483b2a25"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample/Standards/Seed/MetroStationBorders.dgn",
+      "bytes": 70656,
+      "sha256": "087631b40b596ca5d569512ca08ddd8c82ab784f0751cdbfb73f59ed195b51dd"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample/_PWSetup/WorkAreaPWSetup_Predefined_XXXX_CE.cfg",
+      "bytes": 4078,
+      "sha256": "6ce81b2b940ac56df823553421bc33733066aa1672bcc2a2eb1d8d76bced5e6b"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample/_PWSetup/Worksets/CONNECTExample.cfg",
+      "bytes": 2382,
+      "sha256": "1102dcb18bc1ad7ed0d020a52cf3b3108a5aab7fdba974cda7b3bb90ebf0e102"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample/_PWSetup/Worksets/CONNECTExample.dgnws",
+      "bytes": 48128,
+      "sha256": "b0f3ce8d133ed034a6617cb52eff7ab447901c9e133812479507545c1f71ef02"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample/welcomescreen.config",
+      "bytes": 4887,
+      "sha256": "e5a8fba74083e2b5dfd21eb0908356bedd7add19362c528713026dd72dff888a"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample.cfg",
+      "bytes": 2382,
+      "sha256": "1102dcb18bc1ad7ed0d020a52cf3b3108a5aab7fdba974cda7b3bb90ebf0e102"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/1234/Building/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/1234/Civil/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/1234/Plant/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/1234/Structural/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/1234/_Out/ValidationReport.xml",
+      "bytes": 146386,
+      "sha256": "e0c2f92c2ccb140ed9e8a34a8e89f2dce0559e36a29e9b3633e7b528b3b962ba"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/1234/_Standards/Cell/MetroStation.cel",
+      "bytes": 245760,
+      "sha256": "810189f4cf67ecca20d5b0c49c426d52b46f4f2be9fea8270c449c364fa97aa1"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/1234/_Standards/Dgnlib/DrawComp/MetroStationDrawingSeed.dgnlib",
+      "bytes": 331264,
+      "sha256": "a8b637c8adae1e855ef6128dc59e3350820c863209beba7440203f2a2cc25c43"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/1234/_Standards/Dgnlib/MetroStation.dgnlib",
+      "bytes": 83456,
+      "sha256": "98f844828e618e0b975a70c2fd877660abd274ef89437a3b98b80de5ce97d301"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/1234/_Standards/Dgnlib/MetroStationPrintStyles.dgnlib",
+      "bytes": 35840,
+      "sha256": "f719f903dc00f2f8101a46f18be42a1fabb4d7f3a294766918e31ab324dbb51c"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/1234/_Standards/Seed/2D Metric Design.dgn",
+      "bytes": 32256,
+      "sha256": "a421d0824589a263d155c4c047ce3828e8769310a0207aa6e647867e65bdf622"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/1234/_Standards/Seed/2D Metric Drawing.dgn",
+      "bytes": 29696,
+      "sha256": "3e763e825d388574998f20fa29086af7bbc6bc18ff1a5c61c42989c846a5174d"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/1234/_Standards/Seed/2D Metric Sheet.dgn",
+      "bytes": 29696,
+      "sha256": "88d5920dc8fe439a770dba07675e514fe48319cf2367f5143662bdabd5a0f288"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/1234/_Standards/Seed/3D Metric Design.dgn",
+      "bytes": 52736,
+      "sha256": "b094935e725ac7a0358c43da64833b28c32085baa5d0f603a6e4e517483b2a25"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/1234/_Standards/Seed/MetroStationBorders.dgn",
+      "bytes": 70656,
+      "sha256": "087631b40b596ca5d569512ca08ddd8c82ab784f0751cdbfb73f59ed195b51dd"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/5678/Building/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/5678/Civil/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "a09a02633552e6889bfba41e6ed1bc8e449482047bb91ccaf9b574796c05bc22"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/5678/Plant/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/5678/Structural/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/5678/_Out/ValidationReport.xml",
+      "bytes": 146386,
+      "sha256": "e0c2f92c2ccb140ed9e8a34a8e89f2dce0559e36a29e9b3633e7b528b3b962ba"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/5678/_Standards/Cell/MetroStation.cel",
+      "bytes": 245760,
+      "sha256": "810189f4cf67ecca20d5b0c49c426d52b46f4f2be9fea8270c449c364fa97aa1"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/5678/_Standards/Dgnlib/DrawComp/MetroStationDrawingSeed.dgnlib",
+      "bytes": 331264,
+      "sha256": "a8b637c8adae1e855ef6128dc59e3350820c863209beba7440203f2a2cc25c43"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/5678/_Standards/Dgnlib/MetroStation.dgnlib",
+      "bytes": 83456,
+      "sha256": "98f844828e618e0b975a70c2fd877660abd274ef89437a3b98b80de5ce97d301"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/5678/_Standards/Dgnlib/MetroStationPrintStyles.dgnlib",
+      "bytes": 35840,
+      "sha256": "f719f903dc00f2f8101a46f18be42a1fabb4d7f3a294766918e31ab324dbb51c"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/5678/_Standards/Seed/2D Metric Design.dgn",
+      "bytes": 32256,
+      "sha256": "a421d0824589a263d155c4c047ce3828e8769310a0207aa6e647867e65bdf622"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/5678/_Standards/Seed/2D Metric Drawing.dgn",
+      "bytes": 29696,
+      "sha256": "3e763e825d388574998f20fa29086af7bbc6bc18ff1a5c61c42989c846a5174d"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/5678/_Standards/Seed/2D Metric Sheet.dgn",
+      "bytes": 29696,
+      "sha256": "88d5920dc8fe439a770dba07675e514fe48319cf2367f5143662bdabd5a0f288"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/5678/_Standards/Seed/3D Metric Design.dgn",
+      "bytes": 52736,
+      "sha256": "b094935e725ac7a0358c43da64833b28c32085baa5d0f603a6e4e517483b2a25"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/CADFiles/Projects/5678/_Standards/Seed/MetroStationBorders.dgn",
+      "bytes": 70656,
+      "sha256": "087631b40b596ca5d569512ca08ddd8c82ab784f0751cdbfb73f59ed195b51dd"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/_PWSetup/WorkAreaPWSetup_Predefined_XXXX_ByExists.cfg",
+      "bytes": 4083,
+      "sha256": "367e1fe8fdc2fc1d798d0740e9bdc7aa7f59d4a381299995bbd67219f131d8d4"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/_PWSetup/Worksets/1234.cfg",
+      "bytes": 2382,
+      "sha256": "1102dcb18bc1ad7ed0d020a52cf3b3108a5aab7fdba974cda7b3bb90ebf0e102"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/_PWSetup/Worksets/1234.dgnws",
+      "bytes": 48128,
+      "sha256": "9cce670f28a75bb9e51e3bca1dc493b8862f923081a1bb030d39025607bb9ed7"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/_PWSetup/Worksets/5678.cfg",
+      "bytes": 2382,
+      "sha256": "1102dcb18bc1ad7ed0d020a52cf3b3108a5aab7fdba974cda7b3bb90ebf0e102"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByExists/_PWSetup/Worksets/5678.dgnws",
+      "bytes": 48128,
+      "sha256": "cbbd6af007990220353bc090f28a3a3bda4441f3d6b0c8ab97b4235f30e348c7"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/1234/Building/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "0d48959fb33d52d21b760517277ce4b40802093b776ec8e52c3d0f7080c59264"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/1234/Civil/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/1234/Plant/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/1234/Structural/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/1234/_Out/ValidationReport.xml",
+      "bytes": 146386,
+      "sha256": "e0c2f92c2ccb140ed9e8a34a8e89f2dce0559e36a29e9b3633e7b528b3b962ba"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/1234/_Standards/Cell/MetroStation.cel",
+      "bytes": 245760,
+      "sha256": "810189f4cf67ecca20d5b0c49c426d52b46f4f2be9fea8270c449c364fa97aa1"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/1234/_Standards/Dgnlib/DrawComp/MetroStationDrawingSeed.dgnlib",
+      "bytes": 331264,
+      "sha256": "a8b637c8adae1e855ef6128dc59e3350820c863209beba7440203f2a2cc25c43"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/1234/_Standards/Dgnlib/MetroStation.dgnlib",
+      "bytes": 83456,
+      "sha256": "98f844828e618e0b975a70c2fd877660abd274ef89437a3b98b80de5ce97d301"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/1234/_Standards/Dgnlib/MetroStationPrintStyles.dgnlib",
+      "bytes": 35840,
+      "sha256": "f719f903dc00f2f8101a46f18be42a1fabb4d7f3a294766918e31ab324dbb51c"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/1234/_Standards/Seed/2D Metric Design.dgn",
+      "bytes": 32256,
+      "sha256": "a421d0824589a263d155c4c047ce3828e8769310a0207aa6e647867e65bdf622"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/1234/_Standards/Seed/2D Metric Drawing.dgn",
+      "bytes": 29696,
+      "sha256": "3e763e825d388574998f20fa29086af7bbc6bc18ff1a5c61c42989c846a5174d"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/1234/_Standards/Seed/2D Metric Sheet.dgn",
+      "bytes": 29696,
+      "sha256": "88d5920dc8fe439a770dba07675e514fe48319cf2367f5143662bdabd5a0f288"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/1234/_Standards/Seed/3D Metric Design.dgn",
+      "bytes": 52736,
+      "sha256": "b094935e725ac7a0358c43da64833b28c32085baa5d0f603a6e4e517483b2a25"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/1234/_Standards/Seed/MetroStationBorders.dgn",
+      "bytes": 70656,
+      "sha256": "087631b40b596ca5d569512ca08ddd8c82ab784f0751cdbfb73f59ed195b51dd"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/5678/Building/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/5678/Civil/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/5678/Plant/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/5678/Structural/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/5678/_Out/ValidationReport.xml",
+      "bytes": 146386,
+      "sha256": "e0c2f92c2ccb140ed9e8a34a8e89f2dce0559e36a29e9b3633e7b528b3b962ba"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/5678/_Standards/Cell/MetroStation.cel",
+      "bytes": 245760,
+      "sha256": "810189f4cf67ecca20d5b0c49c426d52b46f4f2be9fea8270c449c364fa97aa1"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/5678/_Standards/Dgnlib/DrawComp/MetroStationDrawingSeed.dgnlib",
+      "bytes": 331264,
+      "sha256": "a8b637c8adae1e855ef6128dc59e3350820c863209beba7440203f2a2cc25c43"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/5678/_Standards/Dgnlib/MetroStation.dgnlib",
+      "bytes": 83456,
+      "sha256": "98f844828e618e0b975a70c2fd877660abd274ef89437a3b98b80de5ce97d301"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/5678/_Standards/Dgnlib/MetroStationPrintStyles.dgnlib",
+      "bytes": 35840,
+      "sha256": "f719f903dc00f2f8101a46f18be42a1fabb4d7f3a294766918e31ab324dbb51c"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/5678/_Standards/Seed/2D Metric Design.dgn",
+      "bytes": 32256,
+      "sha256": "a421d0824589a263d155c4c047ce3828e8769310a0207aa6e647867e65bdf622"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/5678/_Standards/Seed/2D Metric Drawing.dgn",
+      "bytes": 29696,
+      "sha256": "3e763e825d388574998f20fa29086af7bbc6bc18ff1a5c61c42989c846a5174d"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/5678/_Standards/Seed/2D Metric Sheet.dgn",
+      "bytes": 29696,
+      "sha256": "88d5920dc8fe439a770dba07675e514fe48319cf2367f5143662bdabd5a0f288"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/5678/_Standards/Seed/3D Metric Design.dgn",
+      "bytes": 52736,
+      "sha256": "b094935e725ac7a0358c43da64833b28c32085baa5d0f603a6e4e517483b2a25"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/CADFiles/5678/_Standards/Seed/MetroStationBorders.dgn",
+      "bytes": 70656,
+      "sha256": "087631b40b596ca5d569512ca08ddd8c82ab784f0751cdbfb73f59ed195b51dd"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/_PWSetup/WorkAreaPWSetup_Predefined_XXXX_ByNest.cfg",
+      "bytes": 4081,
+      "sha256": "6d6a9ab731b3a8e216eead567fdddeb2488d9e5441df63df1405569824a73e0b"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/_PWSetup/Worksets/1234.cfg",
+      "bytes": 2382,
+      "sha256": "1102dcb18bc1ad7ed0d020a52cf3b3108a5aab7fdba974cda7b3bb90ebf0e102"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/_PWSetup/Worksets/1234.dgnws",
+      "bytes": 48128,
+      "sha256": "0cb50c3ebc75cea4ce1724db3b13b0705939549bad41cc68d6be6a51f2878b09"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/_PWSetup/Worksets/5678.cfg",
+      "bytes": 2382,
+      "sha256": "1102dcb18bc1ad7ed0d020a52cf3b3108a5aab7fdba974cda7b3bb90ebf0e102"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest/_PWSetup/Worksets/5678.dgnws",
+      "bytes": 48128,
+      "sha256": "f61fe311599e80d4869e4da7ceea54227947d96feed12a72c911e13ceab29a43"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/1234/Building/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "762b60793bf6b2369755e6ad364010323ac4097edf411031a7249b6aa234e2d7"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/1234/Building/_PWSetup/PWSetupByFind_Predefined_Building.cfg",
+      "bytes": 22,
+      "sha256": "daa4798d1adcb896c8d47be3bf7317214d572538285d9bb0379ae56dc5c2a1b0"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/1234/Civil/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/1234/Plant/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/1234/Structural/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/1234/_Out/ValidationReport.xml",
+      "bytes": 146386,
+      "sha256": "e0c2f92c2ccb140ed9e8a34a8e89f2dce0559e36a29e9b3633e7b528b3b962ba"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/1234/_Standards/Cell/MetroStation.cel",
+      "bytes": 245760,
+      "sha256": "810189f4cf67ecca20d5b0c49c426d52b46f4f2be9fea8270c449c364fa97aa1"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/1234/_Standards/Dgnlib/DrawComp/MetroStationDrawingSeed.dgnlib",
+      "bytes": 331264,
+      "sha256": "a8b637c8adae1e855ef6128dc59e3350820c863209beba7440203f2a2cc25c43"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/1234/_Standards/Dgnlib/MetroStation.dgnlib",
+      "bytes": 83456,
+      "sha256": "98f844828e618e0b975a70c2fd877660abd274ef89437a3b98b80de5ce97d301"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/1234/_Standards/Dgnlib/MetroStationPrintStyles.dgnlib",
+      "bytes": 35840,
+      "sha256": "f719f903dc00f2f8101a46f18be42a1fabb4d7f3a294766918e31ab324dbb51c"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/1234/_Standards/Seed/2D Metric Design.dgn",
+      "bytes": 32256,
+      "sha256": "a421d0824589a263d155c4c047ce3828e8769310a0207aa6e647867e65bdf622"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/1234/_Standards/Seed/2D Metric Drawing.dgn",
+      "bytes": 29696,
+      "sha256": "3e763e825d388574998f20fa29086af7bbc6bc18ff1a5c61c42989c846a5174d"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/1234/_Standards/Seed/2D Metric Sheet.dgn",
+      "bytes": 29696,
+      "sha256": "88d5920dc8fe439a770dba07675e514fe48319cf2367f5143662bdabd5a0f288"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/1234/_Standards/Seed/3D Metric Design.dgn",
+      "bytes": 52736,
+      "sha256": "b094935e725ac7a0358c43da64833b28c32085baa5d0f603a6e4e517483b2a25"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/1234/_Standards/Seed/MetroStationBorders.dgn",
+      "bytes": 70656,
+      "sha256": "087631b40b596ca5d569512ca08ddd8c82ab784f0751cdbfb73f59ed195b51dd"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/5678/Building/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/5678/Civil/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/5678/Plant/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/5678/Structural/DGN/3D Metric Design.dgn",
+      "bytes": 54784,
+      "sha256": "4f05ef4f231b30157b72a23714a16680c39c469adc32a523ae04824460e98fdb"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/5678/_Out/ValidationReport.xml",
+      "bytes": 146386,
+      "sha256": "e0c2f92c2ccb140ed9e8a34a8e89f2dce0559e36a29e9b3633e7b528b3b962ba"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/5678/_Standards/Cell/MetroStation.cel",
+      "bytes": 245760,
+      "sha256": "810189f4cf67ecca20d5b0c49c426d52b46f4f2be9fea8270c449c364fa97aa1"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/5678/_Standards/Dgnlib/DrawComp/MetroStationDrawingSeed.dgnlib",
+      "bytes": 331264,
+      "sha256": "a8b637c8adae1e855ef6128dc59e3350820c863209beba7440203f2a2cc25c43"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/5678/_Standards/Dgnlib/MetroStation.dgnlib",
+      "bytes": 83456,
+      "sha256": "98f844828e618e0b975a70c2fd877660abd274ef89437a3b98b80de5ce97d301"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/5678/_Standards/Dgnlib/MetroStationPrintStyles.dgnlib",
+      "bytes": 35840,
+      "sha256": "f719f903dc00f2f8101a46f18be42a1fabb4d7f3a294766918e31ab324dbb51c"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/5678/_Standards/Seed/2D Metric Design.dgn",
+      "bytes": 32256,
+      "sha256": "a421d0824589a263d155c4c047ce3828e8769310a0207aa6e647867e65bdf622"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/5678/_Standards/Seed/2D Metric Drawing.dgn",
+      "bytes": 29696,
+      "sha256": "3e763e825d388574998f20fa29086af7bbc6bc18ff1a5c61c42989c846a5174d"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/5678/_Standards/Seed/2D Metric Sheet.dgn",
+      "bytes": 29696,
+      "sha256": "88d5920dc8fe439a770dba07675e514fe48319cf2367f5143662bdabd5a0f288"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/5678/_Standards/Seed/3D Metric Design.dgn",
+      "bytes": 52736,
+      "sha256": "b094935e725ac7a0358c43da64833b28c32085baa5d0f603a6e4e517483b2a25"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/5678/_Standards/Seed/MetroStationBorders.dgn",
+      "bytes": 70656,
+      "sha256": "087631b40b596ca5d569512ca08ddd8c82ab784f0751cdbfb73f59ed195b51dd"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/CADFiles/_PWSetup/PWSetupByFind_Predefined_CADFiles.cfg",
+      "bytes": 22,
+      "sha256": "da87c0fae4a3efdf7dc81c2a0083ff42a99f44b14f4588279285aa12513d9c60"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/_PWSetup/WorkAreaPWSetup_Predefined_XXXX_ByNestPlusInclude.cfg",
+      "bytes": 4395,
+      "sha256": "1d085be3574b8bb1e33a02af53938f9d5c9594dd80398c74fca6ea46654575db"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/_PWSetup/Worksets/1234.cfg",
+      "bytes": 2382,
+      "sha256": "1102dcb18bc1ad7ed0d020a52cf3b3108a5aab7fdba974cda7b3bb90ebf0e102"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/_PWSetup/Worksets/1234.dgnws",
+      "bytes": 48128,
+      "sha256": "b0eda6d6821e372133b8e2291906a163d26f5afc267dce8c537fdc059b3d7b48"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/WorkSets/CONNECTExample_FindByNest_PlusInclude/_PWSetup/Worksets/5678.cfg",
+      "bytes": 2382,
+      "sha256": "1102dcb18bc1ad7ed0d020a52cf3b3108a5aab7fdba974cda7b3bb90ebf0e102"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/_PWSetup/WorkspacePWSetup_FindByExists_Predefined_XXXX_CE.cfg",
+      "bytes": 15213,
+      "sha256": "cb273b4034b49fd0edc2c1318fb57b25f528c37a443c884d6c9c3be6dc5e1534"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/_PWSetup/WorkspacePWSetup_FindByNest_Predefined_XXXX_CE.cfg",
+      "bytes": 14816,
+      "sha256": "da470e87ee02cf34886e660d442b5e29f9af630a22e8051dfa18b132600711f4"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/_PWSetup/WorkspacePWSetup_Predefined_XXXX_CE.cfg",
+      "bytes": 15280,
+      "sha256": "2a222bd2252020a47b9e486af18de31d522928b0bc44074da5d45cb477230132"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv.cfg",
+      "bytes": 2032,
+      "sha256": "039da48bc33a9a54538730f32a2a8884f66da8ade6a5c46e9560e5e8a31b10e5"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/Configuration2024/_PWSetup/ConfigurationPWSetup_Predefined_Configuration2023.cfg",
+      "bytes": 116,
+      "sha256": "38bde5237c24732713d290d2e5637745e407f8460fa1dd956c3939ccee377ba3"
+    },
+    {
+      "path": "ClientWorkspaces/ClientName/_PWSetup/WorkSpaceGroupPWSetup_Predefined_ClientName.cfg",
+      "bytes": 110,
+      "sha256": "fb70f4c841c26bf62945dbcacb3b73bb1d643ddeddc29f2c739d5b1d28d38b57"
+    }
+  ]
+}

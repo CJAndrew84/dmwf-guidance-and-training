@@ -1,0 +1,17 @@
+flowchart TD
+    A["Freeze release and manifest"]
+    B{"Acceptance matrix passes"}
+    C["Correct and retest"]
+    D["Approve and deploy pilot"]
+    E{"Ordinary user smoke test passes"}
+    F["Restore known good content and bindings"]
+    G["Record release and deploy next wave"]
+    H["Verify restored output"]
+    A --> B
+    B -->|No| C
+    C -->|Retest| B
+    B -->|Yes| D
+    D --> E
+    E -->|No| F
+    E -->|Yes| G
+    F --> H

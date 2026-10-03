@@ -1,0 +1,25 @@
+flowchart TD
+    A["Capture document context and builds"]
+    B{"Common CFG trace present"}
+    C["Check CSB and launch integration"]
+    D["Check WorkArea selector and adapter"]
+    E{"Final workspace and WorkSet match"}
+    F["Correct first wrong selection"]
+    G["Check resource paths and availability"]
+    H{"Drive or server difference"}
+    I["Check user sync or process context"]
+    J["Check native resource configuration"]
+    K["Retest output and record evidence"]
+    A --> B
+    B -->|No| C
+    B -->|Yes| D
+    D --> E
+    E -->|No| F
+    E -->|Yes| G
+    G --> H
+    H -->|Yes| I
+    H -->|No| J
+    C --> K
+    F --> K
+    I --> K
+    J --> K

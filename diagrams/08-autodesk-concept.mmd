@@ -1,0 +1,23 @@
+flowchart TD
+    A["ProjectWise profile selects CAD profile"]
+    B{"Approved Drive content available"}
+    C["Stop with support evidence"]
+    D["Approved startup bootstrap runs"]
+    E{"Local release already current"}
+    F["Stage and verify required files"]
+    G["Use approved existing release"]
+    H{"Content and plugin checks pass"}
+    I["Activate staged local release"]
+    J["Retain prior release and report fault"]
+    K["Verify Civil 3D drawing output"]
+    A --> B
+    B -->|No| C
+    B -->|Yes| D
+    D --> E
+    E -->|No| F
+    E -->|Yes| G
+    F --> H
+    H -->|Yes| I
+    H -->|No| J
+    I --> K
+    G --> K

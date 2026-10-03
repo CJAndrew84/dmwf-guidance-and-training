@@ -1,0 +1,18 @@
+flowchart TD
+    A["Start at design directory"]
+    B{"Matching setup CFG exists"}
+    C["Process matching CFG"]
+    D["Record absent match if debugging"]
+    E{"Boundary or stop condition met"}
+    F["Retain trace and clean parameters"]
+    G["Move to parent directory"]
+    H["Verify final values and precedence"]
+    A --> B
+    B -->|Yes| C
+    B -->|No| D
+    C --> E
+    D --> E
+    E -->|Yes| F
+    E -->|No| G
+    G -->|Repeat| B
+    F --> H

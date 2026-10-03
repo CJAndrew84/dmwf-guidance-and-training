@@ -1,0 +1,26 @@
+flowchart TD
+    A["WorkArea selector loaded"]
+    B{"Client group specified"}
+    C["Resolve client Configuration"]
+    D["Use Bentley root route"]
+    E["Resolve named workspace CFG"]
+    F["Select exact adapter pattern"]
+    G{"Intended WorkSet CFG exists"}
+    H["Select intended WorkSet"]
+    I{"Default CFG exists"}
+    J["Select fallback and verify intent"]
+    K["Configuration error"]
+    L["Verify final roots and resources"]
+    A --> B
+    B -->|Yes| C
+    B -->|No| D
+    C --> E
+    D --> E
+    E --> F
+    F --> G
+    G -->|Yes| H
+    G -->|No| I
+    I -->|Yes| J
+    I -->|No| K
+    H --> L
+    J --> L

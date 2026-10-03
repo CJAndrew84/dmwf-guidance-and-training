@@ -1,0 +1,3227 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Christopher J Andrew" />
+  <title>DMWF 24 guidance and training</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">:root{color-scheme:light}body{font-family:Arial,Helvetica,sans-serif;line-height:1.6;color:#203044;background:#fff;margin:0 auto;max-width:1100px;padding:40px 48px 80px}header{border-bottom:2px solid #cdd9e6;margin-bottom:36px;padding-bottom:20px}h1{font-size:2rem;line-height:1.22;color:#12283e;margin-top:60px}h2{font-size:1.5rem;line-height:1.3;margin-top:38px;color:#12283e}h3{font-size:1.2rem;margin-top:28px}p,li{max-width:90ch}a{color:#145a91}table{border-collapse:collapse;width:100%;margin:22px 0;font-size:.92rem}th{background:#e5edf6;color:#132c45;text-align:left}th,td{border:1px solid #cad5df;padding:10px 12px;vertical-align:top}tr:nth-child(even){background:#f7f9fb}code{font-family:Consolas,monospace;font-size:.9em;overflow-wrap:anywhere}pre{background:#f2f5f8;padding:18px;overflow:auto;line-height:1.45}pre code{overflow-wrap:normal}img{max-width:100%;height:auto}figure{margin:20px auto;max-width:900px}figcaption{text-align:center;font-size:.9em;color:#52677b}#TOC{background:#f7f9fc;padding:20px 30px;margin:25px 0}#TOC ul{list-style:none;padding-left:18px}#TOC>ul{padding-left:0}#TOC a{text-decoration:none}hr{border:0;border-top:1px solid #cad5df;margin:40px 0}@media(max-width:700px){body{padding:20px 16px}h1{font-size:1.7rem}table{display:block;overflow-x:auto}th,td{min-width:120px}#TOC{padding:15px}}@media print{body{padding:0;max-width:none;font-size:10pt}h1{break-before:page}header h1{break-before:auto}h1,h2,h3{break-after:avoid}pre,figure,tr{break-inside:avoid}a{color:inherit}#TOC{background:none}table{font-size:9pt}}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">DMWF 24 guidance and training</h1>
+<p class="author">Christopher J Andrew</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#dmwf-24-deployment-and-configuration-handbook" id="toc-dmwf-24-deployment-and-configuration-handbook">DMWF 24
+deployment and configuration handbook</a>
+<ul>
+<li><a href="#purpose-and-use" id="toc-purpose-and-use">Purpose and
+use</a></li>
+<li><a href="#what-dmwf-supplies" id="toc-what-dmwf-supplies">What DMWF
+supplies</a></li>
+<li><a href="#the-five-different-things-we-must-keep-separate" id="toc-the-five-different-things-we-must-keep-separate">The five
+different things we must keep separate</a></li>
+<li><a href="#package-layout-and-responsibility" id="toc-package-layout-and-responsibility">Package layout and
+responsibility</a></li>
+<li><a href="#how-the-delivered-load-sequence-works" id="toc-how-the-delivered-load-sequence-works">How the delivered load
+sequence works</a></li>
+<li><a href="#bootstrap-configuration" id="toc-bootstrap-configuration">Bootstrap configuration</a></li>
+<li><a href="#selecting-a-client-workspace" id="toc-selecting-a-client-workspace">Selecting a client
+workspace</a></li>
+<li><a href="#configuration-operators-and-load-order" id="toc-configuration-operators-and-load-order">Configuration operators
+and load order</a></li>
+<li><a href="#choosing-the-workset-pattern" id="toc-choosing-the-workset-pattern">Choosing the WorkSet
+pattern</a></li>
+<li><a href="#projectwise-drive-and-local-content" id="toc-projectwise-drive-and-local-content">ProjectWise Drive and local
+content</a></li>
+<li><a href="#product-mapping-and-compatibility" id="toc-product-mapping-and-compatibility">Product mapping and
+compatibility</a></li>
+<li><a href="#desktop-and-server-processing" id="toc-desktop-and-server-processing">Desktop and server
+processing</a></li>
+<li><a href="#our-recommended-operating-model" id="toc-our-recommended-operating-model">Our recommended operating
+model</a></li>
+</ul></li>
+<li><a href="#dmwf-administrator-deployment-and-support-runbook" id="toc-dmwf-administrator-deployment-and-support-runbook">DMWF
+administrator deployment and support runbook</a>
+<ul>
+<li><a href="#scope-and-prerequisites" id="toc-scope-and-prerequisites">Scope and prerequisites</a></li>
+<li><a href="#procedure-a-install-a-minimal-test-environment" id="toc-procedure-a-install-a-minimal-test-environment">Procedure A
+install a minimal test environment</a></li>
+<li><a href="#procedure-b-onboard-a-real-client-dataset" id="toc-procedure-b-onboard-a-real-client-dataset">Procedure B onboard a
+real client dataset</a></li>
+<li><a href="#procedure-c-implement-a-multi-package-project" id="toc-procedure-c-implement-a-multi-package-project">Procedure C
+implement a multi-package project</a></li>
+<li><a href="#procedure-d-configure-optional-drive-content" id="toc-procedure-d-configure-optional-drive-content">Procedure D
+configure optional Drive content</a></li>
+<li><a href="#procedure-e-promote-and-roll-back" id="toc-procedure-e-promote-and-roll-back">Procedure E promote and roll
+back</a></li>
+<li><a href="#acceptance-matrix" id="toc-acceptance-matrix">Acceptance
+matrix</a></li>
+<li><a href="#first-line-support-procedure" id="toc-first-line-support-procedure">First line support
+procedure</a></li>
+<li><a href="#troubleshooting-reference" id="toc-troubleshooting-reference">Troubleshooting reference</a></li>
+<li><a href="#support-evidence-record" id="toc-support-evidence-record">Support evidence record</a></li>
+</ul></li>
+<li><a href="#dmwf-configuration-reference" id="toc-dmwf-configuration-reference">DMWF configuration reference</a>
+<ul>
+<li><a href="#reading-this-reference" id="toc-reading-this-reference">Reading this reference</a></li>
+<li><a href="#names-and-roots" id="toc-names-and-roots">Names and
+roots</a></li>
+<li><a href="#workset-selection-and-working-content" id="toc-workset-selection-and-working-content">WorkSet selection and
+working content</a></li>
+<li><a href="#final-application-framework-settings" id="toc-final-application-framework-settings">Final application
+framework settings</a></li>
+<li><a href="#default-switches-verified-in-the-package" id="toc-default-switches-verified-in-the-package">Default switches
+verified in the package</a></li>
+<li><a href="#drive-reference" id="toc-drive-reference">Drive
+reference</a></li>
+<li><a href="#search-helpers" id="toc-search-helpers">Search
+helpers</a></li>
+<li><a href="#includeinpath-reference" id="toc-includeinpath-reference">IncludeInPath reference</a></li>
+<li><a href="#product-and-environment-reference" id="toc-product-and-environment-reference">Product and environment
+reference</a></li>
+<li><a href="#diagnostic-reference" id="toc-diagnostic-reference">Diagnostic reference</a></li>
+</ul></li>
+<li><a href="#dmwf-training-workbook-and-facilitator-guide" id="toc-dmwf-training-workbook-and-facilitator-guide">DMWF training
+workbook and facilitator guide</a>
+<ul>
+<li><a href="#training-purpose" id="toc-training-purpose">Training
+purpose</a></li>
+<li><a href="#delivery-plan" id="toc-delivery-plan">Delivery
+plan</a></li>
+<li><a href="#facilitator-preparation" id="toc-facilitator-preparation">Facilitator preparation</a></li>
+<li><a href="#lab-1-trace-a-configuration-without-launching-it" id="toc-lab-1-trace-a-configuration-without-launching-it">Lab 1 trace a
+configuration without launching it</a></li>
+<li><a href="#lab-2-deploy-the-standard-client-example" id="toc-lab-2-deploy-the-standard-client-example">Lab 2 deploy the
+standard client example</a></li>
+<li><a href="#lab-3-diagnose-the-configuration-name-fault" id="toc-lab-3-diagnose-the-configuration-name-fault">Lab 3 diagnose the
+Configuration name fault</a></li>
+<li><a href="#lab-4-resolve-two-packages-using-nest-depth" id="toc-lab-4-resolve-two-packages-using-nest-depth">Lab 4 resolve two
+packages using nest depth</a></li>
+<li><a href="#lab-5-compare-marker-and-path-include-behaviour" id="toc-lab-5-compare-marker-and-path-include-behaviour">Lab 5 compare
+marker and path include behaviour</a></li>
+<li><a href="#lab-6-diagnose-a-drive-resource-problem" id="toc-lab-6-diagnose-a-drive-resource-problem">Lab 6 diagnose a Drive
+resource problem</a></li>
+<li><a href="#lab-7-recover-a-failed-release" id="toc-lab-7-recover-a-failed-release">Lab 7 recover a failed
+release</a></li>
+<li><a href="#assessment-questions-and-model-answers" id="toc-assessment-questions-and-model-answers">Assessment questions and
+model answers</a></li>
+<li><a href="#competency-rubric" id="toc-competency-rubric">Competency
+rubric</a></li>
+<li><a href="#designer-verification-exercise" id="toc-designer-verification-exercise">Designer verification
+exercise</a></li>
+<li><a href="#facilitator-closing-discussion" id="toc-facilitator-closing-discussion">Facilitator closing
+discussion</a></li>
+</ul></li>
+<li><a href="#standards-authoring-and-integration-guidance" id="toc-standards-authoring-and-integration-guidance">Standards
+authoring and integration guidance</a>
+<ul>
+<li><a href="#a-common-governance-model-with-separate-product-implementations" id="toc-a-common-governance-model-with-separate-product-implementations">A
+common governance model with separate product implementations</a></li>
+<li><a href="#when-the-client-supplies-a-complete-workspace" id="toc-when-the-client-supplies-a-complete-workspace">When the client
+supplies a complete workspace</a></li>
+<li><a href="#when-the-client-supplies-files-without-a-workspace" id="toc-when-the-client-supplies-files-without-a-workspace">When the
+client supplies files without a workspace</a></li>
+<li><a href="#when-the-client-supplies-only-pdf-standards" id="toc-when-the-client-supplies-only-pdf-standards">When the client
+supplies only PDF standards</a></li>
+<li><a href="#requirements-traceability-template" id="toc-requirements-traceability-template">Requirements traceability
+template</a></li>
+<li><a href="#corporate-and-client-coexistence" id="toc-corporate-and-client-coexistence">Corporate and client
+coexistence</a></li>
+<li><a href="#civil-3d-profile-and-drive-bootstrap-concept" id="toc-civil-3d-profile-and-drive-bootstrap-concept">Civil 3D profile
+and Drive bootstrap concept</a></li>
+<li><a href="#projectwise-drive-and-git-authoring" id="toc-projectwise-drive-and-git-authoring">ProjectWise Drive and Git
+authoring</a></li>
+<li><a href="#enterprise-deployment-automation" id="toc-enterprise-deployment-automation">Enterprise deployment
+automation</a></li>
+</ul></li>
+<li><a href="#dmwf-package-review-and-source-register" id="toc-dmwf-package-review-and-source-register">DMWF package review and
+source register</a>
+<ul>
+<li><a href="#review-method-and-limits" id="toc-review-method-and-limits">Review method and limits</a></li>
+<li><a href="#findings-register" id="toc-findings-register">Findings
+register</a></li>
+<li><a href="#findings-that-need-runtime-reproduction" id="toc-findings-that-need-runtime-reproduction">Findings that need
+runtime reproduction</a></li>
+<li><a href="#published-source-register" id="toc-published-source-register">Published source register</a></li>
+<li><a href="#published-guidance-compared-with-supplied-implementation" id="toc-published-guidance-compared-with-supplied-implementation">Published
+guidance compared with supplied implementation</a></li>
+<li><a href="#additional-primary-source-for-the-autodesk-concept" id="toc-additional-primary-source-for-the-autodesk-concept">Additional
+primary source for the Autodesk concept</a></li>
+<li><a href="#distribution-and-attribution" id="toc-distribution-and-attribution">Distribution and
+attribution</a></li>
+</ul></li>
+<li><a href="#dmwf-quick-reference-and-operating-templates" id="toc-dmwf-quick-reference-and-operating-templates">DMWF quick
+reference and operating templates</a>
+<ul>
+<li><a href="#administrator-quick-reference" id="toc-administrator-quick-reference">Administrator quick
+reference</a></li>
+<li><a href="#project-selection-record" id="toc-project-selection-record">Project selection record</a></li>
+<li><a href="#release-record" id="toc-release-record">Release
+record</a></li>
+<li><a href="#change-request" id="toc-change-request">Change
+request</a></li>
+<li><a href="#standards-exception-record" id="toc-standards-exception-record">Standards exception record</a></li>
+<li><a href="#release-checklist" id="toc-release-checklist">Release
+checklist</a></li>
+<li><a href="#support-handoff" id="toc-support-handoff">Support
+handoff</a></li>
+</ul></li>
+<li><a href="#dmwf-workflow-diagrams" id="toc-dmwf-workflow-diagrams">DMWF workflow diagrams</a>
+<ul>
+<li><a href="#managed-configuration-load" id="toc-managed-configuration-load">Managed configuration load</a></li>
+<li><a href="#workspace-and-workset-selection" id="toc-workspace-and-workset-selection">Workspace and WorkSet
+selection</a></li>
+<li><a href="#choose-a-package-discovery-method" id="toc-choose-a-package-discovery-method">Choose a package discovery
+method</a></li>
+<li><a href="#ancestor-configuration-inclusion" id="toc-ancestor-configuration-inclusion">Ancestor configuration
+inclusion</a></li>
+<li><a href="#release-and-recovery" id="toc-release-and-recovery">Release and recovery</a></li>
+<li><a href="#diagnose-wrong-or-missing-standards" id="toc-diagnose-wrong-or-missing-standards">Diagnose wrong or missing
+standards</a></li>
+<li><a href="#build-a-dataset-from-standards" id="toc-build-a-dataset-from-standards">Build a dataset from
+standards</a></li>
+<li><a href="#separate-autodesk-deployment-concept" id="toc-separate-autodesk-deployment-concept">Separate Autodesk
+deployment concept</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="dmwf-24-deployment-and-configuration-handbook">DMWF 24
+deployment and configuration handbook</h1>
+<p>Prepared by Christopher J Andrew • Guidance edition 1.0 • 3 October
+2026</p>
+<h2 id="purpose-and-use">Purpose and use</h2>
+<p>We use the Dynamic Managed Workspace Framework to connect ProjectWise
+project context to a repeatable Bentley application configuration. This
+handbook explains how we select standards, resolve WorkSets and manage
+deployment without building a different framework for every project.
+Read it alongside the administrator runbook, configuration reference and
+training workbook in this pack.</p>
+<p>The review covers the supplied <strong>DMWF 24.0.0.0.zip</strong>,
+its 89 configuration files and its embedded documentation workbook, plus
+Bentley knowledge articles KB0020036, KB0021384 and KB0020038. It is a
+static review of the delivered configuration and published guidance. No
+ProjectWise datasource, Windows registry, Bentley application, rendition
+server or iTwin processing service was available for execution testing.
+Examples therefore require acceptance testing in the intended
+environment before production use. Binary DGN, DGNLIB and DGNWS contents
+were inventoried, not functionally examined in a Bentley
+application.</p>
+<p><strong>Our implementation principle:</strong> keep the common
+framework stable, express project selection in WorkArea setup files and
+adapt each workspace through its own PWSetup layer. Test the resolved
+configuration and drawing output before releasing it. A file opening
+successfully is necessary, but does not prove that the intended
+standards loaded.</p>
+<p>The labels used throughout this pack are:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Label</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Verified in package</td>
+<td>Directly visible in the supplied CFG files or workbook</td>
+</tr>
+<tr class="even">
+<td>Published guidance</td>
+<td>Stated in the Bentley articles identified in the source
+register</td>
+</tr>
+<tr class="odd">
+<td>Recommendation</td>
+<td>An operating practice proposed here, rather than a delivered DMWF
+feature</td>
+</tr>
+<tr class="even">
+<td>Requires runtime verification</td>
+<td>Depends on ProjectWise integration, registry, application version or
+binary content</td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-dmwf-supplies">What DMWF supplies</h2>
+<p>DMWF supplies configuration routing and examples for a ProjectWise
+managed workspace. It determines roots and names using the opened
+document’s context, reads selection information and redirects Bentley
+framework variables. The delivered files also contain validation
+messages, product version checks, rendition and iTwin environment
+detection, optional ProjectWise Drive redirection and directory search
+helpers.</p>
+<p>DMWF is not, by itself, a standards authoring system or a complete
+release management service. It does not demonstrate that a client
+dataset complies with a PDF standard, that an add-in is approved, that
+every datasource contains identical content or that an individual
+workstation has hydrated its ProjectWise Drive files. Those are separate
+responsibilities that we manage around the framework.</p>
+<p>DMWF version 24 is not a promise that every Bentley product carrying
+a 2024 or later label is compatible. The common file rejects V8 family
+configurations. Some supplied workspace examples explicitly restrict
+OpenRoads Designer and OpenBridge Modeler to a detected generation and
+major value of <code>24.00</code>. Validate each product build and
+workspace combination rather than treating the package name as a
+compatibility matrix.</p>
+<h2 id="the-five-different-things-we-must-keep-separate">The five
+different things we must keep separate</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Purpose</th>
+<th>Typical example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Common framework</td>
+<td>Resolves context and redirects configuration</td>
+<td><code>Bentley 2024/Common_Predefined.cfg</code></td>
+</tr>
+<tr class="even">
+<td>Configuration</td>
+<td>Contains an Organization folder and a Workspaces collection</td>
+<td><code>ClientWorkspaces/ClientName/Configuration2024/</code></td>
+</tr>
+<tr class="odd">
+<td>Workspace</td>
+<td>Standards shared by multiple projects</td>
+<td><code>CEWorkspaceExampleAdv</code></td>
+</tr>
+<tr class="even">
+<td>ProjectWise WorkArea</td>
+<td>Project container that gives documents managed project context</td>
+<td>A test project converted to a WorkArea</td>
+</tr>
+<tr class="odd">
+<td>Bentley WorkSet</td>
+<td>Project or package configuration and working roots used by the
+application</td>
+<td>A selected <code>1234.cfg</code> and corresponding project root</td>
+</tr>
+</tbody>
+</table>
+<p>A WorkArea and a WorkSet can have the same name and root, but they
+need not. A single WorkArea can contain several contract packages, each
+with a different WorkSet. This is why <code>_USTN_WORKSETCFG</code>,
+<code>_USTN_WORKSETROOT</code> and <code>_USTN_WORKSETNAME</code> must
+be checked independently. The CFG can live in a protected setup folder
+while design files and project standards live elsewhere.</p>
+<p>A connected project is another distinct context. The common
+configuration obtains connected project information separately from
+<code>DMS_PROJECT</code> WorkArea information. Do not assume that an
+iTwin connection establishes the correct WorkSet or that the nearest
+nested WorkArea is always the desired project root.</p>
+<h2 id="package-layout-and-responsibility">Package layout and
+responsibility</h2>
+<p>The ZIP has two principal branches. <code>Bentley 2024</code>
+contains common files, helper files, PWSetup modules, a built-in example
+Configuration, DWG rendition resources and documentation.
+<code>ClientWorkspaces/ClientName</code> contains the client-group
+example, a <code>Configuration2024</code> branch, the advanced workspace
+and several project selection examples.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Location relative to package root</th>
+<th>Responsibility</th>
+<th>Editing rule</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Bentley 2024/Common_Predefined.cfg</code></td>
+<td>Main Predefined framework</td>
+<td>Preserve baseline; vendor file says not to edit</td>
+</tr>
+<tr class="even">
+<td><code>Bentley 2024/_PWSetup/Common_Predefined_PWSetup.cfg</code></td>
+<td>Coordinates common setup modules</td>
+<td>Controlled adaptation point</td>
+</tr>
+<tr class="odd">
+<td><code>Bentley 2024/_PWSetup/Common_Predefined_DatasourceDefaultSettings.cfg</code></td>
+<td>Default names and switches</td>
+<td>Set datasource defaults deliberately</td>
+</tr>
+<tr class="even">
+<td><code>Bentley 2024/_PWSetup/OneMapping/</code></td>
+<td>Product group and subgroup mappings</td>
+<td>Validate selected product mapping</td>
+</tr>
+<tr class="odd">
+<td><code>Bentley 2024/FindNameInPath.cfg</code></td>
+<td>Ancestor name and nested folder selection</td>
+<td>Treat as helper implementation</td>
+</tr>
+<tr class="even">
+<td><code>Bentley 2024/FindInPath.cfg</code></td>
+<td>Name or marker based path discovery</td>
+<td>Treat as helper implementation</td>
+</tr>
+<tr class="odd">
+<td><code>Bentley 2024/IncludeInPath.cfg</code></td>
+<td>Includes matching CFG files while walking ancestors</td>
+<td>Protect include locations and test boundaries</td>
+</tr>
+<tr class="even">
+<td><code>ClientWorkspaces/ClientName/_PWSetup/</code></td>
+<td>Client-group setup</td>
+<td>Own client adaptation here</td>
+</tr>
+<tr class="odd">
+<td><code>.../Configuration2024/Workspaces/&lt;Workspace&gt;/_PWSetup/</code></td>
+<td>Workspace root and WorkSet adaptation</td>
+<td>Use one explicitly selected setup pattern</td>
+</tr>
+<tr class="even">
+<td><code>&lt;WorkArea&gt;/_PWSetup/</code></td>
+<td>Project selection and project CFG files</td>
+<td>Project administration under change control</td>
+</tr>
+<tr class="odd">
+<td><code>Bentley 2024/Documentation/ConfigurationTemplates/</code></td>
+<td>Optional additional level templates</td>
+<td>They are examples, not automatically active files</td>
+</tr>
+</tbody>
+</table>
+<p>Keep application standards such as cells, levels, fonts and print
+styles in the intended native standards layer. PWSetup is principally
+about making that layer work in ProjectWise. Do not distribute ordinary
+<code>MS_</code> resource settings across unrelated Predefined setup
+files simply because the application happens to accept them there.</p>
+<h2 id="how-the-delivered-load-sequence-works">How the delivered load
+sequence works</h2>
+<p>The sequence below follows active statements in
+<code>Common_Predefined.cfg</code> and its common setup coordinator. It
+describes routing during the DMWF Predefined include, not every step in
+the application’s complete startup sequence.</p>
+<ol type="1">
+<li>ProjectWise starts the managed configuration through an assigned
+Predefined CSB. The root variable points at the installed Bentley
+framework folder; an include reads
+<code>Common_Predefined.cfg</code>.</li>
+<li>The common file records its version, rejects V8 configurations and
+establishes datasource, connected project, WorkArea and parent WorkArea
+context where available.</li>
+<li>It includes <code>Common_Predefined_PWSetup.cfg</code> from the
+framework’s PWSetup folder.</li>
+<li>That coordinator runs environment, ProjectWise Explorer version,
+product version and datasource default modules when their files exist.
+It then resolves the WorkArea root using the default or advanced
+route.</li>
+<li>It optionally performs OneMapping, reads the WorkArea’s Predefined
+setup files, performs Drive processing if enabled and resolves workspace
+groups.</li>
+<li>Control returns to the common framework. The CONNECT branch derives
+the Configuration, Organization and workspace roots, checks required
+locations and includes the selected workspace setup pattern.</li>
+<li>The framework checks the named workspace CFG and establishes and
+locks key <code>_USTN_</code> roots and names. Workspace setup can
+already have chosen the WorkSet CFG and roots before these later
+defaults are considered.</li>
+<li>It appends validation information, optionally stops for common debug
+output, then reads the postprocessing hook if present.</li>
+</ol>
+<p>The location and timing of an override are part of its meaning. A
+setting made in a WorkArea file is too late to affect a module that
+already ran earlier in common setup. A setting made after a
+<code>%lock</code> may not change the value. A <code>:</code> assignment
+may keep an existing value even when a later line seems to offer a new
+default.</p>
+<p>See Diagram 01 for the branching load process and Diagram 02 for the
+selection decision.</p>
+<h2 id="bootstrap-configuration">Bootstrap configuration</h2>
+<p>Create the root setting using ProjectWise Administrator’s
+<strong>ProjectWise Folder</strong> value type and browse to the actual
+installed framework folder. The following is a conceptual
+representation; it is not a requirement to type a literal datasource
+string into the CSB:</p>
+<pre class="cfg"><code># Predefined CSB representation
+_DYNAMIC_DATASOURCE_BENTLEYROOT = &lt;ProjectWise Folder value for Bentley 2024&gt;
+%include $(_DYNAMIC_DATASOURCE_BENTLEYROOT)Common_Predefined.cfg</code></pre>
+<p>The include is a String entry in the CSB. Assign the block at the
+appropriate scope and confirm its inheritance for the test document. A
+correctly created CSB that is not assigned to the document’s effective
+configuration will have no effect.</p>
+<p>The root and include must resolve as a directory and filename
+combination. Use the directory representation supplied by ProjectWise;
+retain its separator. A manually composed path missing the final
+separator can produce a combined path that does not name a real
+file.</p>
+<p>The delivered CSB example references a generic
+<code>Resources/Bentley</code> location rather than the actual
+<code>Bentley 2024</code> package folder. Treat this as an example to
+adapt. Do not change the package layout to match stale example text
+without a design reason.</p>
+<h2 id="selecting-a-client-workspace">Selecting a client workspace</h2>
+<p>The normal client-group selection is recorded in a project WorkArea
+setup file:</p>
+<pre class="cfg"><code># Illustrative WorkArea selection for the supplied client example
+_DYNAMIC_WORKSPACEGROUPNAME = ClientName
+_DYNAMIC_WORKSPACEGROUP_CONFIGURATIONNAME = Configuration2024
+_DYNAMIC_CEWORKSPACENAME = CEWorkspaceExampleAdv
+_DYNAMIC_WORKSPACEPWSETUP_PREDEFINED_NAME = WorkspacePWSetup_Predefined_XXXX_CE.cfg</code></pre>
+<p>The first three names correspond to
+<code>ClientWorkspaces/ClientName/Configuration2024/Workspaces/CEWorkspaceExampleAdv/</code>.
+The last setting chooses a specific adapter filename. Exact selection is
+a recommendation for production predictability; the framework also
+accepts its delivered wildcard naming patterns.</p>
+<p>For the built-in example under
+<code>Bentley 2024/Configuration</code>, the WorkArea file can leave the
+client-group name unset and select <code>CEWorkspaceExample</code>.
+Common setup then activates its Bentley-root group route. Do not set the
+literal client name just because the deployment folder contains a
+sibling <code>ClientWorkspaces</code> tree.</p>
+<p>Workspace group discovery checks the sibling
+<code>ClientWorkspaces</code> location first and then
+<code>WorkspaceGroups</code>, based on the configured names. If both
+contain a matching group, the first branch wins. This is not an
+automatic merge of two standards libraries. A deliberately specified
+full group root is preferable when deployment layout differs from the
+examples.</p>
+<h2 id="configuration-operators-and-load-order">Configuration operators
+and load order</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Syntax</th>
+<th>Working meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>NAME = value</code></td>
+<td>Assign a value</td>
+<td>Can replace an earlier value when not prevented by locking or parser
+rules</td>
+</tr>
+<tr class="even">
+<td><code>NAME : value</code></td>
+<td>Set a default if not already defined</td>
+<td>A prior setting can keep a later default from taking effect</td>
+</tr>
+<tr class="odd">
+<td><code>NAME &gt; value</code></td>
+<td>Append to the variable’s existing value</td>
+<td>Used for resource paths and DMWF trace messages</td>
+</tr>
+<tr class="even">
+<td><code>NAME &lt; value</code></td>
+<td>Prepend to the variable’s existing value</td>
+<td>Can change search order or message ordering</td>
+</tr>
+<tr class="odd">
+<td><code>%include path</code></td>
+<td>Process another CFG at this point</td>
+<td>The included statements are part of the current sequence</td>
+</tr>
+<tr class="even">
+<td><code>%if</code>, <code>%elif</code>, <code>%else</code>,
+<code>%endif</code></td>
+<td>Conditional processing</td>
+<td>Branches depend on current values and context</td>
+</tr>
+<tr class="odd">
+<td><code>%lock NAME</code></td>
+<td>Protect a configuration value from subsequent changes</td>
+<td>Make the final intended selection before the lock</td>
+</tr>
+<tr class="even">
+<td><code>%undef NAME</code></td>
+<td>Remove a definition</td>
+<td>Used by helper cleanup and can remove debug evidence</td>
+</tr>
+<tr class="odd">
+<td><code>$(NAME)</code> and <code>${NAME}</code></td>
+<td>Variable expansion forms used in the package</td>
+<td>Preserve delivered use, especially when copying helper outputs
+before cleanup</td>
+</tr>
+<tr class="even">
+<td><code>%error message</code></td>
+<td>Raise a configuration error and interrupt normal loading</td>
+<td>Debug switches using this can intentionally stop startup</td>
+</tr>
+</tbody>
+</table>
+<p>This is a practical reference for the syntax present in the supplied
+files, not a complete Bentley configuration language specification. Test
+expression evaluation and path expansion in the intended product. Do not
+treat CFG syntax as PowerShell, shell syntax or AutoLISP.</p>
+<p>For example, a project selection made with <code>=</code> before a
+workspace’s <code>:</code> default should be retained. A later
+<code>:</code> default does not provide an override. Conversely, a
+default module that uses <code>=</code> can overwrite an earlier
+proposed value. The supplied default file uses
+<code>_DYNAMIC_FINDWORKAREAROOT_ADV=0</code>; enabling advanced
+discovery in a CSB before the common include therefore requires
+examining that assignment, not merely adding another early default.</p>
+<h2 id="choosing-the-workset-pattern">Choosing the WorkSet pattern</h2>
+<h3 id="one-workarea-with-one-workset">One WorkArea with one
+WorkSet</h3>
+<p>Use the standard <code>WorkspacePWSetup_Predefined_XXXX_CE.cfg</code>
+adapter as the starting point. It looks for
+<code>_PWSetup/WorkSets/</code> under the resolved WorkArea. If that
+location is not present, it falls back to the workspace’s
+<code>WorkSets/</code> collection. It tries the selected project or
+WorkSet name, then the configured default name, and raises an error if
+neither CFG exists.</p>
+<p>This fallback is convenient for demonstrations. For a production
+project, a successful fallback can conceal a missing project
+configuration. Record the expected WorkSet CFG and make its match an
+acceptance criterion. If project-specific selection is mandatory, add a
+controlled check in the adapter rather than accepting an unrelated
+example default.</p>
+<p>The design-file root is resolved separately from the CFG collection.
+<code>_DYNAMIC_WORKAREA_SUBPATH</code> can point below the WorkArea,
+while <code>_USTN_WORKSETSDGNWSROOT</code> defaults to the selected
+WorkSets CFG collection in the standard example. Treat DGNWS placement
+as a separate decision with suitable permissions.</p>
+<h3 id="several-packages-at-a-fixed-folder-depth">Several packages at a
+fixed folder depth</h3>
+<p>Use the FindByNest example when the folder hierarchy is stable. It
+searches upward for the WorkArea name, then selects a child at the
+configured nest depth. The delivered template uses
+<code>FINDDIR_NEST=2</code> and copies the discovered name to
+<code>_DYNAMIC_WORKSET_NAME</code>.</p>
+<p>For a design file under
+<code>&lt;WorkArea&gt;/CADFiles/1234/DGN/</code>, a nest depth of two
+below the found WorkArea is intended to select <code>1234</code>. Move
+the file to a hierarchy without <code>CADFiles</code>, or insert another
+container folder, and the same depth can select a different folder. Test
+every approved hierarchy rather than assuming the numeric setting means
+a universal package identifier.</p>
+<p>The helper walks ancestors, not the whole datasource. Its source
+contains an explicitly unrolled search through twelve directory
+positions. This is different from the WorkArea discovery module’s
+maximum of four nested WorkArea contexts. See Diagram 03.</p>
+<h3 id="packages-identified-by-markers">Packages identified by
+markers</h3>
+<p>Use the FindByExists example when structure varies but a unique
+marker identifies the desired context. The supplied adapter uses
+<code>_PWSetup/</code> to locate a root and <code>DGN/</code> as its
+nested marker. Those are example markers; broad folder names can be
+ambiguous in real projects.</p>
+<p>Define a marker contract before deployment: which folder carries it,
+who creates it, which file or subfolder proves its identity, and what
+happens if two candidates match. A marker should distinguish a valid
+package from an incidental folder. Always inspect
+<code>_DYNAMIC_WORKSET_NAME</code>,
+<code>_DYNAMIC_WORKAREA_SUBPATH</code> and the final CFG after a marker
+search.</p>
+<h3 id="additional-context-along-the-path">Additional context along the
+path</h3>
+<p>The Nest Plus Include example adds <code>IncludeInPath.cfg</code>
+before selecting the FindByNest adapter. It sets a matching pattern for
+<code>PWSetupByFind_Predefined*.cfg</code>, continues upward after a
+match, and stops at the WorkArea’s name or its implemented search
+boundary.</p>
+<p>The helper processes the current directory first and then its
+ancestors. This is important if several matching files assign the same
+variable: a parent assignment processed later can replace a lower
+folder’s value. It does not establish conventional parent-first
+inheritance. The actual result depends on each assignment operator,
+existing definitions and locks. See Diagram 04.</p>
+<p>Keep only approved configuration files in these matching locations. A
+folder-level setup file is executable configuration input; it should not
+be editable by everyone who can save design drawings.</p>
+<h2 id="projectwise-drive-and-local-content">ProjectWise Drive and local
+content</h2>
+<p>The common coordinator processes Drive after the WorkArea selector
+and before workspace groups and final framework root calculations. Drive
+support is disabled by default. When enabled, the delivered module looks
+for the organization root through a current-user registry entry, then a
+user-profile path. It records whether the root was found and may
+redirect a workspace group or Configuration root to local Drive
+paths.</p>
+<p>Set <code>_PROJECTWISE_DRIVE_ORG</code> to the actual configured
+organization name. <code>Bentley Systems Inc</code> in the default file
+is a sample. Set the enabled and required flags early enough for the
+Drive module. A flag assigned only in the later workspace adapter cannot
+reliably influence processing that has already occurred.</p>
+<p>The module checks path existence. It does not demonstrate that the
+sync contains the intended release, that placeholders have been hydrated
+or that access to every required file succeeds. Test a newly enrolled
+user, an empty cache, a hydrated cache and a workstation on which Drive
+is unavailable. If local content is mandatory, a missing root should
+produce an understandable failure rather than a quiet change of
+standards source.</p>
+<p>Drive redirection is also distinct from the local-root helper. The
+latter is included by selected workspace adapters when
+<code>_DYNAMIC_USE_LOCAL_ROOT</code> is enabled and its root exists. The
+package contains inconsistent local-option names between the default
+module and adapter. Use the verified active call chain; do not assume
+every similarly named flag activates the feature. See the review
+register.</p>
+<h2 id="product-mapping-and-compatibility">Product mapping and
+compatibility</h2>
+<p>The OneMapping module fills <code>_USTN_PRODUCT_ONE_GROUPNAME</code>
+and subgroup information when the relevant values are not already
+defined. The supplied OpenRoads mapping assigns <code>Civil</code> and
+<code>Road</code>; OpenRail assigns <code>Civil</code> and
+<code>Rail</code>. Common setup automatically enables its mapping path
+for detected ProjectWise Explorer major value <code>10</code>, while
+also allowing an explicit enable switch.</p>
+<p>A mapping determines configuration structure. It does not install a
+product, select its executable or certify a dataset. Check
+<code>_ENGINENAME</code>, the detected product version and actual
+standards location together. A renamed executable, different display
+name or absent registry entry can change detection results.</p>
+<p>When product version detection cannot obtain a usable value in the
+implemented failure branches, the package uses <code>00.00.00.00</code>
+and a not-found flag. This is an unknown version signal, not a
+compatible release. Decide whether the project blocks unknown versions
+and test the outcome. The example restrictions compare generation and
+major values; they do not necessarily enforce an exact build.</p>
+<h2 id="desktop-and-server-processing">Desktop and server
+processing</h2>
+<p>The environment module contains separate checks for workstation
+context, iTwin sync engine, rendition process indicators and DWG files.
+These create configuration flags that adapters can use. Detection is not
+validation of the server’s dataset or permissions.</p>
+<p>The supplied adapters include rendition-specific settings such as
+disabling cursor prompts and turning off the ordinary product check for
+a detected rendition job. Test that exception explicitly. A server-only
+exception should not accidentally make desktop applications bypass the
+project compatibility rule.</p>
+<p>The <code>ACADConfiguration</code> tree is a Bentley configuration
+for DWG rendition resources, with settings such as
+<code>MS_DWGFONTPATH</code> and <code>MS_DGNLIBLIST</code>. It is not an
+AutoCAD or Civil 3D support deployment framework, and it does not
+configure Civil 3D drawing settings or distribute Autodesk plugins. An
+Autodesk profile plus Drive-based bootstrap can use the same governance
+model, but requires its own implementation and tests. See the standards
+and integration guide.</p>
+<h2 id="our-recommended-operating-model">Our recommended operating
+model</h2>
+<p>Use one released common framework baseline and separately versioned
+client adapters and standards datasets. Give each project a small,
+readable selector and an explicit compatibility record. Keep
+development, acceptance testing and production content apart; the
+acceptance environment should reproduce production structure and
+permissions.</p>
+<p>We should be able to explain any startup with a chain of evidence:
+document context, effective CSB, WorkArea setup, selected adapter, final
+roots, loaded standards and drawing output. That is more useful than a
+screenshot showing that the application launched.</p>
+<p>Do not assume DMWF automatically overlays corporate standards, client
+standards, discipline standards and project exceptions in that order.
+Establish that order through deliberate native configuration includes
+and resource search paths. An organization library can add corporate
+tools while a client library controls deliverable standards, but
+overlapping names need an explicit owner and precedence test.</p>
+<p>For enterprise rollout, keep a per-datasource record of framework
+release, adapter release, installed root, CSB assignment, permissions,
+supported builds, acceptance result and rollback target. Deploy in small
+waves and compare resolved results across datasources. See the runbook
+for the release and recovery procedure.</p>
+<h1 id="dmwf-administrator-deployment-and-support-runbook">DMWF
+administrator deployment and support runbook</h1>
+<h2 id="scope-and-prerequisites">Scope and prerequisites</h2>
+<p>This runbook takes the supplied DMWF 24 template from an isolated
+test installation to a controlled production release. The ProjectWise
+administration steps are procedural guidance; menu names and privileges
+must be checked against the deployed ProjectWise build. We have not
+executed these steps on a live datasource.</p>
+<p>Before starting, identify a datasource administrator, workspace
+maintainer, product SME and project representative. Confirm the intended
+desktop product and exact build, ProjectWise Explorer build, integration
+components and any server processing requirement. Obtain a
+representative design file and an agreed expected drawing output. Decide
+whether ProjectWise Drive is required, optional or outside scope.</p>
+<p>Record the following deployment values before editing files:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Required decision</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Framework root</td>
+<td>Installed ProjectWise folder containing
+<code>Common_Predefined.cfg</code></td>
+</tr>
+<tr class="even">
+<td>Standards root</td>
+<td>Client group and Configuration location</td>
+</tr>
+<tr class="odd">
+<td>Project root</td>
+<td>WorkArea used by the test document</td>
+</tr>
+<tr class="even">
+<td>Selection method</td>
+<td>Standard, nest, marker or nest plus include</td>
+</tr>
+<tr class="odd">
+<td>Workspace</td>
+<td>Exact folder name and matching CFG name</td>
+</tr>
+<tr class="even">
+<td>WorkSet</td>
+<td>Expected name, CFG path, design root and DGNWS location</td>
+</tr>
+<tr class="odd">
+<td>Compatibility</td>
+<td>Approved product builds and server exceptions</td>
+</tr>
+<tr class="even">
+<td>Drive</td>
+<td>Organization name, local root, sync names and missing-content
+policy</td>
+</tr>
+<tr class="odd">
+<td>Release owner</td>
+<td>Person who approves production deployment</td>
+</tr>
+<tr class="even">
+<td>Rollback target</td>
+<td>Known previous framework, adapters and standards set</td>
+</tr>
+</tbody>
+</table>
+<h2 id="procedure-a-install-a-minimal-test-environment">Procedure A
+install a minimal test environment</h2>
+<ol type="1">
+<li>Retain the uploaded ZIP unchanged. Calculate and record its checksum
+and identify this as the vendor baseline. Do not rename every vendor
+file as part of the first installation.</li>
+<li>In an isolated resource location, import the complete
+<code>Bentley 2024</code> and sibling <code>ClientWorkspaces</code>
+branches. Preserve their relative arrangement because group discovery
+uses the parent of the Bentley root.</li>
+<li>Check that the common CFG, <code>_PWSetup</code> modules,
+<code>Configuration</code> folder and the client
+<code>Configuration2024</code> workspace exist in ProjectWise. Imported
+folders are not a substitute for imported documents; verify actual CFG
+documents are present and readable.</li>
+<li>Create a Predefined CSB named clearly for the environment. Add
+<code>_DYNAMIC_DATASOURCE_BENTLEYROOT</code> using a ProjectWise Folder
+value selected by browsing. Add the common include as a String
+entry.</li>
+<li>Assign the CSB to the agreed test scope. Review effective
+assignments and inherited blocks. Record any other CSB that changes
+workspace roots or names.</li>
+<li>Copy the client’s standard <code>CONNECTExample</code> project
+example to an isolated test-project location and make that project
+folder a WorkArea. Keep its <code>_PWSetup</code> structure and project
+CFG files.</li>
+<li>Open its WorkArea selector. Verify <code>ClientName</code>,
+<code>Configuration2024</code> and <code>CEWorkspaceExampleAdv</code>
+against the installed resource path. Select the standard workspace
+adapter explicitly for the first test.</li>
+<li>Check read permissions on the common root, client standards and
+setup documents using the intended ordinary test account. Confirm
+project and DGNWS write permissions only where needed.</li>
+<li>Launch the representative design document from ProjectWise Explorer
+using the approved product association. Capture the final variable
+values and loaded CFG trace.</li>
+<li>Test a cell, a level or feature definition, seed selection, font and
+plotted output relevant to the project. Record actual source paths, not
+only resource display names.</li>
+</ol>
+<p><strong>Pass condition:</strong> all selected names and roots match
+the deployment record, the expected standards load, and the
+representative output passes the product SME’s checks. A launch using
+<code>CONNECTExample</code> as an unexpected fallback is a failed
+project-specific selection test.</p>
+<p><strong>Installation article correction:</strong> Bentley KB0021384
+prints <code>Configuration2023</code> in one variable example while
+identifying the resource path as <code>Configuration2024</code>. For
+this supplied package, use the actual <code>Configuration2024</code>
+folder name. The archive’s branch is <code>ClientWorkspaces</code>,
+plural; do not rely on singular wording in that page.</p>
+<h2 id="procedure-b-onboard-a-real-client-dataset">Procedure B onboard a
+real client dataset</h2>
+<ol type="1">
+<li>Inventory the source dataset and preserve an unchanged copy. Record
+its supplier, revision, licence constraints and supported product
+builds.</li>
+<li>Launch a representative file against the original intended dataset,
+where feasible, and capture the expected roots and output. This provides
+a comparison baseline.</li>
+<li>Identify the dataset’s Configuration, workspace CFG and WorkSet
+assumptions. Search for absolute local paths, drive letters, environment
+variables, registry dependencies, executable startup actions and
+user-writable resource locations.</li>
+<li>Place the dataset in a client-group branch with a stable name.
+Preserve its internal structure wherever possible rather than
+rearranging resource files to resemble the example dataset.</li>
+<li>Create its Workspace PWSetup adapter. Redirect the framework roots
+and select the project CFG collection. Put ProjectWise-specific path
+adaptation here.</li>
+<li>Add any environment-variable substitutes required by the client
+configuration before their first use. Use workspace-scoped CFG settings
+where appropriate so one agency’s assumptions do not become global
+workstation settings.</li>
+<li>Decide whether Organization standards come from the Bentley common
+root or the client’s Configuration. The group module defaults
+<code>_DYNAMIC_ORGANIZATIONROOT_AT_BENTLEYROOT</code> to <code>1</code>;
+verify the final <code>_USTN_ORGANIZATION</code> rather than assuming
+the client Organization folder will load.</li>
+<li>Create a project selector using exact group, Configuration and
+workspace names. Verify its adapter selection does not match several
+competing CFG files.</li>
+<li>Compare original and managed output. Cover product-specific content
+such as ORD feature definitions, annotation, civil cells, templates,
+terrain and corridor outputs as applicable.</li>
+<li>Test the second client workspace in the same environment. Confirm
+selection does not carry state or resource paths from the first project
+into the second. Only then approve the multi-client configuration.</li>
+</ol>
+<p><strong>Pass condition:</strong> the client’s intended standards and
+outputs are preserved, deliberate adaptations are documented, and
+cross-client tests do not expose unintended resources.</p>
+<h2 id="procedure-c-implement-a-multi-package-project">Procedure C
+implement a multi-package project</h2>
+<p>Choose either a fixed-depth contract or a marker contract. Record it
+as part of the project folder standard. Do not give every project owner
+a different nest depth without a reason.</p>
+<p>For FindByNest, start with the supplied matching WorkArea and
+workspace templates. Verify that the selected folder at the configured
+depth names an existing project CFG. For the advanced client examples,
+the project CFG collection contains <code>1234.cfg</code> and
+<code>5678.cfg</code> in the relevant test structures. Copying only the
+main project selector without these companion files is incomplete.</p>
+<p>For FindByExists, set a sufficiently distinctive root and package
+marker. Include a negative test with a missing marker and another with a
+duplicate marker in an unexpected ancestor. Confirm that a failed
+discovery does not silently open with a default standards set.</p>
+<p>For Plus Include, inventory every matching
+<code>PWSetupByFind_Predefined*.cfg</code> in the ancestor chain. Record
+their processing order and final values. Test both branches of the
+project, because a local include can affect only a subset of
+documents.</p>
+<p><strong>Pass condition:</strong> each representative document selects
+its expected package name, CFG and design root. Moving a document
+outside the approved structure either produces the designed error or a
+documented alternative selection. See Diagrams 03 and 04.</p>
+<h2 id="procedure-d-configure-optional-drive-content">Procedure D
+configure optional Drive content</h2>
+<p>Enable Drive only after the managed configuration passes without it,
+unless the workspace depends on local-only resources. Confirm the actual
+Drive organization name and registry root for the test user. Configure
+sync names to match the variables used by the module.</p>
+<p>Test these cases separately:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Case</th>
+<th>Evidence to capture</th>
+<th>Required result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Drive available and hydrated</td>
+<td>Root, selected local paths and resource hashes</td>
+<td>Approved local content is used</td>
+</tr>
+<tr class="even">
+<td>Root exists with missing resources</td>
+<td>Missing filename and application response</td>
+<td>Clear failure or explicitly approved fallback</td>
+</tr>
+<tr class="odd">
+<td>Drive not installed or signed in</td>
+<td>Found flag and message</td>
+<td>Required mode fails; optional mode follows documented policy</td>
+</tr>
+<tr class="even">
+<td>Different user’s profile</td>
+<td>Registry root and organization name</td>
+<td>No dependency on the maintainer’s personal path</td>
+</tr>
+<tr class="odd">
+<td>Sync folder renamed</td>
+<td>Selected local group or Configuration</td>
+<td>Misconfiguration is detected</td>
+</tr>
+<tr class="even">
+<td>New release downloaded</td>
+<td>Release identity and resource resolution</td>
+<td>Framework and dataset remain a tested pair</td>
+</tr>
+<tr class="odd">
+<td>Server execution</td>
+<td>Process identity and resource paths</td>
+<td>No accidental dependence on desktop Drive sync</td>
+</tr>
+</tbody>
+</table>
+<p>Do not equate root existence with release availability. A file
+hydration problem and a CFG routing problem can produce similar
+application symptoms; gather both kinds of evidence.</p>
+<h2 id="procedure-e-promote-and-roll-back">Procedure E promote and roll
+back</h2>
+<p>Development content may contain experiments. Acceptance content must
+represent the intended production files, layout, permissions and version
+restrictions. Promote a release as a coherent set: common framework,
+modified setup modules, workspace adapters, project selectors where
+changed and standards resources.</p>
+<ol type="1">
+<li>Freeze the proposed release and generate a manifest of filenames and
+checksums.</li>
+<li>Run the acceptance matrix below and record evidence for each
+case.</li>
+<li>Obtain release approval from the designated owner and technical
+acceptance from the product SME.</li>
+<li>Install the approved content into the production resource branch
+using the agreed deployment mechanism. Re-resolve ProjectWise folder
+values and identifiers for the target datasource; do not carry one
+datasource’s bindings into another.</li>
+<li>Check effective CSB assignments, permissions and root paths. Run a
+post-deployment smoke test as an ordinary user.</li>
+<li>Record the actual deployed release and retain the previous manifest
+and binding information.</li>
+<li>Monitor initial users and server processing. Halt further waves if
+standards selection or output differs.</li>
+</ol>
+<p>For rollback, close affected application sessions, restore the
+previous coherent content and its CSB or selector bindings, then repeat
+the smoke test. Restoring one CFG while leaving incompatible adapters or
+resources in place is not a complete rollback. Separate workspace
+rollback from changes users have already saved into design files;
+restoring the workspace does not undo design-file content.</p>
+<p>See Diagram 05 for promotion and rollback gates.</p>
+<h2 id="acceptance-matrix">Acceptance matrix</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Test</th>
+<th>Setup</th>
+<th>Pass evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bootstrap</td>
+<td>Ordinary account and assigned CSB</td>
+<td>Common CFG trace and correct framework root</td>
+</tr>
+<tr class="even">
+<td>Standard selection</td>
+<td>Standard client example</td>
+<td>Group, Configuration and workspace match</td>
+</tr>
+<tr class="odd">
+<td>WorkSet selection</td>
+<td>Real project with expected CFG</td>
+<td>Exact CFG path, name and design root</td>
+</tr>
+<tr class="even">
+<td>Missing project CFG</td>
+<td>Remove or rename in test only</td>
+<td>Designed error or approved explicit fallback</td>
+</tr>
+<tr class="odd">
+<td>Missing workspace CFG</td>
+<td>Invalid workspace name in test only</td>
+<td>Understandable failure</td>
+</tr>
+<tr class="even">
+<td>Wrong product</td>
+<td>Unapproved generation or build</td>
+<td>Restriction behaves as specified</td>
+</tr>
+<tr class="odd">
+<td>Unknown version</td>
+<td>Detection cannot supply version</td>
+<td>Policy handles unknown value deliberately</td>
+</tr>
+<tr class="even">
+<td>Multi-client</td>
+<td>Two client projects in succession</td>
+<td>No cross-client standards leakage</td>
+</tr>
+<tr class="odd">
+<td>Nested WorkArea</td>
+<td>Child project below parent</td>
+<td>Intended project root selected</td>
+</tr>
+<tr class="even">
+<td>Deep hierarchy</td>
+<td>Approved maximum depth</td>
+<td>Search resolves or fails predictably</td>
+</tr>
+<tr class="odd">
+<td>Path include</td>
+<td>Conflicting test values in child and parent</td>
+<td>Actual order and precedence documented</td>
+</tr>
+<tr class="even">
+<td>Permission denial</td>
+<td>Resource read denied in test</td>
+<td>Diagnosable failure and no unrelated standards fallback</td>
+</tr>
+<tr class="odd">
+<td>Rendition</td>
+<td>Approved server build</td>
+<td>Font, line style and print output match</td>
+</tr>
+<tr class="even">
+<td>iTwin processing</td>
+<td>Approved processing configuration</td>
+<td>Correct dataset without desktop-only dependency</td>
+</tr>
+<tr class="odd">
+<td>Drive</td>
+<td>Fresh profile and cold content</td>
+<td>Required local resources available</td>
+</tr>
+<tr class="even">
+<td>Rollback</td>
+<td>Previous released content restored</td>
+<td>Known-good paths and output recovered</td>
+</tr>
+</tbody>
+</table>
+<h2 id="first-line-support-procedure">First line support procedure</h2>
+<p>Ask for the document path, datasource, product name and exact build,
+ProjectWise Explorer build, launch method, workspace and WorkSet shown,
+error text and time of failure. Identify whether the problem affects one
+document, one WorkArea, one user, one product or all users after a
+release.</p>
+<p>Inspect the effective root and common include first. If the common
+trace is absent, diagnose CSB assignment, application integration or
+launch route before editing a client dataset. If the common trace is
+present, inspect the WorkArea root, selector and workspace adapter. Then
+inspect the WorkSet CFG and resource paths. See Diagram 06.</p>
+<p>Useful diagnostics include <code>_DYNAMIC_CONFIGS</code>,
+<code>_DYNAMIC_MSG_VALIDATION</code>,
+<code>FINDDIR_VALIDATION_MSG</code> and
+<code>INCLUDEINPATH_VALIDATION_MSG</code>. Search for the first
+unexpected root or missing include, rather than starting with the final
+resource error.</p>
+<p>A message appended to <code>_DYNAMIC_MSG_VALIDATION</code> is not
+necessarily a hard startup failure and is not proof of a visible user
+notification. Inspect the final variable and application behaviour. A
+<code>%error</code> debug statement, in contrast, may intentionally
+interrupt loading.</p>
+<p>Use debug switches on an isolated test scope. Record their prior
+values, reproduce the failure, capture the result and remove them. Do
+not leave <code>_DYNAMIC_DEBUG_COMMONPREDEFINED</code>,
+<code>FINDDIR_DEBUG_SUMMARY</code> or helper error-summary switches
+enabled in production.</p>
+<h2 id="troubleshooting-reference">Troubleshooting reference</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symptom</th>
+<th>First checks</th>
+<th>Corrective action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>No DMWF trace</td>
+<td>Effective CSB and launch route</td>
+<td>Correct assignment or integration before dataset edits</td>
+</tr>
+<tr class="even">
+<td>Configuration root not found</td>
+<td>Group name, sibling roots and Configuration name</td>
+<td>Match real folder names; review Drive overrides</td>
+</tr>
+<tr class="odd">
+<td>Workspace CFG not found</td>
+<td>Workspace folder and sibling <code>&lt;Workspace&gt;.cfg</code></td>
+<td>Correct selection or restore missing CFG</td>
+</tr>
+<tr class="even">
+<td>Wrong WorkSet</td>
+<td>Selected adapter, nest or marker result</td>
+<td>Correct hierarchy contract and project CFG mapping</td>
+</tr>
+<tr class="odd">
+<td>Example standards load</td>
+<td>Default WorkSet fallback and defaults</td>
+<td>Provide project CFG; make expected path an acceptance gate</td>
+</tr>
+<tr class="even">
+<td>Wrong Organization resources</td>
+<td>Common-root Organization switch</td>
+<td>Set intentional source before its calculation</td>
+</tr>
+<tr class="odd">
+<td>Version restriction fails</td>
+<td>Engine identity and detected version</td>
+<td>Correct detection or approved restriction; retain control</td>
+</tr>
+<tr class="even">
+<td>Drive root not found</td>
+<td>Organization name, current-user registry and sign-in</td>
+<td>Correct user configuration and sync setup</td>
+</tr>
+<tr class="odd">
+<td>Drive root found but resource missing</td>
+<td>Hydration, sync membership and resource filename</td>
+<td>Repair content availability; do not assume routing failure</td>
+</tr>
+<tr class="even">
+<td>Unexpected include override</td>
+<td>Child-to-parent sequence and operators</td>
+<td>Remove conflict or establish intended precedence</td>
+</tr>
+<tr class="odd">
+<td>Server differs from desktop</td>
+<td>Environment flags, service account, fonts and versions</td>
+<td>Test server-specific configuration and permissions</td>
+</tr>
+<tr class="even">
+<td>Repeated workspace comparison changes</td>
+<td>Ignore list and dynamic values</td>
+<td>Verify supplied ignore-list construction before modifying
+policy</td>
+</tr>
+<tr class="odd">
+<td>Local option appears ineffective</td>
+<td>Active adapter call and exact flag names</td>
+<td>Use implemented flags and establish them at the right time</td>
+</tr>
+</tbody>
+</table>
+<h2 id="support-evidence-record">Support evidence record</h2>
+<p>Use the following fields in a ticket: incident ID; timestamp and
+timezone; datasource; ProjectWise document and WorkArea paths; user and
+device; product/build; Explorer/build; framework/adapters/dataset
+releases; effective CSB; final <code>_USTN_</code> roots and names;
+relevant dynamic variables; first failed include; error text; resource
+or output affected; last known good launch; changes since that launch;
+reproduction steps; debug changes applied and removed; proposed fix;
+test result; rollback result if used.</p>
+<p>Do not include authentication tokens, passwords or unrelated project
+data. Path and release evidence usually provide enough context for
+configuration diagnosis.</p>
+<h1 id="dmwf-configuration-reference">DMWF configuration reference</h1>
+<h2 id="reading-this-reference">Reading this reference</h2>
+<p>This is a curated reference for the supplied 24.0.0.0 package. For
+exact assignment locations, operators and source line numbers, use
+<code>09-Variable-Occurrence-Index.md</code>. That generated index
+includes active assignment statements across all supplied CFGs,
+including documentation templates and alternate examples. An occurrence
+in the index does not prove that the file loads for a particular
+project.</p>
+<p>The delivered workbook is useful for understanding structure but
+contains older variable names, V8 entries and values that differ from
+active 24 defaults. Prefer the delivered implementation for this
+package, then verify its runtime result. Preserve exact spelling when a
+variable is consumed by code, including the delivered
+<code>_DYNAMIC_PRODUCT_ONE_VARIBLES</code> spelling.</p>
+<h2 id="names-and-roots">Names and roots</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Role</th>
+<th>Usual source or consumer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>_DYNAMIC_DATASOURCE_BENTLEYROOT</code></td>
+<td>Root of common framework</td>
+<td>Predefined CSB; consumed throughout</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_DATASOURCE</code></td>
+<td>Current datasource Documents context</td>
+<td>Common file assigns <code>@:</code></td>
+</tr>
+<tr class="odd">
+<td><code>_DGNDIR</code></td>
+<td>Context path for the opened design file</td>
+<td>Application/integration input</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_CONNECTEDPROJECT</code></td>
+<td>Connected project root if found</td>
+<td>Common file using <code>DMS_CONNECTEDPROJECT</code></td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_WORKAREA</code></td>
+<td>WorkArea context for opened file</td>
+<td>Common file using <code>DMS_PROJECT</code></td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_PARENTWORKAREA</code></td>
+<td>Parent WorkArea context</td>
+<td>Common file using <code>DMS_PARENTPROJECT</code></td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_WORKAREAROOT</code></td>
+<td>Root chosen for project setup</td>
+<td>Common setup discovery</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_WORKAREAROOT_NAME</code></td>
+<td>Chosen root’s name</td>
+<td>Used for default WorkSet selection</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_PWSETUP_PATH</code></td>
+<td>General setup-folder path</td>
+<td>Common default <code>_PWSetup/</code></td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_WORKAREA_PWSETUP_PATH</code></td>
+<td>WorkArea-specific setup path</td>
+<td>Datasource default <code>_PWSetup/</code></td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_WORKSPACEGROUPNAME</code></td>
+<td>Client or group selection</td>
+<td>WorkArea selector</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_WORKSPACEGROUPSROOT</code></td>
+<td>Collection of groups</td>
+<td>Group module or explicit configuration</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_WORKSPACEGROUPROOT</code></td>
+<td>Selected group root</td>
+<td>Group module; optionally Drive</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_WORKSPACEGROUP_CONFIGURATIONNAME</code></td>
+<td>Configuration folder within group</td>
+<td>WorkArea selector or default</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_CONFIGURATIONNAME</code></td>
+<td>Common Configuration folder name</td>
+<td>Datasource default <code>Configuration</code></td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_CONFIGURATIONROOT</code></td>
+<td>Selected Configuration root</td>
+<td>Group processing or Drive/local adaptation</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_CONFIGURATIONROOT_PWSETUP</code></td>
+<td>Configuration adaptation root</td>
+<td>Group/common calculations</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_CEORGANIZATIONROOT</code></td>
+<td>Organization standards root</td>
+<td>Group/common calculations</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_CEWORKSPACESROOT</code></td>
+<td>Workspace collection</td>
+<td>Group/common calculations</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_CEWORKSPACENAME</code></td>
+<td>Selected workspace name</td>
+<td>WorkArea selector or default</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_CEWORKSPACEROOT</code></td>
+<td>Selected workspace content root</td>
+<td>Common calculations</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_CEWORKSPACEROOT_PWSETUP</code></td>
+<td>Selected workspace adapter root</td>
+<td>Common/group calculations</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_WORKSPACECFG</code></td>
+<td>Workspace CFG file</td>
+<td>Common framework</td>
+</tr>
+</tbody>
+</table>
+<p>Verify root variables as expanded paths, not just their definitions.
+A correct-looking definition can expand through a wrong group or Drive
+root. Root variables and root-name variables are not
+interchangeable.</p>
+<h2 id="workset-selection-and-working-content">WorkSet selection and
+working content</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Role</th>
+<th>Standard example behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>_DYNAMIC_WORKSPACEPWSETUP_PREDEFINED_NAME</code></td>
+<td>Workspace adapter filename or pattern</td>
+<td>Default <code>WorkspacePWSetup_Predefined*.cfg</code></td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_WORKAREA_CFG_PATH</code></td>
+<td>Project CFG collection relative to WorkArea</td>
+<td><code>_PWSetup/WorkSets/</code></td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_WORKAREA_CFG_ROOT</code></td>
+<td>Expanded CFG collection</td>
+<td>Project location if present, otherwise workspace collection</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_WORKSET_NAME</code></td>
+<td>Intended WorkSet name</td>
+<td>WorkArea name or discovered package name</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_WORKSET_DEFAULTNAME</code></td>
+<td>Fallback CFG name</td>
+<td>Common default <code>ConnectExample</code>; adapter example
+<code>CONNECTExample</code></td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_WORKAREA_SUBPATH</code></td>
+<td>Relative design/project working location</td>
+<td>Empty by default or discovered by helper</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_WORKAREA_WORKSET_PATH</code></td>
+<td>Adapter’s relative WorkSet path</td>
+<td>Defaults from subpath</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_WORKAREA_WORKSET_ROOT</code></td>
+<td>Adapter’s expanded working root</td>
+<td>Project root plus relative path</td>
+</tr>
+<tr class="odd">
+<td><code>_USTN_WORKSETSROOT</code></td>
+<td>WorkSet CFG collection for Bentley</td>
+<td>Adapter’s CFG root</td>
+</tr>
+<tr class="even">
+<td><code>_USTN_WORKSETNAME</code></td>
+<td>Selected Bentley WorkSet name</td>
+<td>Intended name or fallback</td>
+</tr>
+<tr class="odd">
+<td><code>_USTN_WORKSETCFG</code></td>
+<td>Selected Bentley WorkSet CFG</td>
+<td>Existing project CFG or fallback CFG</td>
+</tr>
+<tr class="even">
+<td><code>_USTN_WORKSETROOT</code></td>
+<td>WorkSet working root</td>
+<td>Adapter’s working root</td>
+</tr>
+<tr class="odd">
+<td><code>_USTN_WORKSETSDGNWSROOT</code></td>
+<td>DGNWS root setting</td>
+<td>Defaults to selected WorkSets collection</td>
+</tr>
+<tr class="even">
+<td><code>_USTN_WORKSETSTANDARDS</code></td>
+<td>Project standards location</td>
+<td>Standard example uses WorkSet root plus <code>Standards/</code></td>
+</tr>
+</tbody>
+</table>
+<p>Do not use Windows case-insensitivity as a naming policy. Use the
+exact stored folder and document names in release records. Renaming a
+WorkArea may alter derived WorkSet selection even when the standards
+themselves have not changed.</p>
+<h2 id="final-application-framework-settings">Final application
+framework settings</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Application variable</th>
+<th>DMWF meaning</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>_USTN_CONFIGURATION</code></td>
+<td>Selected Configuration</td>
+<td>Correct managed or approved local root</td>
+</tr>
+<tr class="even">
+<td><code>_USTN_CUSTOM_CONFIGURATION</code></td>
+<td>Custom Configuration redirection</td>
+<td>Matches intended framework route</td>
+</tr>
+<tr class="odd">
+<td><code>_USTN_USER_CONFIGURATION</code></td>
+<td>User Configuration redirection</td>
+<td>No unexpected personal dataset</td>
+</tr>
+<tr class="even">
+<td><code>_USTN_ORGANIZATION</code></td>
+<td>Organization resource layer</td>
+<td>Corporate or client source chosen deliberately</td>
+</tr>
+<tr class="odd">
+<td><code>_USTN_WORKSPACESROOT</code></td>
+<td>Collection of workspace CFGs</td>
+<td>Contains selected CFG</td>
+</tr>
+<tr class="even">
+<td><code>_USTN_WORKSPACENAME</code></td>
+<td>Selected workspace name</td>
+<td>Matches project requirement</td>
+</tr>
+<tr class="odd">
+<td><code>_USTN_WORKSPACECFG</code></td>
+<td>Selected workspace CFG</td>
+<td>Exact expected file</td>
+</tr>
+<tr class="even">
+<td><code>_USTN_WORKSPACEROOT</code></td>
+<td>Workspace standards content root</td>
+<td>Correct client and dataset release</td>
+</tr>
+<tr class="odd">
+<td><code>_USTN_CONNECT_PROJECTGUID</code></td>
+<td>Connected project identity if available</td>
+<td>Separate from WorkSet selection</td>
+</tr>
+</tbody>
+</table>
+<p>The common file locks several of these roots and names. An adapter
+should establish intended values before later locks; normal standards
+settings should consume them rather than repeatedly trying to redirect
+them afterward.</p>
+<h2 id="default-switches-verified-in-the-package">Default switches
+verified in the package</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Switch or setting</th>
+<th>Delivered default</th>
+<th>Implication</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>_DYNAMIC_FINDWORKAREAROOT_ADV</code></td>
+<td><code>0</code>, assigned with <code>=</code> in defaults</td>
+<td>Advanced discovery is off; earlier values may be replaced</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_WORKAREA_BY_PWWORKAREA_AND_EXISTS_PATH</code></td>
+<td><code>1</code></td>
+<td>Used within enabled advanced discovery</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_WORKAREAROOT_MAXWORKAREANEST</code></td>
+<td><code>4</code> in defaults</td>
+<td>Advanced module supports up to four WorkArea contexts</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_WORKAREA_BY_ROOT_NAME</code></td>
+<td><code>0</code></td>
+<td>Name-based advanced root discovery off</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_WORKAREA_BY_EXISTS</code></td>
+<td><code>0</code></td>
+<td>Marker-based advanced root discovery off</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_WORKAREA_BY_DEFAULT_VALUES</code></td>
+<td><code>0</code> in defaults</td>
+<td>Advanced default-root fallback off</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_WORKAREA_EXISTS_PATH</code></td>
+<td><code>_PWSetup/WorkAreaPWSetup*.cfg</code></td>
+<td>Marker used for advanced discovery</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_WORKAREA_PWSETUP_ENABLED</code></td>
+<td><code>1</code> in coordinator</td>
+<td>Reads project selector if root is found</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_WORKSPACEGROUPS_ENABLED</code></td>
+<td><code>1</code></td>
+<td>Workspace group processing on</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_WORKSPACEGROUPSROOT_NAME1</code></td>
+<td><code>ClientWorkspaces/</code></td>
+<td>First sibling group collection candidate</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_WORKSPACEGROUPSROOT_NAME2</code></td>
+<td><code>WorkspaceGroups/</code></td>
+<td>Second sibling candidate</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_ORGANIZATIONROOT_AT_BENTLEYROOT</code></td>
+<td><code>1</code> in group module</td>
+<td>Organization resources normally remain common</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_CONFIGURATIONROOT_AT_BENTLEYROOT</code></td>
+<td><code>0</code></td>
+<td>Group Configuration normally supplies configuration root</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_PWSETUP_IN_CONFIGURATION</code></td>
+<td><code>1</code></td>
+<td>Uses calculated in-configuration setup roots</td>
+</tr>
+<tr class="odd">
+<td><code>_PROJECTWISE_DRIVE_ENABLED</code></td>
+<td><code>0</code></td>
+<td>Drive processing opt-in</td>
+</tr>
+<tr class="even">
+<td><code>_PROJECTWISE_DRIVE_REQUIRED</code></td>
+<td><code>0</code> in Drive module</td>
+<td>Missing Drive root not mandatory failure by default</td>
+</tr>
+<tr class="odd">
+<td><code>_PROJECTWISE_DRIVE_ENABLE_ERRORS</code></td>
+<td><code>0</code></td>
+<td>Certain missing paths append validation instead of hard error</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_CHECK_VERSION</code></td>
+<td><code>1</code> in standard adapter</td>
+<td>Example product checks active</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_USE_LOCAL_ROOT</code></td>
+<td><code>0</code> in standard adapter</td>
+<td>Local-root helper opt-in</td>
+</tr>
+</tbody>
+</table>
+<p>A module’s default can differ from the earlier datasource default.
+Read the sequence and the operators before deciding which value applies.
+The automatically enabled OneMapping path for detected Explorer major
+<code>10</code> is another reason not to interpret every visible
+<code>:0</code> as a final disabled value.</p>
+<h2 id="drive-reference">Drive reference</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Purpose</th>
+<th>Operating note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>_PROJECTWISE_DRIVE_ORG</code></td>
+<td>Organization key and profile folder name</td>
+<td>Sample default must be adapted</td>
+</tr>
+<tr class="even">
+<td><code>_PROJECTWISE_DRIVE_REG</code></td>
+<td>Registry-supplied organization directory</td>
+<td>Per current user</td>
+</tr>
+<tr class="odd">
+<td><code>_PROJECTWISE_DRIVE</code></td>
+<td>Found local Drive root</td>
+<td>Registry route sets and locks it</td>
+</tr>
+<tr class="even">
+<td><code>_PROJECTWISE_DRIVE_FOUND</code></td>
+<td>Root-found flag</td>
+<td>Existence signal only</td>
+</tr>
+<tr class="odd">
+<td><code>_PROJECTWISE_DRIVE_CONFIGURATIONNAME</code></td>
+<td>Local Configuration folder selector</td>
+<td>Used when group selector is not present</td>
+</tr>
+<tr class="even">
+<td><code>_PROJECTWISE_DRIVE_CONFIGURATIONROOT</code></td>
+<td>Local Configuration root</td>
+<td>Can feed <code>_DYNAMIC_CONFIGURATIONROOT</code></td>
+</tr>
+<tr class="odd">
+<td><code>_PROJECTWISE_DRIVE_WORKSPACEGROUPNAME</code></td>
+<td>Local group folder selector</td>
+<td>Has precedence over Configuration selector in module</td>
+</tr>
+<tr class="even">
+<td><code>_PROJECTWISE_DRIVE_WORKSPACEGROUPROOT</code></td>
+<td>Local group path</td>
+<td>Can feed <code>_DYNAMIC_WORKSPACEGROUPROOT</code></td>
+</tr>
+<tr class="odd">
+<td><code>_PROJECTWISE_DRIVE_WORKAREANAME</code></td>
+<td>Local WorkArea folder name</td>
+<td>Falls back to resolved WorkArea root name</td>
+</tr>
+<tr class="even">
+<td><code>_PROJECTWISE_DRIVE_WORKAREA</code></td>
+<td>Local WorkArea path</td>
+<td>Verify actual consumers; finding it does not prove all design roots
+changed</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_PWDRIVE_PROCESSED</code></td>
+<td>Processing-complete flag</td>
+<td>Prevents repeated coordinator processing</td>
+</tr>
+</tbody>
+</table>
+<h2 id="search-helpers">Search helpers</h2>
+<p><code>FindNameInPath.cfg</code> and <code>FindInPath.cfg</code>
+search upward from a starting context. They use temporary
+<code>FINDDIR_</code> variables and default cleanup. Several results
+remain useful to callers, while parameters and temporary values can be
+undefined. Copy required values into persistent <code>_DYNAMIC_</code>
+variables before explicitly clearing state or starting another
+independent search. Inspect the helper’s actual cleanup block when
+troubleshooting missing evidence.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter or result</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>FINDDIR_SEARCHPATH</code></td>
+<td>Starting path, normally <code>_DGNDIR</code></td>
+</tr>
+<tr class="even">
+<td><code>FINDDIR_NAME</code></td>
+<td>Legacy name input used by examples</td>
+</tr>
+<tr class="odd">
+<td><code>FINDDIR_FINDNAME</code></td>
+<td>Enable name matching</td>
+</tr>
+<tr class="even">
+<td><code>FINDDIR_FINDNAME_NAME1</code> and <code>NAME2</code></td>
+<td>Alternate name candidates in FindInPath</td>
+</tr>
+<tr class="odd">
+<td><code>FINDDIR_FINDIFEXISTS</code></td>
+<td>Enable marker existence search</td>
+</tr>
+<tr class="even">
+<td><code>FINDDIR_FINDIFEXISTS_PATH</code></td>
+<td>Marker path relative to each candidate ancestor</td>
+</tr>
+<tr class="odd">
+<td><code>FINDDIR_NEST</code></td>
+<td>Child depth relative to discovered root, as implemented by
+helper</td>
+</tr>
+<tr class="even">
+<td><code>FINDDIR_FINDIFEXISTS_NEST</code></td>
+<td>Enable nested marker route</td>
+</tr>
+<tr class="odd">
+<td><code>FINDDIR_FINDIFEXISTS_NEST_PATH</code></td>
+<td>Marker identifying nested selection</td>
+</tr>
+<tr class="even">
+<td><code>FINDDIR_GETROOTPATH</code> and <code>GETNESTPATH</code></td>
+<td>Request relative path construction</td>
+</tr>
+<tr class="odd">
+<td><code>FINDDIR_FOUND</code></td>
+<td>Search state and found directory position; not only a Boolean</td>
+</tr>
+<tr class="even">
+<td><code>FINDDIR_FINDNAME_FOUND</code></td>
+<td>Specific successful name-match flag</td>
+</tr>
+<tr class="odd">
+<td><code>FINDDIR_FINDIFEXISTS_FOUND</code></td>
+<td>Specific successful marker-match flag</td>
+</tr>
+<tr class="even">
+<td><code>FINDDIR_FOUNDROOT</code></td>
+<td>Found ancestor path</td>
+</tr>
+<tr class="odd">
+<td><code>FINDDIR_FOUNDNEST_NAME</code></td>
+<td>Selected nested folder name</td>
+</tr>
+<tr class="even">
+<td><code>FINDDIR_FOUNDNEST_DIR</code></td>
+<td>Selected nested folder path</td>
+</tr>
+<tr class="odd">
+<td><code>FINDDIR_FOUNDNEST_PATH</code></td>
+<td>Constructed relative path</td>
+</tr>
+<tr class="even">
+<td><code>FINDDIR_SEARCHED</code></td>
+<td>Search trace path</td>
+</tr>
+<tr class="odd">
+<td><code>FINDDIR_UNDEF</code></td>
+<td>Default cleanup switch</td>
+</tr>
+<tr class="even">
+<td><code>FINDDIR_UNDEF_ONLY</code></td>
+<td>Cleanup-only mode</td>
+</tr>
+<tr class="odd">
+<td><code>FINDDIR_DEBUG_SUMMARY</code></td>
+<td>Debug mode which can use <code>%error</code></td>
+</tr>
+<tr class="even">
+<td><code>FINDDIR_VALIDATION_MSG</code></td>
+<td>Helper diagnostic text</td>
+</tr>
+</tbody>
+</table>
+<p>Do not treat a nonzero <code>FINDDIR_FOUND</code> as sufficient proof
+of a valid semantic match. Some source branches assign a position even
+when ancestry is exhausted. Check the relevant specific match flag and
+the returned path against the project contract.</p>
+<h2 id="includeinpath-reference">IncludeInPath reference</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter or result</th>
+<th>Delivered default</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>INCLUDEINPATH_SEARCHPATH</code></td>
+<td><code>_DGNDIR</code></td>
+<td>Start of ancestor walk</td>
+</tr>
+<tr class="even">
+<td><code>INCLUDEINPATH_STOPNAME</code></td>
+<td>Last directory piece of <code>_DGNDIR</code></td>
+<td>Stop boundary; override for project use</td>
+</tr>
+<tr class="odd">
+<td><code>INCLUDEINPATH_NESTMAX</code></td>
+<td><code>4</code></td>
+<td>Source traversal gate, not an intuitive exact folder count</td>
+</tr>
+<tr class="even">
+<td><code>INCLUDEINPATH_EXISTSPATH</code></td>
+<td><code>IfExistsPath/Include*.cfg</code></td>
+<td>Pattern relative to each visited folder</td>
+</tr>
+<tr class="odd">
+<td><code>INCLUDEINPATH_CONTINUE</code></td>
+<td><code>0</code></td>
+<td>Stop after first match unless enabled</td>
+</tr>
+<tr class="even">
+<td><code>INCLUDEINPATH_INCLUDEDEPTH</code></td>
+<td>Not-found text initially</td>
+<td>Tracks visited depth during processing</td>
+</tr>
+<tr class="odd">
+<td><code>INCLUDEINPATH_DEBUG_SUMMARY</code></td>
+<td><code>0</code></td>
+<td>Appends diagnostic detail</td>
+</tr>
+<tr class="even">
+<td><code>INCLUDEINPATH_ERROR_SUMMARY</code></td>
+<td><code>0</code></td>
+<td>Can stop with error summary</td>
+</tr>
+<tr class="odd">
+<td><code>INCLUDEINPATH_UNDEF</code></td>
+<td><code>1</code></td>
+<td>Clears parameters and temporary values afterward</td>
+</tr>
+<tr class="even">
+<td><code>INCLUDEINPATH_VALIDATION_MSG</code></td>
+<td>Accumulated text</td>
+<td>Record of parameters and included locations</td>
+</tr>
+</tbody>
+</table>
+<p>The source gates first depth with <code>NESTMAX&gt;2</code>, second
+depth with <code>&gt;3</code>, third with <code>&gt;4</code>, and so on.
+The supplied Plus Include value of <code>6</code> consequently permits
+up to four implemented positions before other stops, rather than a
+straightforward six-directory traversal. Test the intended boundary and
+do not increase the parameter solely to make the number look like the
+desired depth.</p>
+<h2 id="product-and-environment-reference">Product and environment
+reference</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>_ENGINENAME</code></td>
+<td>Product identity used by adapters and mapping</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_PRODUCT_VERSION</code></td>
+<td>Detected complete product version</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_PRODUCT_VERSION_FOUND</code></td>
+<td>Version detection success flag</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_PRODUCT_VERSION_GEN_MAJ</code></td>
+<td>Generation and major string used by example restrictions</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_PRODUCT_VERSION_PROCESSED</code></td>
+<td>Product module processing guard</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_PWE_VERSION</code> and
+<code>_DYNAMIC_PWE_VERSION_MAJ</code></td>
+<td>Explorer version and mapping decision inputs</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_ONEMAPPING_ENABLED</code></td>
+<td>Optional mapping enable switch</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_PRODUCT_ONE_VARIBLES</code></td>
+<td>Delivered mapping flag with this exact spelling</td>
+</tr>
+<tr class="odd">
+<td><code>_USTN_PRODUCT_ONE_GROUPNAME</code> and
+<code>_USTN_PRODUCT_ONE_SUBGROUPNAME</code></td>
+<td>Product resource grouping</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_IS_ITWINSYNCENGINE</code></td>
+<td>iTwin sync engine detection flag</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_IS_RADS_JOB</code></td>
+<td>Rendition job indicator</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_IS_MSPRINTSERVER</code></td>
+<td>Print-server process indicator</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_ISDWGFILE</code></td>
+<td>DWG extension detection result</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_OS_IS_WORKSTATION</code></td>
+<td>Windows workstation detection result</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_RENDITIONENGINE_CHECK</code></td>
+<td>Enables rendition detection branch</td>
+</tr>
+</tbody>
+</table>
+<h2 id="diagnostic-reference">Diagnostic reference</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>_DYNAMIC_CONFIGS</code></td>
+<td>Ordered trace appended by many delivered CFGs; some labels contain
+older versions</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_MSG_VALIDATION</code></td>
+<td>Accumulated findings and selected roots; can include warnings
+without stopping</td>
+</tr>
+<tr class="odd">
+<td><code>_DYNAMIC_DEBUG_COMMONPREDEFINED</code></td>
+<td>Common final error-summary debug switch</td>
+</tr>
+<tr class="even">
+<td><code>_DYNAMIC_FINDWORKAREAROOT_DEBUG_ERROR</code></td>
+<td>Advanced discovery debug error switch</td>
+</tr>
+<tr class="odd">
+<td><code>FINDDIR_VALIDATION_MSG</code></td>
+<td>Search parameter and result evidence</td>
+</tr>
+<tr class="even">
+<td><code>INCLUDEINPATH_VALIDATION_MSG</code></td>
+<td>Path include evidence</td>
+</tr>
+<tr class="odd">
+<td><code>PW_MWP_COMPARISON_IGNORE_LIST</code></td>
+<td>Workspace comparison exclusions; inspect source anomaly before
+relying on it</td>
+</tr>
+</tbody>
+</table>
+<p>A trace label is not a reliable installed-release identifier when a
+file’s header or append string is stale. Use file hashes and a release
+manifest as the authoritative baseline, then use traces to explain load
+order.</p>
+<h1 id="dmwf-training-workbook-and-facilitator-guide">DMWF training
+workbook and facilitator guide</h1>
+<h2 id="training-purpose">Training purpose</h2>
+<p>By the end of this course, a participant should be able to explain a
+DMWF startup, deploy the standard example in a sandbox, select a client
+workspace, resolve multiple WorkSets and diagnose a wrong standards
+source. Participants should be able to show evidence for a selection
+rather than accepting a successful application launch as proof.</p>
+<p>This is an administrator and workspace-maintainer course. Designers
+can attend the foundation session and user verification exercise.
+Production deployment remains subject to the organisation’s usual
+authority and release process.</p>
+<h2 id="delivery-plan">Delivery plan</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Module</th>
+<th>Time</th>
+<th>Audience</th>
+<th>Learning outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 context and architecture</td>
+<td>35 minutes</td>
+<td>All</td>
+<td>Distinguish Configuration, workspace, WorkArea and WorkSet</td>
+</tr>
+<tr class="even">
+<td>2 configuration language and routing</td>
+<td>40 minutes</td>
+<td>Administrators and maintainers</td>
+<td>Explain include timing, defaults and locks</td>
+</tr>
+<tr class="odd">
+<td>3 basic deployment lab</td>
+<td>60 minutes</td>
+<td>Administrators</td>
+<td>Establish bootstrap and verify final roots</td>
+</tr>
+<tr class="even">
+<td>4 client and package selection</td>
+<td>60 minutes</td>
+<td>Maintainers</td>
+<td>Select explicit adapters and resolve package CFGs</td>
+</tr>
+<tr class="odd">
+<td>5 diagnostics and recovery</td>
+<td>60 minutes</td>
+<td>Support and administrators</td>
+<td>Find first wrong root and recover from a failed release</td>
+</tr>
+<tr class="even">
+<td>6 Drive and integration decisions</td>
+<td>35 minutes</td>
+<td>Maintainers and architects</td>
+<td>Separate local content availability from selection</td>
+</tr>
+<tr class="odd">
+<td>Assessment and discussion</td>
+<td>30 minutes</td>
+<td>All technical participants</td>
+<td>Demonstrate evidence-based diagnosis</td>
+</tr>
+</tbody>
+</table>
+<p>Allow additional breaks and setup time. A two-session delivery works
+well: foundations and standard setup first, advanced selection and
+support second. This is a trainer plan, not a delivered Bentley
+certification programme.</p>
+<h2 id="facilitator-preparation">Facilitator preparation</h2>
+<p>Prepare an isolated ProjectWise datasource or agreed sandbox scope
+with an approved Bentley product and integration. Obtain the supplied
+ZIP and preserve its baseline. Give participants ordinary user accounts
+for verification and appropriately scoped administration accounts for
+setup. Prepare two package folders, representative drawings and known
+expected resource paths.</p>
+<p>Create a separate fault-injection copy of the test setup. Prepare
+faults by changing only one item at a time: wrong Configuration name,
+missing WorkSet CFG, incorrect nest depth, duplicate marker, disabled
+CSB assignment and missing Drive resource. Record the original values so
+each group can reset safely. Never use a production project for fault
+injection.</p>
+<p>Demonstrate Diagram 01 slowly. Stop after each include boundary and
+ask what information is now available. Explain that the arrows describe
+a CFG call sequence and its decisions, not a remote API transaction.</p>
+<h2 id="lab-1-trace-a-configuration-without-launching-it">Lab 1 trace a
+configuration without launching it</h2>
+<p><strong>Goal:</strong> understand the package structure before
+modifying it.</p>
+<ol type="1">
+<li>Find <code>Common_Predefined.cfg</code> and its common PWSetup
+include.</li>
+<li>Find the module that supplies datasource defaults and identify the
+actual advanced-discovery assignment.</li>
+<li>Locate the WorkArea selector for the client’s standard
+<code>CONNECTExample</code>.</li>
+<li>Write the expected client workspace path from its three selection
+names.</li>
+<li>Locate the selected workspace adapter and identify where it looks
+for WorkSet CFG files.</li>
+<li>Locate the final workspace CFG and one project WorkSet CFG.</li>
+</ol>
+<p><strong>Submit:</strong> a six-step written load trace, the three
+client selection names, the expected workspace CFG path and the expected
+WorkSet collection.</p>
+<p><strong>Expected answer:</strong> the client example selects
+<code>ClientName</code>, <code>Configuration2024</code> and
+<code>CEWorkspaceExampleAdv</code>; its workspace CFG is in that
+Configuration’s <code>Workspaces</code> collection. The standard adapter
+first considers the resolved WorkArea’s <code>_PWSetup/WorkSets/</code>,
+then the workspace <code>WorkSets/</code> collection. The delivered
+default advanced-discovery assignment is <code>=0</code>, not the older
+workbook value of <code>1</code>.</p>
+<p><strong>Discussion:</strong> why is a workbook entry not sufficient
+evidence of the active default? It can describe an older release or
+inactive example, whereas the loaded assignment and its position
+determine the runtime value.</p>
+<h2 id="lab-2-deploy-the-standard-client-example">Lab 2 deploy the
+standard client example</h2>
+<p><strong>Goal:</strong> establish a managed startup with evidence.</p>
+<p>Follow Procedure A in the administrator runbook. Import both
+framework branches, create the Predefined bootstrap using a ProjectWise
+Folder value, make the test project a WorkArea and verify its selector
+names.</p>
+<p>Capture <code>_DYNAMIC_DATASOURCE_BENTLEYROOT</code>,
+<code>_DYNAMIC_WORKAREAROOT</code>,
+<code>_DYNAMIC_WORKSPACEGROUPROOT</code>,
+<code>_USTN_CONFIGURATION</code>, <code>_USTN_WORKSPACENAME</code>,
+<code>_USTN_WORKSPACECFG</code>, <code>_USTN_WORKSETNAME</code>,
+<code>_USTN_WORKSETCFG</code> and <code>_USTN_WORKSETROOT</code>.
+Identify a loaded standard resource and its source.</p>
+<p><strong>Submit:</strong> the captured values, a screenshot or
+diagnostic export of the trace, and one verified output example.</p>
+<p><strong>Success criteria:</strong> expected paths and resources,
+correct ordinary-user access and no unexplained fallback.</p>
+<p><strong>Facilitator answer:</strong> values are environment-specific,
+so do not grade by matching a literal datasource path. Grade against the
+participant’s declared deployment layout. Fail a result that opens with
+an unintended default WorkSet.</p>
+<h2 id="lab-3-diagnose-the-configuration-name-fault">Lab 3 diagnose the
+Configuration name fault</h2>
+<p><strong>Goal:</strong> find the first incorrect selection instead of
+bypassing checks.</p>
+<p>In the fault copy, change the project’s client Configuration
+selection from <code>Configuration2024</code> to
+<code>Configuration2023</code>, while leaving the installed folder
+unchanged. Launch the same test document. Capture the error and first
+incorrect expanded path. Restore the original value and retest.</p>
+<p><strong>Submit:</strong> the changed variable, relevant include or
+root failure, correction and successful final path.</p>
+<p><strong>Expected answer:</strong> the selector points at a
+nonexistent client Configuration. Correct the name to the actual folder;
+do not disable validation or create an empty folder simply to suppress
+the error. This mirrors the inconsistency in the published installation
+example.</p>
+<h2 id="lab-4-resolve-two-packages-using-nest-depth">Lab 4 resolve two
+packages using nest depth</h2>
+<p><strong>Goal:</strong> show the relationship between path structure
+and WorkSet name.</p>
+<p>Use the supplied client FindByNest project as the starting example.
+Inspect its package structure and <code>1234.cfg</code> and
+<code>5678.cfg</code>. Select the matching nest adapter. Open one
+representative drawing in each package and capture the selected name,
+relative subpath and CFG.</p>
+<p>In a separate test branch, insert an additional container folder in
+one package’s hierarchy. Predict which folder the same nest depth will
+select, then verify it. Reset the branch afterward.</p>
+<p><strong>Submit:</strong> two successful package resolutions, the
+prediction for the changed hierarchy and actual observed result.</p>
+<p><strong>Expected answer:</strong> the selected child depth is
+relative to the found WorkArea root, not relative to the drawing file
+alone. A fixed depth is reliable only while the hierarchy contract
+remains stable. A mismatched selected name can lead to default CFG
+fallback, so inspect the exact CFG even if startup succeeds.</p>
+<h2 id="lab-5-compare-marker-and-path-include-behaviour">Lab 5 compare
+marker and path include behaviour</h2>
+<p><strong>Goal:</strong> distinguish search from include
+processing.</p>
+<p>Inspect the FindByExists adapter’s root and nested marker parameters.
+In a test copy, provide a distinctive marker and show which package it
+resolves. Introduce a duplicate marker in an unexpected ancestor and
+record the actual result.</p>
+<p>Then use a Plus Include copy. Put
+<code>TRAINING_CONTEXT = Child</code> in an approved matching
+lower-folder CFG and <code>TRAINING_CONTEXT = Parent</code> in a
+matching parent CFG. Enable continued search through the defined
+boundary. Predict and observe the final value. Remove the temporary
+variable and files after the exercise.</p>
+<p><strong>Submit:</strong> marker contract, duplicate-marker result,
+ordered include trace and final training value.</p>
+<p><strong>Expected answer:</strong> marker matching follows the
+implemented ancestor search; duplicates are ambiguous without an agreed
+contract. IncludeInPath processes lower/current folders before
+ancestors. With plain <code>=</code> assignments and continued
+processing, a later parent assignment can leave the value as
+<code>Parent</code>. If an assignment is locked or uses a different
+operator, explain the resulting difference.</p>
+<h2 id="lab-6-diagnose-a-drive-resource-problem">Lab 6 diagnose a Drive
+resource problem</h2>
+<p><strong>Goal:</strong> separate local root discovery from content
+readiness.</p>
+<p>Use a sandbox setup with Drive enabled and an approved local
+resource. Record the organization root and
+<code>_PROJECTWISE_DRIVE_FOUND</code>. In a test copy, remove access to
+one required local resource while retaining the root folder. Launch and
+record the result. Restore the resource and repeat.</p>
+<p><strong>Submit:</strong> root-found result, missing-resource
+evidence, actual resolved search path and corrective action.</p>
+<p><strong>Expected answer:</strong>
+<code>_PROJECTWISE_DRIVE_FOUND=1</code> proves that the module found an
+existing root, not that the required release content is present. Correct
+hydration, sync membership, permissions or the resource deployment as
+appropriate. Do not change the project workspace merely because one file
+is unavailable locally.</p>
+<p>If Drive cannot be made available in the training environment,
+perform this as a tabletop exercise using the module’s branches and a
+sample support record. Mark the exercise as conceptual rather than
+pretending it was executed.</p>
+<h2 id="lab-7-recover-a-failed-release">Lab 7 recover a failed
+release</h2>
+<p><strong>Goal:</strong> practice rollback of a coherent release.</p>
+<p>Create two sandbox releases with manifests. In the second,
+deliberately change one adapter to select a nonexistent project CFG
+while retaining its associated resource release. Attempt the launch and
+capture the selection evidence. Restore the first release’s content and
+bindings, then rerun the ordinary-user smoke test.</p>
+<p><strong>Submit:</strong> failed release identity, restored release
+identity, affected files and bindings, final root and successful
+output.</p>
+<p><strong>Expected answer:</strong> rollback must restore the
+compatible framework, adapter and dataset set, including changed
+assignments. Restoring a single root variable is insufficient if the
+resource content or selector remains incompatible. Design-file changes
+made during the failed release require their own recovery decision.</p>
+<h2 id="assessment-questions-and-model-answers">Assessment questions and
+model answers</h2>
+<ol type="1">
+<li><strong>What is the smallest useful bootstrap?</strong> A correctly
+assigned Predefined CSB containing the common framework root and the
+common CFG include, with readable installed content and functioning
+product integration.</li>
+<li><strong>Why can a correct CSB still have no effect?</strong> It may
+not be part of the document’s effective inherited configuration, or the
+launch route may not process the expected managed integration.</li>
+<li><strong>Can one WorkArea contain several WorkSets?</strong> Yes. The
+adapters can derive package selection from folder names or markers and
+choose a package CFG.</li>
+<li><strong>Why does a later <code>:</code> line not always alter a
+variable?</strong> It is a default assignment; a prior definition can
+remain in force.</li>
+<li><strong>Where should normal resource settings go?</strong> In the
+appropriate native Organization, workspace or WorkSet standards layer,
+with PWSetup principally adapting paths and selection.</li>
+<li><strong>Does a validation message always stop startup?</strong>
+No. Appending to <code>_DYNAMIC_MSG_VALIDATION</code> differs from
+raising <code>%error</code>.</li>
+<li><strong>What is the risk of a WorkSet default?</strong> It can allow
+startup with unintended standards when the real project CFG is
+missing.</li>
+<li><strong>What does Drive root discovery prove?</strong> That a root
+path exists according to the module, not that all release files are
+accessible or hydrated.</li>
+<li><strong>Does <code>ACADConfiguration</code> configure Civil
+3D?</strong> The supplied example is a Bentley DWG rendition
+configuration. An Autodesk deployment route needs separate
+implementation.</li>
+<li><strong>Which evidence distinguishes two similarly named
+datasets?</strong> Expanded source paths and release/file hashes,
+followed by output validation.</li>
+<li><strong>Why must Plus Include order be tested?</strong> It walks
+from the current folder to ancestors; later parent assignments can
+change final values.</li>
+<li><strong>What should happen with a product version of
+<code>00.00.00.00</code>?</strong> Treat it as unknown detection and
+follow an explicit compatibility policy.</li>
+</ol>
+<h2 id="competency-rubric">Competency rubric</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Criterion</th>
+<th>Points</th>
+<th>Full-credit evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Context explanation</td>
+<td>15</td>
+<td>Correctly distinguishes WorkArea, workspace and WorkSet</td>
+</tr>
+<tr class="even">
+<td>Bootstrap setup</td>
+<td>20</td>
+<td>Root, include, effective assignment and ordinary-user proof</td>
+</tr>
+<tr class="odd">
+<td>Selection evidence</td>
+<td>20</td>
+<td>Exact workspace and WorkSet CFG and working roots</td>
+</tr>
+<tr class="even">
+<td>Fault diagnosis</td>
+<td>20</td>
+<td>Finds first wrong input and fixes cause</td>
+</tr>
+<tr class="odd">
+<td>Advanced method</td>
+<td>15</td>
+<td>Explains nest or marker contract and includes a negative test</td>
+</tr>
+<tr class="even">
+<td>Release recovery</td>
+<td>10</td>
+<td>Coherent manifest, bindings and verified rollback</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended pass threshold: 80 out of 100, plus mandatory correct
+workspace selection and removal of temporary debug settings. A
+participant who bypasses compatibility checks without an approved reason
+must repeat the relevant exercise, regardless of total points.</p>
+<h2 id="designer-verification-exercise">Designer verification
+exercise</h2>
+<p>Ask a designer to launch the agreed project document from
+ProjectWise, confirm the expected workspace and WorkSet, select a named
+standard resource and produce one sample output. The designer should
+report a mismatch with document path, product build, selected names and
+resource/output affected. They should not edit shared PWSetup files to
+fix a local symptom.</p>
+<h2 id="facilitator-closing-discussion">Facilitator closing
+discussion</h2>
+<p>Ask each participant to explain one successful startup and one
+failure using the same evidence chain. Collect unanswered
+product-specific questions into the acceptance backlog. Publish the
+tested deployment record alongside the course material so future
+trainees can distinguish a teaching example from the organisation’s
+approved configuration.</p>
+<h1 id="standards-authoring-and-integration-guidance">Standards
+authoring and integration guidance</h1>
+<h2 id="a-common-governance-model-with-separate-product-implementations">A
+common governance model with separate product implementations</h2>
+<p>We can use a common release and project-selection model across
+Bentley and Autodesk applications while preserving each product’s native
+configuration mechanism. DMWF provides the Bentley managed-workspace
+route reviewed in this pack. A Civil 3D profile and bootstrap route is a
+separate implementation, not a hidden feature of the supplied
+template.</p>
+<p>This chapter contains recommendations. It does not claim that a
+corporate environment, Civil 3D bootstrap, deployment automation or
+standards conversion tool is included in DMWF 24.</p>
+<h2 id="when-the-client-supplies-a-complete-workspace">When the client
+supplies a complete workspace</h2>
+<p>Preserve the original dataset and record its supported builds. Start
+by identifying its native framework roots, external dependencies and
+expected outputs. Adapt root locations through the ProjectWise PWSetup
+layer, keeping client resource settings intact where possible.</p>
+<p>Check whether the client workspace contains scripts that expect a
+fixed drive letter, a workstation environment variable, a registry entry
+or a writable installation folder. A resource library may be portable
+while its startup scripts are not. Test both desktop authoring and
+required server processing.</p>
+<p>Create a small acceptance model or drawing that exercises the
+dataset’s characteristic resources. A list of copied filenames is
+insufficient evidence that annotation, feature definitions, line styles
+or print styles behave correctly.</p>
+<h2 id="when-the-client-supplies-files-without-a-workspace">When the
+client supplies files without a workspace</h2>
+<p>Treat the files as source material for an authored dataset. Classify
+each resource by product, version and role. Decide which belong at
+Organization, workspace or WorkSet level. Create the native
+Configuration and workspace CFGs that make those resources discoverable,
+then add a PWSetup adapter to route them in ProjectWise.</p>
+<p>Maintain a resource register containing filename, source revision,
+purpose, intended configuration variable, destination layer and
+acceptance test. Resolve duplicated resource names before release.
+Copying two DGNLIBs with overlapping names into a wildcard path can
+produce ambiguous behaviour that DMWF cannot resolve as a
+standards-authoring decision.</p>
+<h2 id="when-the-client-supplies-only-pdf-standards">When the client
+supplies only PDF standards</h2>
+<p>A PDF is a specification, not an executable workspace. We must
+translate its requirements into product-native settings and resources
+with traceability and technical acceptance.</p>
+<ol type="1">
+<li>Register the authoritative standard, revision, applicability and any
+contractual additions.</li>
+<li>Extract testable requirements: naming, units, levels or layers,
+symbology, annotation, drawing scales, borders, coordinate reference
+systems and exchange outputs as relevant.</li>
+<li>Identify requirements enforced by application configuration and
+those requiring design checks, information management checks or human
+review.</li>
+<li>Record unresolved interpretations and obtain a decision from the
+standards owner. Do not invent a feature code or layer simply to
+complete a dataset.</li>
+<li>Build native resources in an isolated authoring workspace. Record
+each resource’s requirement reference and test.</li>
+<li>Produce representative drawings or models and compare them against
+the specification. Check plotted and exported output as well as screen
+appearance.</li>
+<li>Release the dataset and DMWF adapter as a tested pair. Publish known
+limitations and requirements that remain outside automated
+enforcement.</li>
+</ol>
+<p>See Diagram 07. This process applies to a National Highways or rail
+standards-only commission as a project method; this pack does not assert
+that a particular current agency provides or lacks a workspace.</p>
+<h2 id="requirements-traceability-template">Requirements traceability
+template</h2>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Requirement ID</th>
+<th>Source clause and revision</th>
+<th>Interpretation</th>
+<th>Implemented resource or setting</th>
+<th>Verification</th>
+<th>Owner and status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>REQ-001</td>
+<td>Enter authoritative reference</td>
+<td>Units for designated model type</td>
+<td>Seed model units</td>
+<td>Inspect created model and exported output</td>
+<td>Assigned SME</td>
+</tr>
+<tr class="even">
+<td>REQ-002</td>
+<td>Enter authoritative reference</td>
+<td>Level or layer naming</td>
+<td>Native level/layer library</td>
+<td>Create and audit representative elements</td>
+<td>Assigned SME</td>
+</tr>
+<tr class="odd">
+<td>REQ-003</td>
+<td>Enter authoritative reference</td>
+<td>Drawing border and issue data</td>
+<td>Border seed and supported metadata mapping</td>
+<td>Sample issued sheet</td>
+<td>Assigned SME</td>
+</tr>
+<tr class="even">
+<td>REQ-004</td>
+<td>Enter authoritative reference</td>
+<td>Annotation requirements</td>
+<td>Annotation library and scale settings</td>
+<td>Sample geometry and plotted sheet</td>
+<td>Assigned SME</td>
+</tr>
+</tbody>
+</table>
+<p>These rows are examples of record structure, not claims about any
+particular standard’s requirements.</p>
+<h2 id="corporate-and-client-coexistence">Corporate and client
+coexistence</h2>
+<p>Use corporate content for shared tools, support links, approved
+utilities and non-client-specific resources. Use client content for
+deliverable standards. Use project content for approved project-specific
+additions and exceptions. A discipline dataset can supply specialised
+resources where the product supports that arrangement.</p>
+<p>DMWF’s group module can retain Organization content at the common
+Bentley root while routing the workspace to a client group. This is a
+useful structural capability, but precedence among overlapping resource
+names still comes from native configuration and search order. Do not
+assume the common Organization always overrides the client or that
+project additions always override both.</p>
+<p>For each resource family, record the owner, include order,
+append/prepend policy and duplicate-name policy. Test one intentional
+duplicate in a sandbox to confirm actual product behaviour. Avoid global
+locks on ordinary resource variables unless there is a deliberate reason
+and the resulting client compatibility has been assessed.</p>
+<h2 id="civil-3d-profile-and-drive-bootstrap-concept">Civil 3D profile
+and Drive bootstrap concept</h2>
+<p>A possible separate Autodesk route is: ProjectWise Workspace Profile
+selects an AutoCAD profile; that profile points to controlled support
+content made available through ProjectWise Drive; an approved startup
+routine stages resources that must be local and configures supported
+plugin paths. This is an architecture to implement and test, not a
+validated script delivered in this pack.</p>
+<p>Use Autodesk’s applicable startup mechanisms deliberately. The
+established AutoCAD filenames are <code>acad.lsp</code> and
+<code>acaddoc.lsp</code>; a file called <code>autodoc.lsp</code> would
+need explicit loading rather than being assumed to be a standard
+automatic startup file. Confirm actual loading, trust and
+product-version behaviour in Autodesk’s documentation and runtime before
+implementing the bootstrap. This pack does not provide Autodesk-specific
+code or a compatibility certification.</p>
+<p>The bootstrap should be idempotent: repeated startup with the same
+release leaves a stable result. It should compare release identity and
+checksums, copy only the required approved files, retain a recovery path
+and log actions in a supportable way. Stage a complete release and
+switch to it only after validation; do not leave a partly copied library
+active.</p>
+<p>Keep user customisation apart from managed files. A deployment must
+not overwrite unrelated user support files merely because names collide.
+If a resource requires installation privileges, deploy it through an
+approved installer or endpoint-management mechanism rather than assuming
+a per-user startup routine can write into protected application
+locations.</p>
+<p>Test profile selection, required local content, plugin loading,
+trusted paths, drawing defaults, user overrides and product upgrades
+independently. A successful support-file copy does not prove Civil 3D’s
+drawing styles or settings are correct. See Diagram 08.</p>
+<h2 id="projectwise-drive-and-git-authoring">ProjectWise Drive and Git
+authoring</h2>
+<p>Recommendation: author version-controlled workspace content in a
+normal Git working tree and publish approved releases into ProjectWise
+through a controlled transfer process. Do not make a Drive sync root and
+a Git working tree compete over rename, delete and metadata operations
+during release management.</p>
+<p>Where Drive is used for convenient access to managed source files,
+establish one authoritative editing route, explicit check-out/check-in
+behaviour and a recovery process. A Git commit does not prove
+ProjectWise accepted the change, and a successful Drive sync does not
+prove the committed release is what users received. Compare content and
+release identity after publication.</p>
+<p>A release record should connect Git commit, adapter/dataset version,
+manifest and datasource installation result. This is a governance
+recommendation, not a built-in DMWF Git integration.</p>
+<h2 id="enterprise-deployment-automation">Enterprise deployment
+automation</h2>
+<p>Automate repeatable import, binding, permission checks and
+verification only after a manual deployment has passed. Treat
+folder/document identities as datasource-specific. A reusable deployment
+manifest should describe logical paths, filenames, release identifiers
+and assignments; the deployment mechanism resolves target
+identities.</p>
+<p>Use a pilot datasource, then small waves. Record failures by stage:
+import, CSB binding, selector adaptation, permissions, desktop
+acceptance and server acceptance. A successful file transfer is only one
+stage. Preserve per-datasource results and make retries target the
+failed stage without silently skipping validation.</p>
+<p>DMWF 24 does not contain a complete enterprise deployer in this
+archive. Any deployer must independently demonstrate its import,
+idempotency, error handling and rollback behaviour.</p>
+<h1 id="dmwf-package-review-and-source-register">DMWF package review and
+source register</h1>
+<h2 id="review-method-and-limits">Review method and limits</h2>
+<p>The review inventoried the supplied archive, inspected active
+statements across all 89 CFG files and read the five sheets in
+<code>Bentley 2024/Documentation/DynamcManagedWorkspace.xlsx</code>. It
+compared the package with Bentley’s framework introduction, installation
+instructions and release notes on 3 October 2026. There are 241 files
+and 233 directory entries in the archive; the uncompressed file total is
+13,180,856 bytes.</p>
+<p>The review is static. It does not establish parser behaviour in every
+Bentley release, correctness of binary design resources, compatibility
+with a live ProjectWise server or success of the sample configurations.
+The findings below identify concrete source facts and likely operational
+consequences. Possible runtime defects are identified as candidates
+requiring reproduction, rather than reported as proven application
+failures.</p>
+<h2 id="findings-register">Findings register</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Priority</th>
+<th>Evidence</th>
+<th>Consequence and recommended action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>R01</td>
+<td>High</td>
+<td><code>Common_Predefined.cfg</code> rejects
+<code>_VERSION_8_11</code> and <code>_VERSION_8_10</code></td>
+<td>Exclude V8 from 24 rollout; do not infer support from remaining
+legacy comments</td>
+</tr>
+<tr class="even">
+<td>R02</td>
+<td>High</td>
+<td>KB0021384 uses <code>Configuration2023</code> beside a
+<code>Configuration2024</code> path</td>
+<td>Correct selection to actual installed folder before testing</td>
+</tr>
+<tr class="odd">
+<td>R03</td>
+<td>High</td>
+<td>Standard adapter falls back from intended name to
+<code>_DYNAMIC_WORKSET_DEFAULTNAME</code></td>
+<td>Check exact selected CFG; add a project-specific assertion if
+fallback is unacceptable</td>
+</tr>
+<tr class="even">
+<td>R04</td>
+<td>High</td>
+<td><code>FindInPath.cfg</code> line 480 assigns
+<code>FINDDIR_FOUNDROOT=${FINDDIR_D10}}</code></td>
+<td>Extra closing brace is a source anomaly in the depth-10 marker
+branch; reproduce in sandbox and seek a confirmed correction</td>
+</tr>
+<tr class="odd">
+<td>R05</td>
+<td>Medium</td>
+<td><code>FindInPath.cfg</code> and <code>FindNameInPath.cfg</code>
+contain bare <code>%elif</code> branches</td>
+<td>Parser-sensitive candidate; validate relevant ancestry-exhaustion
+branches with the intended engine</td>
+</tr>
+<tr class="even">
+<td>R06</td>
+<td>Medium</td>
+<td><code>Common_Predefined_EnvironmentCheck.cfg</code> line 72 contains
+a non-breaking-space byte after <code>1</code></td>
+<td>Inspect encoding and parser treatment in print-server branch; retain
+vendor baseline before controlled normalization</td>
+</tr>
+<tr class="odd">
+<td>R07</td>
+<td>Medium</td>
+<td>Common PWSetup generation value is <code>23</code> in a package with
+common generation <code>24</code></td>
+<td>Do not rely solely on trace/header numbers for release identity;
+record hashes</td>
+</tr>
+<tr class="even">
+<td>R08</td>
+<td>Medium</td>
+<td>Workbook Variable Reference retains V8 entries, older names and
+advanced discovery value <code>1</code></td>
+<td>Use active 24 source as operational reference; annotate old workbook
+entries</td>
+</tr>
+<tr class="odd">
+<td>R09</td>
+<td>Medium</td>
+<td>Datasource defaults explicitly assign
+<code>_DYNAMIC_FINDWORKAREAROOT_ADV=0</code></td>
+<td>A prior enable setting can be overwritten; adapt at the point
+controlling the actual early module</td>
+</tr>
+<tr class="even">
+<td>R10</td>
+<td>Medium</td>
+<td><code>Common_Predefined.cfg</code> optional Configuration PWSetup
+include test uses <code>_DYNAMIC_CEWORKSPACEROOT_PWSETUP</code></td>
+<td>Location appears inconsistent with the section’s Configuration
+wording; verify intended include hook and report upstream if
+confirmed</td>
+</tr>
+<tr class="odd">
+<td>R11</td>
+<td>Medium</td>
+<td>Defaults mention <code>_DYNAMIC_LOCAL_CONFIGURATION_ENABLED</code>,
+while workspace adapters use <code>_DYNAMIC_USE_LOCAL_ROOT</code> and
+<code>_DYNAMIC_LOCAL_ROOT</code></td>
+<td>Similarly named options do not form a single demonstrated path;
+follow active call chain</td>
+</tr>
+<tr class="even">
+<td>R12</td>
+<td>Medium</td>
+<td>Standard adapter assigns
+<code>PW_MWP_COMPARISON_IGNORE_LIST = PW_MWP_COMPARISON_IGNORE_LIST;_DGNDIR;_DGNFILE</code></td>
+<td>Literal self-name may not preserve preexisting values as intended;
+inspect actual comparison result before changing</td>
+</tr>
+<tr class="odd">
+<td>R13</td>
+<td>Medium</td>
+<td><code>IncludeInPath.cfg</code> uses <code>NESTMAX&gt;2</code>,
+<code>&gt;3</code> and increasing gates</td>
+<td>Parameter is offset from intuitive depth; <code>6</code> permits
+four source positions before other stops</td>
+</tr>
+<tr class="even">
+<td>R14</td>
+<td>Medium</td>
+<td>IncludeInPath visits current folder then parents</td>
+<td>Parent <code>=</code> settings processed later may replace child
+values; test precedence</td>
+</tr>
+<tr class="odd">
+<td>R15</td>
+<td>Medium</td>
+<td>Drive module tests existing paths and defaults required/errors flags
+to <code>0</code></td>
+<td>Root-found state is insufficient proof of usable content; add
+cold-content and missing-resource tests</td>
+</tr>
+<tr class="even">
+<td>R16</td>
+<td>Medium</td>
+<td>Group module defaults Organization content to Bentley root</td>
+<td>Client Organization directory is not necessarily selected; check
+final <code>_USTN_ORGANIZATION</code></td>
+</tr>
+<tr class="odd">
+<td>R17</td>
+<td>Medium</td>
+<td>Several example adapters restrict ORD and OpenBridge to
+<code>24.00</code></td>
+<td>Update only after dataset compatibility approval; do not disable
+checks to make launch succeed</td>
+</tr>
+<tr class="even">
+<td>R18</td>
+<td>Low</td>
+<td>CSB templates reference generic <code>Resources/Bentley</code>;
+client Configuration PWSetup filename includes
+<code>Configuration2023</code></td>
+<td>Adapt values and use actual include patterns; a filename may be
+stale without changing its active contents</td>
+</tr>
+<tr class="odd">
+<td>R19</td>
+<td>Low</td>
+<td>File traces and comments retain old releases and misspellings</td>
+<td>Teach actual variables and hashes; do not infer current behaviour
+from comment history</td>
+</tr>
+<tr class="even">
+<td>R20</td>
+<td>Medium</td>
+<td>DWG rendition branch uses Bentley <code>MS_</code> variables in
+<code>ACADConfiguration</code></td>
+<td>Do not market or deploy it as a tested Civil 3D bootstrap</td>
+</tr>
+</tbody>
+</table>
+<p>Priorities indicate review attention, not a vendor severity
+classification. This pack does not patch the uploaded baseline.</p>
+<h2 id="findings-that-need-runtime-reproduction">Findings that need
+runtime reproduction</h2>
+<p>For R04, construct a marker search whose valid ancestor is at the
+helper’s depth-10 position and capture the expanded result and parser
+message. Compare against a shallow successful marker search. Preserve
+both traces.</p>
+<p>For R05, create a test file whose ancestor chain reaches the boundary
+branch under examination. Test the exact supported application and
+Explorer combination. A static anomaly alone does not justify declaring
+the entire helper unusable.</p>
+<p>For R06, inspect the byte-level encoding and execute the relevant
+print-server detection branch. Decide any normalization as a documented
+local patch with a before-and-after hash and regression result.</p>
+<p>For R10, put an unmistakable diagnostic assignment in the intended
+Configuration PWSetup hook and show whether it loads. Compare group and
+Bentley-root routes and whether setup files are inside or outside the
+content Configuration. Do not assert a corrected path until the intended
+vendor design has been confirmed.</p>
+<p>For R12, establish a preexisting ignore list in a sandbox, load the
+adapter and capture the final list and actual comparison behaviour.
+Check that necessary exclusions remain intact and that meaningful
+standards changes are not ignored.</p>
+<h2 id="published-source-register">Published source register</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>Link</th>
+<th>How used</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Supplied package</td>
+<td><code>DMWF 24.0.0.0.zip</code></td>
+<td>Primary implementation baseline; inventory and CFG review</td>
+</tr>
+<tr class="even">
+<td>Embedded workbook</td>
+<td><code>Bentley 2024/Documentation/DynamcManagedWorkspace.xlsx</code></td>
+<td>Structure and variable documentation; compared with current
+CFGs</td>
+</tr>
+<tr class="odd">
+<td>Bentley KB0020036</td>
+<td><a href="https://bentleysystems.service-now.com/community?id=kb_article_view&amp;sysparm_article=KB0020036" class="uri">https://bentleysystems.service-now.com/community?id=kb_article_view&amp;sysparm_article=KB0020036</a></td>
+<td>Framework purpose, single-CSB concept and links to setup/release
+material</td>
+</tr>
+<tr class="even">
+<td>Bentley KB0021384</td>
+<td><a href="https://bentleysystems.service-now.com/community?id=kb_article_view&amp;sysparm_article=KB0021384" class="uri">https://bentleysystems.service-now.com/community?id=kb_article_view&amp;sysparm_article=KB0021384</a></td>
+<td>Published minimal installation steps; naming inconsistency
+noted</td>
+</tr>
+<tr class="odd">
+<td>Bentley KB0020038</td>
+<td><a href="https://bentleysystems.service-now.com/community?id=kb_article_view&amp;sysparm_article=KB0020038" class="uri">https://bentleysystems.service-now.com/community?id=kb_article_view&amp;sysparm_article=KB0020038</a></td>
+<td>Published 24 release summary and historical changes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="published-guidance-compared-with-supplied-implementation">Published
+guidance compared with supplied implementation</h2>
+<p>KB0020036 describes DMWF as a CFG-based, context-sensitive
+managed-workspace template and describes a common Predefined CSB. The
+supplied package implements that structure but includes legacy
+explanatory material that predates removal of V8 support.</p>
+<p>KB0021384 describes copying the framework and client content, setting
+a ProjectWise Folder root and String include, creating a WorkArea and
+adapting workspace selection. Its Configuration naming inconsistency
+requires correction against the supplied folder structure.</p>
+<p>KB0020038 identifies V8 removal, IncludeInPath, OneMapping, Drive
+options, iTwin checks and the changed advanced-discovery default in
+release 24. The reviewed files contain those features. The package’s
+embedded workbook still contains older reference content, so it should
+not be treated as a fully synchronized reference for every current
+setting.</p>
+<h2 id="additional-primary-source-for-the-autodesk-concept">Additional
+primary source for the Autodesk concept</h2>
+<p>Autodesk documentation on <a href="https://help.autodesk.com/cloudhelp/2025/ENU/AutoCAD-LT-Customization/files/GUID-FDB4038D-1620-4A56-8824-D37729D42520.htm">automatic
+AutoLISP loading</a> identifies the standard startup filenames. It
+supports the filename clarification in the integration guide; the
+proposed ProjectWise profile and Drive bootstrap still requires separate
+implementation testing.</p>
+<h2 id="distribution-and-attribution">Distribution and attribution</h2>
+<p>This repository contains independent guidance and training material
+prepared by Christopher J Andrew. Bentley’s template and product names
+are acknowledged as their respective owner’s work. It is not an official
+Bentley publication or a Bentley certification course.</p>
+<p>The repository does not redistribute the vendor ZIP, binary resources
+or complete vendor CFG files. Obtain the framework through Bentley’s
+linked article and follow its applicable terms. Minimal configuration
+examples and the occurrence index explain the reviewed implementation;
+vendor ownership of the underlying template is unchanged.</p>
+<p>The source manifest identifies the reviewed baseline. If a later
+download has different hashes, repeat the relevant review and acceptance
+tests rather than assuming the findings apply unchanged.</p>
+<h1 id="dmwf-quick-reference-and-operating-templates">DMWF quick
+reference and operating templates</h1>
+<h2 id="administrator-quick-reference">Administrator quick
+reference</h2>
+<p><strong>Bootstrap:</strong> assigned Predefined CSB → ProjectWise
+Folder root → String include of <code>Common_Predefined.cfg</code>.</p>
+<p><strong>Project selection:</strong> WorkArea root →
+<code>_PWSetup/WorkAreaPWSetup_Predefined*.cfg</code> → client group,
+Configuration, workspace and adapter.</p>
+<p><strong>First four values to inspect:</strong>
+<code>_DYNAMIC_WORKAREAROOT</code>, <code>_USTN_WORKSPACECFG</code>,
+<code>_USTN_WORKSETCFG</code>, <code>_USTN_WORKSETROOT</code>.</p>
+<p><strong>First trace to inspect:</strong>
+<code>_DYNAMIC_CONFIGS</code>. If it does not show the common
+configuration, investigate effective CSB and launch integration.</p>
+<p><strong>Expected output check:</strong> selected resource source
+path, application behaviour and representative plotted/exported
+output.</p>
+<p><strong>Common mistakes:</strong> using
+<code>Configuration2023</code> for the supplied
+<code>Configuration2024</code> branch; accepting default WorkSet
+fallback; confusing WorkArea and WorkSet; changing a setting after the
+consuming module ran; assuming Drive root existence proves content
+readiness; treating <code>ACADConfiguration</code> as a Civil 3D
+deployment package.</p>
+<h2 id="project-selection-record">Project selection record</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value to complete</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Project and datasource</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>WorkArea path and name</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Framework release and root</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Client group</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Configuration name and root</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Workspace name and CFG</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Workspace adapter filename</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Selection method and hierarchy contract</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>WorkSet name and CFG</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>WorkSet root and Standards root</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>DGNWS location and permissions</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Approved desktop and server builds</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Drive policy and organization</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Owner and approval date</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Acceptance evidence</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="release-record">Release record</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value to complete</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Release ID and date</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Git commit if used</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Vendor baseline checksum</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Framework and adapter revisions</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Standards dataset revision</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Local patch IDs and reasons</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>File manifest</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Target datasources and roots</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Changed CSB bindings or project selectors</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Acceptance test result</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Approver</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Previous known-good release</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Rollback procedure and evidence</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="change-request">Change request</h2>
+<p>Describe the project need, current behaviour, intended behaviour and
+affected products. Identify the smallest configuration layer that can
+implement the change. List the files and variables affected, their
+include timing, locks and resource precedence. Attach a positive test, a
+negative test and rollback steps. Record whether the change affects all
+clients, one workspace or one WorkArea.</p>
+<h2 id="standards-exception-record">Standards exception record</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value to complete</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exception ID</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Standard and clause</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Project scope</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Reason and agreed interpretation</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Resource or variable implementing exception</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Approval and expiry or review date</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Verification evidence</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="release-checklist">Release checklist</h2>
+<ul>
+<li>Framework and resource manifest frozen.</li>
+<li>Exact workspace and WorkSet selection verified.</li>
+<li>Unknown and unsupported product versions tested.</li>
+<li>Required ordinary-user read and project write access verified.</li>
+<li>Missing-resource and fallback behaviour documented.</li>
+<li>Desktop output accepted by product SME.</li>
+<li>Required server processing accepted.</li>
+<li>Drive cold-content behaviour tested if used.</li>
+<li>Debug and fault-injection settings removed.</li>
+<li>Rollback target and bindings recorded.</li>
+<li>Deployment and post-release evidence retained for each
+datasource.</li>
+</ul>
+<h2 id="support-handoff">Support handoff</h2>
+<p>Provide the incident scope, last known-good release, first wrong
+expanded path, applicable selector/adapter, captured trace and
+reproducing document location. State the next decision needed: access
+correction, path correction, dataset change, compatibility decision or
+vendor clarification. This keeps support focused on the cause rather
+than a series of speculative root overrides.</p>
+<h1 id="dmwf-workflow-diagrams">DMWF workflow diagrams</h1>
+<p>The Mermaid files are the editable source for GitHub rendering. SVGs
+are offline viewing companions derived from the same node and edge
+definitions. These diagrams describe logical flow; they do not replace
+the source CFG statement order. Diagrams 05, 07 and 08 are recommended
+processes, with 08 explicitly a separate Autodesk concept.</p>
+<h2 id="managed-configuration-load">Managed configuration load</h2>
+<figure>
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5ODAgMTEzNSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJNYW5hZ2VkIGNvbmZpZ3VyYXRpb24gbG9hZCI+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0gMCAwIEwgMTAgNSBMIDAgMTAgeiIgZmlsbD0iIzY1Nzc4YSIvPjwvbWFya2VyPjwvZGVmcz48cGF0aCBkPSJNNDgwLDEwNSBWMTMwLjAgSDQ4MCBWMTU1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNDgwLDIxNSBWMjQwLjAgSDQ4MCBWMjY1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNDgwLDMyNSBWMzUwLjAgSDQ4MCBWMzc1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNDgwLDQzNSBWNDYwLjAgSDE3MCBWNDg1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIzMzMuMCIgeT0iNDU1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+WWVzPC90ZXh0PjxwYXRoIGQ9Ik00ODAsNDM1IFY0NjAuMCBINzkwIFY0ODUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjY0My4wIiB5PSI0NTUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ObzwvdGV4dD48cGF0aCBkPSJNMTcwLDU0NSBWNTcwLjAgSDQ4MCBWNTk1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNzkwLDU0NSBWNTcwLjAgSDQ4MCBWNTk1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNDgwLDY1NSBWNjgwLjAgSDQ4MCBWNzA1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNDgwLDc2NSBWNzkwLjAgSDE3MCBWODE1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIzMzMuMCIgeT0iNzg1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+WWVzPC90ZXh0PjxwYXRoIGQ9Ik02MTUsNzM1IEg5NjUgVjk1NSBINjE1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI5MTUiIHk9Ijg0NS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPk5vPC90ZXh0PjxwYXRoIGQ9Ik0xNzAsODc1IFY5MDAuMCBINDgwIFY5MjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsOTg1IFYxMDEwLjAgSDQ4MCBWMTAzNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHJlY3QgeD0iMzQ1IiB5PSI0NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9IjgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkFzc2lnbmVkIFByZWRlZmluZWQgQ1NCPC90ZXh0PjxyZWN0IHg9IjM0NSIgeT0iMTU1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iMTkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkNvbW1vbiBDRkcgYW5kIHByb2plY3QgY29udGV4dDwvdGV4dD48cmVjdCB4PSIzNDUiIHk9IjI2NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9IjI5MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5FbnZpcm9ubWVudCB2ZXJzaW9ucyBhbmQ8L3RleHQ+PHRleHQgeD0iNDgwIiB5PSIzMDkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+ZGVmYXVsdHM8L3RleHQ+PHJlY3QgeD0iMzQ1IiB5PSIzNzUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSIxOCIgZmlsbD0iI2U0ZWVmOSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iNDEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkFkdmFuY2VkIHJvb3QgZGlzY292ZXJ5IGVuYWJsZWQ8L3RleHQ+PHJlY3QgeD0iMzUiIHk9IjQ4NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSIxNzAiIHk9IjUyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5BZHZhbmNlZCByb290IHNlYXJjaDwvdGV4dD48cmVjdCB4PSI2NTUiIHk9IjQ4NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI3OTAiIHk9IjUyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5TdGFuZGFyZCBXb3JrQXJlYSBjb250ZXh0PC90ZXh0PjxyZWN0IHg9IjM0NSIgeT0iNTk1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iNjMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlJlYWQgV29ya0FyZWEgc2VsZWN0b3I8L3RleHQ+PHJlY3QgeD0iMzQ1IiB5PSI3MDUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSIxOCIgZmlsbD0iI2U0ZWVmOSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iNzQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkRyaXZlIHByb2Nlc3NpbmcgZW5hYmxlZDwvdGV4dD48cmVjdCB4PSIzNSIgeT0iODE1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjE3MCIgeT0iODUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlJlc29sdmUgbG9jYWwgRHJpdmUgcGF0aHM8L3RleHQ+PHJlY3QgeD0iMzQ1IiB5PSI5MjUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNDgwIiB5PSI5NjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+UmVzb2x2ZSBncm91cCBhbmQgd29ya3NwYWNlPC90ZXh0PjxyZWN0IHg9IjM0NSIgeT0iMTAzNSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9IjEwNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+QWRhcHRlciByb290cyBhbmQgdmFsaWRhdGlvbjwvdGV4dD48L3N2Zz4=" alt="Managed configuration load" />
+<figcaption aria-hidden="true">Managed configuration load</figcaption>
+</figure>
+<h2 id="workspace-and-workset-selection">Workspace and WorkSet
+selection</h2>
+<figure>
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5ODAgMTEzNSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJXb3Jrc3BhY2UgYW5kIFdvcmtTZXQgc2VsZWN0aW9uIj48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTSAwIDAgTCAxMCA1IEwgMCAxMCB6IiBmaWxsPSIjNjU3NzhhIi8+PC9tYXJrZXI+PC9kZWZzPjxwYXRoIGQ9Ik00ODAsMTA1IFYxMzAuMCBINDgwIFYxNTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsMjE1IFYyNDAuMCBIMTcwIFYyNjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjMzMy4wIiB5PSIyMzUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ZZXM8L3RleHQ+PHBhdGggZD0iTTQ4MCwyMTUgVjI0MC4wIEg3OTAgVjI2NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNjQzLjAiIHk9IjIzNS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPk5vPC90ZXh0PjxwYXRoIGQ9Ik0xNzAsMzI1IFYzNTAuMCBINDgwIFYzNzUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik03OTAsMzI1IFYzNTAuMCBINDgwIFYzNzUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsNDM1IFY0NjAuMCBINDgwIFY0ODUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsNTQ1IFY1NzAuMCBINDgwIFY1OTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsNjU1IFY2ODAuMCBIMTcwIFY3MDUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjMzMy4wIiB5PSI2NzUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ZZXM8L3RleHQ+PHBhdGggZD0iTTQ4MCw2NTUgVjY4MC4wIEg3OTAgVjcwNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNjQzLjAiIHk9IjY3NS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPk5vPC90ZXh0PjxwYXRoIGQ9Ik03OTAsNzY1IFY3OTAuMCBINzkwIFY4MTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9Ijc5OC4wIiB5PSI3ODUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ZZXM8L3RleHQ+PHBhdGggZD0iTTkyNSw3MzUgSDk2NSBWOTU1IEg5MjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjkxNSIgeT0iODQ1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+Tm88L3RleHQ+PHBhdGggZD0iTTM1LDczNSBIMTUgVjEwNjUgSDM1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNOTI1LDg0NSBIOTY1IFYxMDY1IEgzMDUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxyZWN0IHg9IjM0NSIgeT0iNDUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNDgwIiB5PSI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5Xb3JrQXJlYSBzZWxlY3RvciBsb2FkZWQ8L3RleHQ+PHJlY3QgeD0iMzQ1IiB5PSIxNTUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSIxOCIgZmlsbD0iI2U0ZWVmOSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iMTkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkNsaWVudCBncm91cCBzcGVjaWZpZWQ8L3RleHQ+PHJlY3QgeD0iMzUiIHk9IjI2NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSIxNzAiIHk9IjMwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5SZXNvbHZlIGNsaWVudCBDb25maWd1cmF0aW9uPC90ZXh0PjxyZWN0IHg9IjY1NSIgeT0iMjY1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iMzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlVzZSBCZW50bGV5IHJvb3Qgcm91dGU8L3RleHQ+PHJlY3QgeD0iMzQ1IiB5PSIzNzUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNDgwIiB5PSI0MTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+UmVzb2x2ZSBuYW1lZCB3b3Jrc3BhY2UgQ0ZHPC90ZXh0PjxyZWN0IHg9IjM0NSIgeT0iNDg1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iNTIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlNlbGVjdCBleGFjdCBhZGFwdGVyIHBhdHRlcm48L3RleHQ+PHJlY3QgeD0iMzQ1IiB5PSI1OTUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSIxOCIgZmlsbD0iI2U0ZWVmOSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iNjMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkludGVuZGVkIFdvcmtTZXQgQ0ZHIGV4aXN0czwvdGV4dD48cmVjdCB4PSIzNSIgeT0iNzA1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjE3MCIgeT0iNzQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlNlbGVjdCBpbnRlbmRlZCBXb3JrU2V0PC90ZXh0PjxyZWN0IHg9IjY1NSIgeT0iNzA1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iMTgiIGZpbGw9IiNlNGVlZjkiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI3OTAiIHk9Ijc0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5EZWZhdWx0IENGRyBleGlzdHM8L3RleHQ+PHJlY3QgeD0iNjU1IiB5PSI4MTUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNzkwIiB5PSI4NDEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+U2VsZWN0IGZhbGxiYWNrIGFuZCB2ZXJpZnk8L3RleHQ+PHRleHQgeD0iNzkwIiB5PSI4NTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+aW50ZW50PC90ZXh0PjxyZWN0IHg9IjY1NSIgeT0iOTI1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iOTYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkNvbmZpZ3VyYXRpb24gZXJyb3I8L3RleHQ+PHJlY3QgeD0iMzUiIHk9IjEwMzUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iMTcwIiB5PSIxMDcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlZlcmlmeSBmaW5hbCByb290cyBhbmQgcmVzb3VyY2VzPC90ZXh0Pjwvc3ZnPg==" alt="Workspace and WorkSet selection" />
+<figcaption aria-hidden="true">Workspace and WorkSet
+selection</figcaption>
+</figure>
+<h2 id="choose-a-package-discovery-method">Choose a package discovery
+method</h2>
+<figure>
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5ODAgOTE1IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkNob29zZSBhIHBhY2thZ2UgZGlzY292ZXJ5IG1ldGhvZCI+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0gMCAwIEwgMTAgNSBMIDAgMTAgeiIgZmlsbD0iIzY1Nzc4YSIvPjwvbWFya2VyPjwvZGVmcz48cGF0aCBkPSJNNDgwLDEwNSBWMTMwLjAgSDQ4MCBWMTU1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNDgwLDIxNSBWMjQwLjAgSDE3MCBWMjY1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIzMzMuMCIgeT0iMjM1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+WWVzPC90ZXh0PjxwYXRoIGQ9Ik00ODAsMjE1IFYyNDAuMCBINzkwIFYyNjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjY0My4wIiB5PSIyMzUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ObzwvdGV4dD48cGF0aCBkPSJNNzkwLDMyNSBWMzUwLjAgSDc5MCBWMzc1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI3OTguMCIgeT0iMzQ1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+WWVzPC90ZXh0PjxwYXRoIGQ9Ik05MjUsMjk1IEg5NjUgVjUxNSBIOTI1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI5MTUiIHk9IjQwNS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPk5vPC90ZXh0PjxwYXRoIGQ9Ik0zNSwyOTUgSDE1IFY2MjUgSDM0NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHBhdGggZD0iTTkyNSw0MDUgSDk2NSBWNjI1IEg2MTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik03OTAsNTQ1IFY1NzAuMCBINDgwIFY1OTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsNjU1IFY2ODAuMCBINDgwIFY3MDUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsNzY1IFY3OTAuMCBIMTcwIFY4MTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjMzMy4wIiB5PSI3ODUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ZZXM8L3RleHQ+PHBhdGggZD0iTTQ4MCw3NjUgVjc5MC4wIEg3OTAgVjgxNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNjQzLjAiIHk9Ijc4NS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPk5vPC90ZXh0PjxyZWN0IHg9IjM0NSIgeT0iNDUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNDgwIiB5PSI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5TZXZlcmFsIFdvcmtTZXRzIGluIG9uZSBXb3JrQXJlYTwvdGV4dD48cmVjdCB4PSIzNDUiIHk9IjE1NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjE4IiBmaWxsPSIjZTRlZWY5IiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNDgwIiB5PSIxOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+Rm9sZGVyIGRlcHRoIHN0YWJsZTwvdGV4dD48cmVjdCB4PSIzNSIgeT0iMjY1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjE3MCIgeT0iMzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkZpbmRCeU5lc3QgYWRhcHRlcjwvdGV4dD48cmVjdCB4PSI2NTUiIHk9IjI2NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjE4IiBmaWxsPSIjZTRlZWY5IiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNzkwIiB5PSIzMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+VW5pcXVlIG1hcmtlciBhdmFpbGFibGU8L3RleHQ+PHJlY3QgeD0iNjU1IiB5PSIzNzUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNzkwIiB5PSI0MTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+RmluZEJ5RXhpc3RzIGFkYXB0ZXI8L3RleHQ+PHJlY3QgeD0iNjU1IiB5PSI0ODUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNzkwIiB5PSI1MjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+RGVmaW5lIGV4cGxpY2l0IHByb2plY3QgbWFwcGluZzwvdGV4dD48cmVjdCB4PSIzNDUiIHk9IjU5NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9IjYzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5SZXNvbHZlIHBhY2thZ2UgbmFtZSBhbmQgc3VicGF0aDwvdGV4dD48cmVjdCB4PSIzNDUiIHk9IjcwNSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjE4IiBmaWxsPSIjZTRlZWY5IiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNDgwIiB5PSI3NDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+RXhwZWN0ZWQgQ0ZHIGFuZCByb290IG1hdGNoPC90ZXh0PjxyZWN0IHg9IjM1IiB5PSI4MTUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iMTcwIiB5PSI4NTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+QWNjZXB0IHRlc3RlZCBzZWxlY3Rpb248L3RleHQ+PHJlY3QgeD0iNjU1IiB5PSI4MTUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNzkwIiB5PSI4NTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+Q29ycmVjdCBjb250cmFjdCBvciBzZWxlY3RvcjwvdGV4dD48L3N2Zz4=" alt="Choose a package discovery method" />
+<figcaption aria-hidden="true">Choose a package discovery
+method</figcaption>
+</figure>
+<h2 id="ancestor-configuration-inclusion">Ancestor configuration
+inclusion</h2>
+<figure>
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5ODAgNjk1IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkFuY2VzdG9yIGNvbmZpZ3VyYXRpb24gaW5jbHVzaW9uIj48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTSAwIDAgTCAxMCA1IEwgMCAxMCB6IiBmaWxsPSIjNjU3NzhhIi8+PC9tYXJrZXI+PC9kZWZzPjxwYXRoIGQ9Ik00ODAsMTA1IFYxMzAuMCBINDgwIFYxNTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsMjE1IFYyNDAuMCBIMTcwIFYyNjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjMzMy4wIiB5PSIyMzUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ZZXM8L3RleHQ+PHBhdGggZD0iTTQ4MCwyMTUgVjI0MC4wIEg3OTAgVjI2NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNjQzLjAiIHk9IjIzNS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPk5vPC90ZXh0PjxwYXRoIGQ9Ik0xNzAsMzI1IFYzNTAuMCBINDgwIFYzNzUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik03OTAsMzI1IFYzNTAuMCBINDgwIFYzNzUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsNDM1IFY0NjAuMCBIMTcwIFY0ODUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjMzMy4wIiB5PSI0NTUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ZZXM8L3RleHQ+PHBhdGggZD0iTTQ4MCw0MzUgVjQ2MC4wIEg3OTAgVjQ4NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNjQzLjAiIHk9IjQ1NS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPk5vPC90ZXh0PjxwYXRoIGQ9Ik05MjAsNTE1IEgzNSBWMTg1IEg2MTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjQwIiB5PSIzNTAuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5SZXBlYXQ8L3RleHQ+PHBhdGggZD0iTTE3MCw1NDUgVjU3MC4wIEgxNzAgVjU5NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHJlY3QgeD0iMzQ1IiB5PSI0NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9IjgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlN0YXJ0IGF0IGRlc2lnbiBkaXJlY3Rvcnk8L3RleHQ+PHJlY3QgeD0iMzQ1IiB5PSIxNTUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSIxOCIgZmlsbD0iI2U0ZWVmOSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iMTkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPk1hdGNoaW5nIHNldHVwIENGRyBleGlzdHM8L3RleHQ+PHJlY3QgeD0iMzUiIHk9IjI2NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSIxNzAiIHk9IjMwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5Qcm9jZXNzIG1hdGNoaW5nIENGRzwvdGV4dD48cmVjdCB4PSI2NTUiIHk9IjI2NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI3OTAiIHk9IjMwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5SZWNvcmQgYWJzZW50IG1hdGNoIGlmIGRlYnVnZ2luZzwvdGV4dD48cmVjdCB4PSIzNDUiIHk9IjM3NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjE4IiBmaWxsPSIjZTRlZWY5IiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNDgwIiB5PSI0MTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+Qm91bmRhcnkgb3Igc3RvcCBjb25kaXRpb24gbWV0PC90ZXh0PjxyZWN0IHg9IjM1IiB5PSI0ODUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iMTcwIiB5PSI1MTEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+UmV0YWluIHRyYWNlIGFuZCBjbGVhbjwvdGV4dD48dGV4dCB4PSIxNzAiIHk9IjUyOSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5wYXJhbWV0ZXJzPC90ZXh0PjxyZWN0IHg9IjY1NSIgeT0iNDg1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iNTIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPk1vdmUgdG8gcGFyZW50IGRpcmVjdG9yeTwvdGV4dD48cmVjdCB4PSIzNSIgeT0iNTk1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjE3MCIgeT0iNjIxIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlZlcmlmeSBmaW5hbCB2YWx1ZXMgYW5kPC90ZXh0Pjx0ZXh0IHg9IjE3MCIgeT0iNjM5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPnByZWNlZGVuY2U8L3RleHQ+PC9zdmc+" alt="Ancestor configuration inclusion" />
+<figcaption aria-hidden="true">Ancestor configuration
+inclusion</figcaption>
+</figure>
+<h2 id="release-and-recovery">Release and recovery</h2>
+<figure>
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5ODAgNjk1IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlJlbGVhc2UgYW5kIHJlY292ZXJ5Ij48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTSAwIDAgTCAxMCA1IEwgMCAxMCB6IiBmaWxsPSIjNjU3NzhhIi8+PC9tYXJrZXI+PC9kZWZzPjxwYXRoIGQ9Ik00ODAsMTA1IFYxMzAuMCBINDgwIFYxNTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsMjE1IFYyNDAuMCBIMTcwIFYyNjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjMzMy4wIiB5PSIyMzUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ObzwvdGV4dD48cGF0aCBkPSJNMzAwLDI5NSBIOTQ1IFYxODUgSDYxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iODk1IiB5PSIyNDAuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5SZXRlc3Q8L3RleHQ+PHBhdGggZD0iTTQ4MCwyMTUgVjI0MC4wIEg3OTAgVjI2NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNjQzLjAiIHk9IjIzNS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPlllczwvdGV4dD48cGF0aCBkPSJNNzkwLDMyNSBWMzUwLjAgSDc5MCBWMzc1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNzkwLDQzNSBWNDYwLjAgSDE3MCBWNDg1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI0ODguMCIgeT0iNDU1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+Tm88L3RleHQ+PHBhdGggZD0iTTc5MCw0MzUgVjQ2MC4wIEg3OTAgVjQ4NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNzk4LjAiIHk9IjQ1NS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPlllczwvdGV4dD48cGF0aCBkPSJNMTcwLDU0NSBWNTcwLjAgSDE3MCBWNTk1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cmVjdCB4PSIzNDUiIHk9IjQ1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+RnJlZXplIHJlbGVhc2UgYW5kIG1hbmlmZXN0PC90ZXh0PjxyZWN0IHg9IjM0NSIgeT0iMTU1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iMTgiIGZpbGw9IiNlNGVlZjkiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9IjE5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5BY2NlcHRhbmNlIG1hdHJpeCBwYXNzZXM8L3RleHQ+PHJlY3QgeD0iMzUiIHk9IjI2NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSIxNzAiIHk9IjMwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5Db3JyZWN0IGFuZCByZXRlc3Q8L3RleHQ+PHJlY3QgeD0iNjU1IiB5PSIyNjUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNzkwIiB5PSIzMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+QXBwcm92ZSBhbmQgZGVwbG95IHBpbG90PC90ZXh0PjxyZWN0IHg9IjY1NSIgeT0iMzc1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iMTgiIGZpbGw9IiNlNGVlZjkiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI3OTAiIHk9IjQxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5PcmRpbmFyeSB1c2VyIHNtb2tlIHRlc3QgcGFzc2VzPC90ZXh0PjxyZWN0IHg9IjM1IiB5PSI0ODUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iMTcwIiB5PSI1MTEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+UmVzdG9yZSBrbm93biBnb29kIGNvbnRlbnQgYW5kPC90ZXh0Pjx0ZXh0IHg9IjE3MCIgeT0iNTI5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPmJpbmRpbmdzPC90ZXh0PjxyZWN0IHg9IjY1NSIgeT0iNDg1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iNTExIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlJlY29yZCByZWxlYXNlIGFuZCBkZXBsb3kgbmV4dDwvdGV4dD48dGV4dCB4PSI3OTAiIHk9IjUyOSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij53YXZlPC90ZXh0PjxyZWN0IHg9IjM1IiB5PSI1OTUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iMTcwIiB5PSI2MzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+VmVyaWZ5IHJlc3RvcmVkIG91dHB1dDwvdGV4dD48L3N2Zz4=" alt="Release and recovery" />
+<figcaption aria-hidden="true">Release and recovery</figcaption>
+</figure>
+<h2 id="diagnose-wrong-or-missing-standards">Diagnose wrong or missing
+standards</h2>
+<figure>
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5ODAgOTE1IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkRpYWdub3NlIHdyb25nIG9yIG1pc3Npbmcgc3RhbmRhcmRzIj48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTSAwIDAgTCAxMCA1IEwgMCAxMCB6IiBmaWxsPSIjNjU3NzhhIi8+PC9tYXJrZXI+PC9kZWZzPjxwYXRoIGQ9Ik00ODAsMTA1IFYxMzAuMCBINDgwIFYxNTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00ODAsMjE1IFYyNDAuMCBIMTcwIFYyNjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjMzMy4wIiB5PSIyMzUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ObzwvdGV4dD48cGF0aCBkPSJNNDgwLDIxNSBWMjQwLjAgSDc5MCBWMjY1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI2NDMuMCIgeT0iMjM1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+WWVzPC90ZXh0PjxwYXRoIGQ9Ik03OTAsMzI1IFYzNTAuMCBINzkwIFYzNzUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik03OTAsNDM1IFY0NjAuMCBIMTcwIFY0ODUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjQ4OC4wIiB5PSI0NTUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ObzwvdGV4dD48cGF0aCBkPSJNNzkwLDQzNSBWNDYwLjAgSDc5MCBWNDg1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI3OTguMCIgeT0iNDU1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+WWVzPC90ZXh0PjxwYXRoIGQ9Ik03OTAsNTQ1IFY1NzAuMCBINzkwIFY1OTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik03OTAsNjU1IFY2ODAuMCBIMTcwIFY3MDUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjQ4OC4wIiB5PSI2NzUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ZZXM8L3RleHQ+PHBhdGggZD0iTTc5MCw2NTUgVjY4MC4wIEg3OTAgVjcwNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNzk4LjAiIHk9IjY3NS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPk5vPC90ZXh0PjxwYXRoIGQ9Ik0zNSwyOTUgSDE1IFY4NDUgSDM0NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHBhdGggZD0iTTM1LDUxNSBIMTUgVjg0NSBIMzQ1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNMTcwLDc2NSBWNzkwLjAgSDQ4MCBWODE1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNzkwLDc2NSBWNzkwLjAgSDQ4MCBWODE1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cmVjdCB4PSIzNDUiIHk9IjQ1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iNzEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+Q2FwdHVyZSBkb2N1bWVudCBjb250ZXh0IGFuZDwvdGV4dD48dGV4dCB4PSI0ODAiIHk9Ijg5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPmJ1aWxkczwvdGV4dD48cmVjdCB4PSIzNDUiIHk9IjE1NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjE4IiBmaWxsPSIjZTRlZWY5IiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNDgwIiB5PSIxOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+Q29tbW9uIENGRyB0cmFjZSBwcmVzZW50PC90ZXh0PjxyZWN0IHg9IjM1IiB5PSIyNjUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iMTcwIiB5PSIzMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+Q2hlY2sgQ1NCIGFuZCBsYXVuY2ggaW50ZWdyYXRpb248L3RleHQ+PHJlY3QgeD0iNjU1IiB5PSIyNjUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNzkwIiB5PSIyOTEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+Q2hlY2sgV29ya0FyZWEgc2VsZWN0b3IgYW5kPC90ZXh0Pjx0ZXh0IHg9Ijc5MCIgeT0iMzA5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPmFkYXB0ZXI8L3RleHQ+PHJlY3QgeD0iNjU1IiB5PSIzNzUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSIxOCIgZmlsbD0iI2U0ZWVmOSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iNDAxIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkZpbmFsIHdvcmtzcGFjZSBhbmQgV29ya1NldDwvdGV4dD48dGV4dCB4PSI3OTAiIHk9IjQxOSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5tYXRjaDwvdGV4dD48cmVjdCB4PSIzNSIgeT0iNDg1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjE3MCIgeT0iNTIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkNvcnJlY3QgZmlyc3Qgd3Jvbmcgc2VsZWN0aW9uPC90ZXh0PjxyZWN0IHg9IjY1NSIgeT0iNDg1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iNTExIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkNoZWNrIHJlc291cmNlIHBhdGhzIGFuZDwvdGV4dD48dGV4dCB4PSI3OTAiIHk9IjUyOSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5hdmFpbGFiaWxpdHk8L3RleHQ+PHJlY3QgeD0iNjU1IiB5PSI1OTUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSIxOCIgZmlsbD0iI2U0ZWVmOSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iNjMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkRyaXZlIG9yIHNlcnZlciBkaWZmZXJlbmNlPC90ZXh0PjxyZWN0IHg9IjM1IiB5PSI3MDUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iMTcwIiB5PSI3MzEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+Q2hlY2sgdXNlciBzeW5jIG9yIHByb2Nlc3M8L3RleHQ+PHRleHQgeD0iMTcwIiB5PSI3NDkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+Y29udGV4dDwvdGV4dD48cmVjdCB4PSI2NTUiIHk9IjcwNSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI3OTAiIHk9IjczMSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5DaGVjayBuYXRpdmUgcmVzb3VyY2U8L3RleHQ+PHRleHQgeD0iNzkwIiB5PSI3NDkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+Y29uZmlndXJhdGlvbjwvdGV4dD48cmVjdCB4PSIzNDUiIHk9IjgxNSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9Ijg0MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5SZXRlc3Qgb3V0cHV0IGFuZCByZWNvcmQ8L3RleHQ+PHRleHQgeD0iNDgwIiB5PSI4NTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+ZXZpZGVuY2U8L3RleHQ+PC9zdmc+" alt="Diagnose wrong or missing standards" />
+<figcaption aria-hidden="true">Diagnose wrong or missing
+standards</figcaption>
+</figure>
+<h2 id="build-a-dataset-from-standards">Build a dataset from
+standards</h2>
+<figure>
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5ODAgNjk1IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkJ1aWxkIGEgZGF0YXNldCBmcm9tIHN0YW5kYXJkcyI+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0gMCAwIEwgMTAgNSBMIDAgMTAgeiIgZmlsbD0iIzY1Nzc4YSIvPjwvbWFya2VyPjwvZGVmcz48cGF0aCBkPSJNNDgwLDEwNSBWMTMwLjAgSDQ4MCBWMTU1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNDgwLDIxNSBWMjQwLjAgSDQ4MCBWMjY1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNDgwLDMyNSBWMzUwLjAgSDE3MCBWMzc1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIzMzMuMCIgeT0iMzQ1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+Tm88L3RleHQ+PHBhdGggZD0iTTMwMCw0MDUgSDk0NSBWMjk1IEg2MTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9Ijg5NSIgeT0iMzUwLjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+UmV2aWV3PC90ZXh0PjxwYXRoIGQ9Ik00ODAsMzI1IFYzNTAuMCBINzkwIFYzNzUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjY0My4wIiB5PSIzNDUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ZZXM8L3RleHQ+PHBhdGggZD0iTTc5MCw0MzUgVjQ2MC4wIEg3OTAgVjQ4NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHBhdGggZD0iTTc5MCw1NDUgVjU3MC4wIEgxNzAgVjU5NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNDg4LjAiIHk9IjU2NS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPk5vPC90ZXh0PjxwYXRoIGQ9Ik0zMDAsNjI1IEg5NDUgVjQwNSBIOTIwIiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI4OTUiIHk9IjUxNS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPlJldGVzdDwvdGV4dD48cGF0aCBkPSJNNzkwLDU0NSBWNTcwLjAgSDc5MCBWNTk1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI3OTguMCIgeT0iNTY1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+WWVzPC90ZXh0PjxyZWN0IHg9IjM0NSIgeT0iNDUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iNDgwIiB5PSI3MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5SZWdpc3RlciBhdXRob3JpdGF0aXZlPC90ZXh0Pjx0ZXh0IHg9IjQ4MCIgeT0iODkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+c3BlY2lmaWNhdGlvbjwvdGV4dD48cmVjdCB4PSIzNDUiIHk9IjE1NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9IjE4MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5FeHRyYWN0IHJlcXVpcmVtZW50cyBhbmQ8L3RleHQ+PHRleHQgeD0iNDgwIiB5PSIxOTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+dHJhY2VhYmlsaXR5PC90ZXh0PjxyZWN0IHg9IjM0NSIgeT0iMjY1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iMTgiIGZpbGw9IiNlNGVlZjkiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9IjMwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5JbnRlcnByZXRhdGlvbiBhZ3JlZWQ8L3RleHQ+PHJlY3QgeD0iMzUiIHk9IjM3NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSIxNzAiIHk9IjQxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5SZXNvbHZlIHdpdGggc3RhbmRhcmRzIG93bmVyPC90ZXh0PjxyZWN0IHg9IjY1NSIgeT0iMzc1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iNDAxIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkJ1aWxkIG5hdGl2ZSByZXNvdXJjZXMgYW5kPC90ZXh0Pjx0ZXh0IHg9Ijc5MCIgeT0iNDE5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPmFkYXB0ZXI8L3RleHQ+PHJlY3QgeD0iNjU1IiB5PSI0ODUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSIxOCIgZmlsbD0iI2U0ZWVmOSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iNTIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlJlcHJlc2VudGF0aXZlIG91dHB1dCBwYXNzZXM8L3RleHQ+PHJlY3QgeD0iMzUiIHk9IjU5NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSIxNzAiIHk9IjYyMSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5Db3JyZWN0IHJlc291cmNlIG9yPC90ZXh0Pjx0ZXh0IHg9IjE3MCIgeT0iNjM5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPmludGVycHJldGF0aW9uPC90ZXh0PjxyZWN0IHg9IjY1NSIgeT0iNTk1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iNjIxIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlJlbGVhc2UgZGF0YXNldCBhbmQgYWRhcHRlcjwvdGV4dD48dGV4dCB4PSI3OTAiIHk9IjYzOSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij50b2dldGhlcjwvdGV4dD48L3N2Zz4=" alt="Build a dataset from standards" />
+<figcaption aria-hidden="true">Build a dataset from
+standards</figcaption>
+</figure>
+<h2 id="separate-autodesk-deployment-concept">Separate Autodesk
+deployment concept</h2>
+<figure>
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5ODAgOTE1IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlNlcGFyYXRlIEF1dG9kZXNrIGRlcGxveW1lbnQgY29uY2VwdCI+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0gMCAwIEwgMTAgNSBMIDAgMTAgeiIgZmlsbD0iIzY1Nzc4YSIvPjwvbWFya2VyPjwvZGVmcz48cGF0aCBkPSJNNDgwLDEwNSBWMTMwLjAgSDQ4MCBWMTU1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNDgwLDIxNSBWMjQwLjAgSDE3MCBWMjY1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIzMzMuMCIgeT0iMjM1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+Tm88L3RleHQ+PHBhdGggZD0iTTQ4MCwyMTUgVjI0MC4wIEg3OTAgVjI2NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNjQzLjAiIHk9IjIzNS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPlllczwvdGV4dD48cGF0aCBkPSJNNzkwLDMyNSBWMzUwLjAgSDc5MCBWMzc1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNzkwLDQzNSBWNDYwLjAgSDE3MCBWNDg1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI0ODguMCIgeT0iNDU1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+Tm88L3RleHQ+PHBhdGggZD0iTTc5MCw0MzUgVjQ2MC4wIEg3OTAgVjQ4NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNzk4LjAiIHk9IjQ1NS4wIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ4NWMiPlllczwvdGV4dD48cGF0aCBkPSJNMTcwLDU0NSBWNTcwLjAgSDE3MCBWNTk1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNMTcwLDY1NSBWNjgwLjAgSDE3MCBWNzA1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIxNzguMCIgeT0iNjc1LjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDg1YyI+WWVzPC90ZXh0PjxwYXRoIGQ9Ik0xNzAsNjU1IFY2ODAuMCBINzkwIFY3MDUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY1Nzc4YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjQ4OC4wIiB5PSI2NzUuMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0ODVjIj5ObzwvdGV4dD48cGF0aCBkPSJNMTcwLDc2NSBWNzkwLjAgSDQ4MCBWODE1IiBmaWxsPSJub25lIiBzdHJva2U9IiM2NTc3OGEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNOTI1LDUxNSBIOTY1IFY4NDUgSDYxNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjU3NzhhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHJlY3QgeD0iMzQ1IiB5PSI0NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9IjcxIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlByb2plY3RXaXNlIHByb2ZpbGUgc2VsZWN0cyBDQUQ8L3RleHQ+PHRleHQgeD0iNDgwIiB5PSI4OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5wcm9maWxlPC90ZXh0PjxyZWN0IHg9IjM0NSIgeT0iMTU1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iMTgiIGZpbGw9IiNlNGVlZjkiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI0ODAiIHk9IjE5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5BcHByb3ZlZCBEcml2ZSBjb250ZW50IGF2YWlsYWJsZTwvdGV4dD48cmVjdCB4PSIzNSIgeT0iMjY1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjE3MCIgeT0iMzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlN0b3Agd2l0aCBzdXBwb3J0IGV2aWRlbmNlPC90ZXh0PjxyZWN0IHg9IjY1NSIgeT0iMjY1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iMzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkFwcHJvdmVkIHN0YXJ0dXAgYm9vdHN0cmFwIHJ1bnM8L3RleHQ+PHJlY3QgeD0iNjU1IiB5PSIzNzUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSIxOCIgZmlsbD0iI2U0ZWVmOSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9Ijc5MCIgeT0iNDEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPkxvY2FsIHJlbGVhc2UgYWxyZWFkeSBjdXJyZW50PC90ZXh0PjxyZWN0IHg9IjM1IiB5PSI0ODUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjZjVmN2ZhIiBzdHJva2U9IiM0ODY3ODQiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iMTcwIiB5PSI1MjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzEzMmM0NSI+U3RhZ2UgYW5kIHZlcmlmeSByZXF1aXJlZCBmaWxlczwvdGV4dD48cmVjdCB4PSI2NTUiIHk9IjQ4NSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI3OTAiIHk9IjUyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5Vc2UgYXBwcm92ZWQgZXhpc3RpbmcgcmVsZWFzZTwvdGV4dD48cmVjdCB4PSIzNSIgeT0iNTk1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iMTgiIGZpbGw9IiNlNGVlZjkiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSIxNzAiIHk9IjYzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5Db250ZW50IGFuZCBwbHVnaW4gY2hlY2tzIHBhc3M8L3RleHQ+PHJlY3QgeD0iMzUiIHk9IjcwNSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSIxNzAiIHk9Ijc0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5BY3RpdmF0ZSBzdGFnZWQgbG9jYWwgcmVsZWFzZTwvdGV4dD48cmVjdCB4PSI2NTUiIHk9IjcwNSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNmNWY3ZmEiIHN0cm9rZT0iIzQ4Njc4NCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48dGV4dCB4PSI3OTAiIHk9IjczMSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjMTMyYzQ1Ij5SZXRhaW4gcHJpb3IgcmVsZWFzZSBhbmQgcmVwb3J0PC90ZXh0Pjx0ZXh0IHg9Ijc5MCIgeT0iNzQ5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPmZhdWx0PC90ZXh0PjxyZWN0IHg9IjM0NSIgeT0iODE1IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjYwIiByeD0iNiIgZmlsbD0iI2Y1ZjdmYSIgc3Ryb2tlPSIjNDg2Nzg0IiBzdHJva2Utd2lkdGg9IjEuNSIvPjx0ZXh0IHg9IjQ4MCIgeT0iODUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiMxMzJjNDUiPlZlcmlmeSBDaXZpbCAzRCBkcmF3aW5nIG91dHB1dDwvdGV4dD48L3N2Zz4=" alt="Separate Autodesk deployment concept" />
+<figcaption aria-hidden="true">Separate Autodesk deployment
+concept</figcaption>
+</figure>
+</body>
+</html>

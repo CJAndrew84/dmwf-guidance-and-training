@@ -1,0 +1,5 @@
+# Keep vendor source packages and local working material out of this repository
+*.zip
+source/
+upload/
+.cache/

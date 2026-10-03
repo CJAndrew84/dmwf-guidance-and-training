@@ -1,0 +1,18 @@
+flowchart TD
+    A["Register authoritative specification"]
+    B["Extract requirements and traceability"]
+    C{"Interpretation agreed"}
+    D["Resolve with standards owner"]
+    E["Build native resources and adapter"]
+    F{"Representative output passes"}
+    G["Correct resource or interpretation"]
+    H["Release dataset and adapter together"]
+    A --> B
+    B --> C
+    C -->|No| D
+    D -->|Review| C
+    C -->|Yes| E
+    E --> F
+    F -->|No| G
+    G -->|Retest| E
+    F -->|Yes| H
