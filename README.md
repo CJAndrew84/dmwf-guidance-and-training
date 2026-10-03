@@ -9,7 +9,7 @@ I have prepared this reference pack to explain how the Dynamic Managed Workspace
 
 ## Framework release and application support
 
-**DMWF 24 names the framework release year (2024), not the Bentley application generation.** DMWF 24.0.0.0 supports Bentley product versions `10.xx`, `23.xx`, `24.xx` and `25.xx`. Technically, `26.xx` products can also use the framework, but the missing registry key prevents the existing version-detection route from identifying their version. For `26.xx`, an **Application CSV is required to specify and lock the product version**. Framework support and the suitability of a particular standards dataset are separate decisions.
+**DMWF 24 names the framework release year (2024), not the Bentley application generation.** DMWF 24.0.0.0 supports Bentley product versions `10.xx`, `23.xx`, `24.xx` and `25.xx`. Technically, `26.xx` products can also use the framework, but the missing registry key prevents the existing version-detection route from identifying their version. For `26.xx`, an **Application CSB is required to specify and lock the product version**. Framework support and the suitability of a particular standards dataset are separate decisions.
 
 Sample `24.00` workspace checks and `Bentley 2024` folder names do not limit the framework to 2024 products. See the handbook for the support table and 26.xx deployment procedure.
 

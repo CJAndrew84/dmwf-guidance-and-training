@@ -2,9 +2,9 @@
 
 ## Application support quick reference
 
-**DMWF 24 names the framework release year (2024), not the Bentley application generation.** DMWF 24.0.0.0 supports Bentley product versions `10.xx`, `23.xx`, `24.xx` and `25.xx`. Technically, `26.xx` products can also use the framework, but the missing registry key prevents the existing version-detection route from identifying their version. For `26.xx`, an **Application CSV is required to specify and lock the product version**. Framework support and the suitability of a particular standards dataset are separate decisions.
+**DMWF 24 names the framework release year (2024), not the Bentley application generation.** DMWF 24.0.0.0 supports Bentley product versions `10.xx`, `23.xx`, `24.xx` and `25.xx`. Technically, `26.xx` products can also use the framework, but the missing registry key prevents the existing version-detection route from identifying their version. For `26.xx`, an **Application CSB is required to specify and lock the product version**. Framework support and the suitability of a particular standards dataset are separate decisions.
 
-For a 26.xx release record, capture the application name, installed full build, Application CSV location, specified and locked version, effective DMWF version values and acceptance-test evidence. Review the locked value after every application update.
+For a 26.xx release record, capture the application name, installed full build, Application CSB location, specified and locked version, effective DMWF version values and acceptance-test evidence. Review the locked value after every application update.
 
 ## Administrator quick reference
 

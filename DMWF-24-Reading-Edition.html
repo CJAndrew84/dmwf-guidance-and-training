@@ -305,7 +305,7 @@ product versions <code>10.xx</code>, <code>23.xx</code>,
 <code>26.xx</code> products can also use the framework, but the missing
 registry key prevents the existing version-detection route from
 identifying their version. For <code>26.xx</code>, an
-<strong>Application CSV is required to specify and lock the product
+<strong>Application CSB is required to specify and lock the product
 version</strong>. Framework support and the suitability of a particular
 standards dataset are separate decisions.</p>
 <p>The common file rejects V8 family configurations. Some supplied
@@ -751,21 +751,21 @@ generations and the 26.xx configuration requirement</h3>
 <td><code>26.xx</code></td>
 <td>Technically supported; existing registry detection is affected by a
 missing key</td>
-<td>Use an Application CSV to specify and lock the actual product
+<td>Use an Application CSB to specify and lock the actual product
 version</td>
 </tr>
 </tbody>
 </table>
-<p>For 26.xx, configure the Application CSV for the applicable
+<p>For 26.xx, configure the Application CSB for the applicable
 application, specify its actual installed product version and lock that
 value before DMWF product-version processing. Verify the effective full
 version and generation/major values in the configuration trace, then
-test the intended workspace and output. Keep the CSV with the controlled
+test the intended workspace and output. Keep the CSB with the controlled
 deployment configuration and update its locked version when the
 application changes. Do not invent a registry entry or replace the
-unknown-version value with a guessed version. Exact CSV field names and
+unknown-version value with a guessed version. Exact CSB field names and
 import syntax must follow the application configuration tooling in use;
-no unverified CSV schema is supplied here.</p>
+no unverified CSB schema is supplied here.</p>
 <h2 id="desktop-and-server-processing">Desktop and server
 processing</h2>
 <p>The environment module contains separate checks for workstation
@@ -819,17 +819,17 @@ product versions <code>10.xx</code>, <code>23.xx</code>,
 <code>26.xx</code> products can also use the framework, but the missing
 registry key prevents the existing version-detection route from
 identifying their version. For <code>26.xx</code>, an
-<strong>Application CSV is required to specify and lock the product
+<strong>Application CSB is required to specify and lock the product
 version</strong>. Framework support and the suitability of a particular
 standards dataset are separate decisions.</p>
-<p>Before testing a 26.xx application, configure its Application CSV
+<p>Before testing a 26.xx application, configure its Application CSB
 with the actual installed product version and lock it before DMWF
 version processing. Check the effective version and derived
 generation/major values in the trace. Confirm workspace policy checks
 allow the approved combination; the sample <code>24.00</code>
-restriction is a dataset policy example. Record the CSV, installed
+restriction is a dataset policy example. Record the CSB, installed
 build, locked version and test evidence in the release record. Recheck
-the CSV whenever the product is upgraded.</p>
+the CSB whenever the product is upgraded.</p>
 <h2 id="scope-and-prerequisites">Scope and prerequisites</h2>
 <p>This runbook takes the supplied DMWF 24 template from an isolated
 test installation to a controlled production release. The ProjectWise
@@ -1975,15 +1975,15 @@ product versions <code>10.xx</code>, <code>23.xx</code>,
 <code>26.xx</code> products can also use the framework, but the missing
 registry key prevents the existing version-detection route from
 identifying their version. For <code>26.xx</code>, an
-<strong>Application CSV is required to specify and lock the product
+<strong>Application CSB is required to specify and lock the product
 version</strong>. Framework support and the suitability of a particular
 standards dataset are separate decisions.</p>
-<p>For 26.xx, use the Application CSV to supply and lock the product
+<p>For 26.xx, use the Application CSB to supply and lock the product
 version before this module consumes it. Verify the effective
 <code>_DYNAMIC_PRODUCT_VERSION</code> and
 <code>_DYNAMIC_PRODUCT_VERSION_GEN_MAJ</code>; check the trace rather
 than assuming the registry route succeeded. Follow the actual
-application configuration tooling for CSV fields and lock syntax. The
+application configuration tooling for CSB fields and lock syntax. The
 supplied version module reads
 <code>HKEY_CLASSES_ROOT\Installer\Dependencies\$(MS_PRODUCTCODEGUID)\Version</code>
 in its registry branch; the missing key is a detection issue, not a
@@ -2117,14 +2117,14 @@ product versions <code>10.xx</code>, <code>23.xx</code>,
 <code>26.xx</code> products can also use the framework, but the missing
 registry key prevents the existing version-detection route from
 identifying their version. For <code>26.xx</code>, an
-<strong>Application CSV is required to specify and lock the product
+<strong>Application CSB is required to specify and lock the product
 version</strong>. Framework support and the suitability of a particular
 standards dataset are separate decisions.</p>
 <p><strong>Trainer check:</strong> ask participants why a supplied
 <code>24.00</code> workspace check can reject a supported 25.xx product.
 Expected answer: the example adapter enforces a workspace policy; it
 does not define DMWF support. Ask how a 26.xx deployment addresses the
-missing registry key. Expected answer: configure an Application CSV with
+missing registry key. Expected answer: configure an Application CSB with
 the actual product version, lock it before DMWF processing and verify
 the effective version, selection and drawing output.</p>
 <h2 id="training-purpose">Training purpose</h2>
@@ -2830,7 +2830,7 @@ final <code>_USTN_ORGANIZATION</code></td>
 product-generation limit</td>
 <td>DMWF 24 supports <code>10.xx</code>, <code>23.xx</code>,
 <code>24.xx</code> and <code>25.xx</code>; technically
-<code>26.xx</code> requires an Application CSV specifying and locking
+<code>26.xx</code> requires an Application CSB specifying and locking
 the version because of the missing registry key. Adapt workspace checks
 to the approved dataset</td>
 </tr>
@@ -2968,13 +2968,13 @@ product versions <code>10.xx</code>, <code>23.xx</code>,
 <code>26.xx</code> products can also use the framework, but the missing
 registry key prevents the existing version-detection route from
 identifying their version. For <code>26.xx</code>, an
-<strong>Application CSV is required to specify and lock the product
+<strong>Application CSB is required to specify and lock the product
 version</strong>. Framework support and the suitability of a particular
 standards dataset are separate decisions.</p>
-<p>The product-family support range and Application CSV requirement are
+<p>The product-family support range and Application CSB requirement are
 operational clarifications incorporated into this edition. The archive
 confirms the registry-based detection route and sample-specific version
-checks; no 26.xx runtime test or CSV schema validation was performed in
+checks; no 26.xx runtime test or CSB schema validation was performed in
 this static review.</p>
 <h1 id="dmwf-quick-reference-and-operating-templates">DMWF quick
 reference and operating templates</h1>
@@ -2987,11 +2987,11 @@ product versions <code>10.xx</code>, <code>23.xx</code>,
 <code>26.xx</code> products can also use the framework, but the missing
 registry key prevents the existing version-detection route from
 identifying their version. For <code>26.xx</code>, an
-<strong>Application CSV is required to specify and lock the product
+<strong>Application CSB is required to specify and lock the product
 version</strong>. Framework support and the suitability of a particular
 standards dataset are separate decisions.</p>
 <p>For a 26.xx release record, capture the application name, installed
-full build, Application CSV location, specified and locked version,
+full build, Application CSB location, specified and locked version,
 effective DMWF version values and acceptance-test evidence. Review the
 locked value after every application update.</p>
 <h2 id="administrator-quick-reference">Administrator quick
