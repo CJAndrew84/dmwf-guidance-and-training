@@ -1,5 +1,9 @@
 # Change log
 
+## Interactive training tool dated 3 October 2026
+
+Added a standalone offline HTML course with eight modules, logical load trace, selector exercise, Application CSB readiness checks, assignment-order simulator, five diagnostic scenarios, seven lab evidence forms, ten-question assessment, saved progress and JSON learning-record export.
+
 ## Edition 1.1 dated 3 October 2026
 
 Corrected DMWF 24 release-year meaning and supported product families (`10.xx`, `23.xx`, `24.xx`, `25.xx`). Added the 26.xx Application CSB requirement to specify and lock the product version when the registry key is missing. Distinguished framework support from sample workspace checks and dataset compatibility throughout the handbook, runbook, references, training and source register. Updated the offline reading edition.
